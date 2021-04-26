@@ -14,7 +14,7 @@ func (*AuthModel) GetUser(username string) (entities.User, error) {
 	if	err != nil {
 		return entities.User{}, err
 	} else {
-		rows, err2 := db.Query("SELECT 
+		rows, err2 := db.Query(`SELECT 
 		id_pengguna, 
 		username, 
 		nama, 
@@ -23,7 +23,7 @@ func (*AuthModel) GetUser(username string) (entities.User, error) {
 		FROM 
 		pengguna 
 		WHERE 
-		username = ?", username)
+		username = ?`, username)
 		if err2 != nil {
 			return entities.User{}, err2
 		} else {
