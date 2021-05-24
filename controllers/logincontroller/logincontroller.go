@@ -6,6 +6,7 @@ import (
 	"github.com/kataras/go-sessions"
 	"golang.org/x/crypto/bcrypt"
 	"gocrud/config"
+	"fmt"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -37,6 +38,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("nama", users.Nama)
 		session.Set("Idrole", users.Idrole)
 		http.Redirect(response, request, "/home", 302)
+		fmt.Println("Login Sukses")
 	} else {
 		//login failed
 		http.Redirect(response, request, "/login", 302)
