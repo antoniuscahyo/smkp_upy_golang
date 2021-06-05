@@ -37,7 +37,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("username", users.Username)
 		session.Set("nama", users.Nama)
 		session.Set("Idrole", users.Idrole)
-		http.Redirect(response, request, "/home", 302)
+		http.Redirect(response, request, "/dashboard", 302)
 		fmt.Println("Login Sukses")
 	} else {
 		//login failed

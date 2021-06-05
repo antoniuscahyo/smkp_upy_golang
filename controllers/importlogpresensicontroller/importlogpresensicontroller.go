@@ -1,4 +1,4 @@
-package rekaplaporanperunitcontroller
+package importlogpresensicontroller
 
 import (
 	"html/template"
@@ -23,7 +23,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	}
 
 	var t, err = template.ParseFiles(
-		"views/rekap_laporan_bulanan_perunit/index.html",
+		"views/import_log_presensi/index.html",
 		"views/template/_header.html",
 		"views/template/_footer.html",
 		"views/template/_sidebar.html",
@@ -37,4 +37,19 @@ func Index(response http.ResponseWriter, request *http.Request) {
 
 	t.Execute(response, data)
 	return
+}
+
+func Add(response http.ResponseWriter, request *http.Request) {
+}
+
+func ProcessAdd(response http.ResponseWriter, request *http.Request) {
+}
+
+func Update(response http.ResponseWriter, request *http.Request) {
+}
+
+func Delete(response http.ResponseWriter, request *http.Request) {
+}
+
+func Edit(response http.ResponseWriter, request *http.Request) {
 }

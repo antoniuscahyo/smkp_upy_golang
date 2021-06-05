@@ -23,7 +23,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	}
 
 	var t, err = template.ParseFiles(
-		"views/rekap_laporan_perpegawai/index.html",
+		"views/rekap_laporan_bulanan_perpegawai/index.html",
 		"views/template/_header.html",
 		"views/template/_footer.html",
 		"views/template/_sidebar.html",

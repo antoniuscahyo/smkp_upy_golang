@@ -2,7 +2,9 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
       <div class="navbar nav_title" style="border: 0;">
-        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>{{ .NamaAplikasi}}</span></a>
+        <a href="index.html" class="site_title"><img src="/images/favicon.png" style="
+          height: 90%;
+      "> <span>{{ .NamaAplikasi}}</span></a>
       </div>
 
       <div class="clearfix"></div>
@@ -27,20 +29,22 @@
           <h3>Menu Utama</h3>
           <ul class="nav side-menu">
             <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-            <li><a href="/rekap_laporan_bulanan_perunit"><i class="fa fa-home"></i> Rekap Laporan Bulanan Per Unit</a></li>
-            <li><a href="/rekap_laporan_bulanan_perpegawai"><i class="fa fa-home"></i> Rekap Laporan Bulanan Per Pegawai</a></li>
+            <li><a href="/rekap_laporan_bulanan_perunit"><i class="fa fa-file-text-o"></i> Rekap Laporan Bulanan Per Unit</a></li>
+            <li><a href="/rekap_laporan_bulanan_perpegawai"><i class="fa fa-file-o"></i> Rekap Laporan Bulanan Per Pegawai</a></li>
           </ul>
         </div>
         {{if (eq .Idrole "1") }}
         <div class="menu_section">
         <h3>Menu Admin</h3>
           <ul class="nav side-menu">
-            <li><a href="/referensi_unit"><i class="fa fa-bug"></i> Referensi Unit</span></a></li>                
-            <li><a href="/data_pegawai"><i class="fa fa-bug"></i> Data Pegawai</span></a></li>                
-            <li><a href="/setting_pengguna"><i class="fa fa-bug"></i> Setting Pengguna</span></a></li>                
-            <li><a href="/setting_menu"><i class="fa fa-bug"></i> Setting Menu</span></a></li>                
-            <li><a href="/setting_role"><i class="fa fa-bug"></i> Setting Role</span></a></li>                
-            <li><a href="/product"><i class="fa fa-bug"></i> Tes UI Produk</span></a></li>                
+            <li><a href="/referensi_unit"><i class="fa fa-university"></i> Referensi Unit</span></a></li>                
+            <li><a href="/referensi_jam_kerja"><i class="fa fa-clock-o"></i> Referensi Jam Kerja</span></a></li>                
+            <li><a href="/referensi_jadwal_kerja"><i class="fa fa-calendar"></i> Referensi Jadwal Kerja</span></a></li>                
+            <li><a href="/data_pegawai"><i class="fa fa-users"></i> Data Pegawai</span></a></li>                
+            <li><a href="/setting_pengguna"><i class="fa fa-user"></i> Setting Pengguna</span></a></li>                
+            <li><a href="/setting_menu"><i class="fa fa-list-alt"></i> Setting Menu</span></a></li>                
+            <li><a href="/setting_role"><i class="fa fa-key"></i> Setting Role</span></a></li>                
+            <!-- <li><a href="/product"><i class="fa fa-bug"></i> Tes UI Produk</span></a></li> -->
           </ul>
         </div>
         {{end}}
