@@ -7,4 +7,5 @@ type Pengguna struct {
 	Nama 		string
 	IdRole   	int64
 	IdPegawai 	int64
+	NamaRole 	string
 }

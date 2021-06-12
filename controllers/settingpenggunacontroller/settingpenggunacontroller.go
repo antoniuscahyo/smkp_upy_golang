@@ -20,6 +20,8 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	var penggunaModel models.PenggunaModel
 	records, _ := penggunaModel.FindAll()
 
+	// fmt.Printf("%+v\n", records)
+
 	data := map[string]interface{} {
 		"records" : records,
 		"username":      session.GetString("username"),
@@ -120,10 +122,10 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
 	var penggunaModel models.PenggunaModel
-	menu, _ := penggunaModel.Find(id)
+	records, _ := penggunaModel.Find(id)
 	
 	data := map[string]interface{} {
-		"menu": menu,
+		"records": records,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
