@@ -5,6 +5,9 @@ import (
 	"net/http"
 	"fmt"
 	"github.com/kataras/go-sessions"
+	"gocrud/models"	
+	"gocrud/entities"
+	"strconv"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -80,8 +83,8 @@ func ProcessAdd(response http.ResponseWriter, request *http.Request) {
 	pengguna.Username = request.Form.Get("Username")
 	pengguna.Password = request.Form.Get("Password")
 	pengguna.Nama = request.Form.Get("NamaPengguna")
-	pengguna.IdRole = request.Form.Get("IdRole")
-	pengguna.IdPegawai = request.Form.Get("IdPegawai")
+	pengguna.IdRole, _ = strconv.ParseInt(request.Form.Get("IdRole"), 10, 64)
+	pengguna.IdPegawai, _ = strconv.ParseInt(request.Form.Get("IdPegawai"), 10, 64)
 	var penggunaModel models.PenggunaModel
 	penggunaModel.Create(&pengguna)
 	http.Redirect(response, request, "/setting_pengguna", http.StatusSeeOther)
@@ -90,11 +93,11 @@ func ProcessAdd(response http.ResponseWriter, request *http.Request) {
 func Update(response http.ResponseWriter, request *http.Request) {
 	request.ParseForm()
 	var pengguna entities.Pengguna
-	menu.IdPengguna, _ = strconv.ParseInt(request.Form.Get("IdPengguna"), 10, 64)
+	pengguna.IdPengguna, _ = strconv.ParseInt(request.Form.Get("IdPengguna"), 10, 64)
 	pengguna.Password = request.Form.Get("Password")
 	pengguna.Nama = request.Form.Get("NamaPengguna")
-	pengguna.IdRole = request.Form.Get("IdRole")
-	pengguna.IdPegawai = request.Form.Get("IdPegawai")
+	pengguna.IdRole, _ = strconv.ParseInt(request.Form.Get("IdRole"), 10, 64)
+	pengguna.IdPegawai, _ = strconv.ParseInt(request.Form.Get("IdPegawai"), 10, 64)
 	var penggunaModel models.PenggunaModel
 	penggunaModel.Update(pengguna)
 	http.Redirect(response, request, "/setting_pengguna", http.StatusSeeOther)

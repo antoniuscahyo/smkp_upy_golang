@@ -1,10 +1,10 @@
 package entities
 
 type Pengguna struct {
-	IdPengguna  int
+	IdPengguna  int64
 	Username 	string
 	Password 	string
 	Nama 		string
-	Idrole   	int
-	IdPegawai 	int
+	IdRole   	int64
+	IdPegawai 	int64
 }
