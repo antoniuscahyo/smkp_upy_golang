@@ -81,7 +81,30 @@ func (*PenggunaModel) Update(pengguna entities.Pengguna) bool {
 	if	err != nil {
 		return false
 	} else {
-		result, err2 := db.Exec("UPDATE pengguna SET username = ?,password = ?,nama = ?,id_role = ?,id_pegawai = ? WHERE id_pengguna = ?", pengguna.Username,pengguna.Password,pengguna.Nama,pengguna.IdRole,pengguna.IdPegawai,pengguna.IdPengguna)
+
+		// GET DATA IF NOT UPDATE
+		if len(pengguna.Password) < 2 {
+			pengguna.Password = pengguna.PasswordLama
+		} else {
+			pengguna.Password = hashAndSalt(pengguna.Password)
+		}
+		// GET DATA IF NOT UPDATE
+
+		result, err2 := db.Exec(`UPDATE 
+		pengguna 
+		SET username = ?,
+		password = ?,
+		nama = ?,
+		id_role = ?,
+		id_pegawai = ? 
+		WHERE id_pengguna = ?`, 
+		pengguna.Username,
+		pengguna.Password,
+		pengguna.Nama,
+		pengguna.IdRole,
+		pengguna.IdPegawai,
+		pengguna.IdPengguna)
+		
 		if err2 != nil {
 			return false
 		} else {

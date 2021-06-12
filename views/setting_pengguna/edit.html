@@ -1,11 +1,4 @@
 {{template "_header" .}}
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#IdRole').select2('val','{{.records.IdRole}}');
-        $('#IdPegawai').select2('val','{{.records.IdPegawai}}');
-    });
-</script>
-
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
@@ -37,7 +30,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pengguna <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="Nama" name="Nama" required="required" class="form-control" value="{{.records.Nama}}">
+                                    <input type="text" id="NamaPengguna" name="NamaPengguna" required="required" class="form-control" value="{{.records.Nama}}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -51,7 +44,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Password <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="Password" name="Password" required="required" class="form-control" value="">
+                                    <input type="password" id="Password" name="Password" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -79,9 +72,10 @@
 
                             <!-- Untuk mengirimkan parameter edit data -->
                             <input type="hidden" name="IdPengguna" value="{{.records.IdPengguna}}">
+                            <input type="hidden" name="PasswordLama" value="{{.records.Password}}">
 
                             <div class="ln_solid"></div>
-                            <div class="item form-group">
+                            <div class="item form-group" id="btn-action" style="display: none;">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <a class="btn btn-primary" type="button" href="/setting_pengguna">Batal</a>
                                     <button type="submit" value="Save" class="btn btn-success">Simpan</button>
@@ -95,4 +89,14 @@
     </div>
 </div>
 <!-- page content -->
+
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    setTimeout(() => {
+        $('#IdRole').select2('val','{{.records.IdRole}}');
+        $('#IdPegawai').select2('val','{{.records.IdPegawai}}');
+        $('#btn-action').show('fast');
+    }, 2000);
+</script>
 {{template "_footer"}}

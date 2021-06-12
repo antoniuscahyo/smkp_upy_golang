@@ -96,7 +96,9 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	request.ParseForm()
 	var pengguna entities.Pengguna
 	pengguna.IdPengguna, _ = strconv.ParseInt(request.Form.Get("IdPengguna"), 10, 64)
+	pengguna.Username = request.Form.Get("Username")
 	pengguna.Password = request.Form.Get("Password")
+	pengguna.PasswordLama = request.Form.Get("PasswordLama")
 	pengguna.Nama = request.Form.Get("NamaPengguna")
 	pengguna.IdRole, _ = strconv.ParseInt(request.Form.Get("IdRole"), 10, 64)
 	pengguna.IdPegawai, _ = strconv.ParseInt(request.Form.Get("IdPegawai"), 10, 64)
