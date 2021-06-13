@@ -52,9 +52,10 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2" id="IdRole" name="IdRole">
-                                        <option value="">- Pilih Role -</option>
-                                        <option value="1">Administrator</option>
-                                        <option value="2">Pegawai</option>
+                                        <option value="0">- Pilih Role -</option>
+                                        {{ range .roles }}
+                                        <option value="{{.IdRole}}">{{.NamaRole}}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                             </div>
@@ -63,9 +64,10 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2" id="IdPegawai" name="IdPegawai">
-                                        <option value="">- Pilih Pegawai -</option>
-                                        <option value="1">Udin</option>
-                                        <option value="2">Maman</option>
+                                        <option value="0">- Pilih Pegawai -</option>
+                                        {{ range .pegawais }}
+                                        <option value="{{.IdPegawai}}">{{.NamaPegawai}}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                             </div>

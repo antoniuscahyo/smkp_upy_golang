@@ -54,7 +54,15 @@ func Add(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
+	var roleModel models.RoleModel
+	roles, _ := roleModel.FindAll()
+
+	var pegawaiModel models.PegawaiModel
+	pegawais, _ := pegawaiModel.FindAll()
+
 	data := map[string]interface{} {
+		"roles": roles,
+		"pegawais": pegawais,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -123,10 +131,19 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
+
 	var penggunaModel models.PenggunaModel
 	records, _ := penggunaModel.Find(id)
+
+	var roleModel models.RoleModel
+	roles, _ := roleModel.FindAll()
+
+	var pegawaiModel models.PegawaiModel
+	pegawais, _ := pegawaiModel.FindAll()
 	
 	data := map[string]interface{} {
+		"roles": roles,
+		"pegawais": pegawais,
 		"records": records,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
