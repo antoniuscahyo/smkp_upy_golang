@@ -2,8 +2,8 @@ package homecontroller
 
 import (
 	"html/template"
-	// "gocrud/models"
-	// "gocrud/entities"
+	// "SMKPUPY/models"
+	// "SMKPUPY/entities"
 	"net/http"
 	"github.com/kataras/go-sessions"
 	"fmt"

@@ -22,7 +22,7 @@
                                     <div class="col-sm-12">
                                         <div class="card-box table-responsive">
                                             <p class="text-muted font-13 m-b-30">
-                                                <a type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="left" title="Menambah data role baru" href="/setting_role/add">Tambah Role <span class="fa fa-plus"></span></a>
+                                                <a type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="left" title="Menambah data role baru" href="/setting_role/add">Tambah Role <span class="fa fa-plus"></span></a>
                                             </p>
                                             <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                                 <thead>
@@ -38,8 +38,8 @@
                                                         <td>{{.IdRole}}</td>
                                                         <td>{{.NamaRole}}</td>
                                                         <td>
-                                                            <a type="button" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data role" href="/setting_role/edit?id={{.IdRole}}">Edit <span class="fa fa-pencil"></span></a> &nbsp;
-                                                            <a type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data role" href="/setting_role/delete?id={{.IdRole}}" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
+                                                            <a type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data role" href="/setting_role/edit?id={{.IdRole}}">Edit <span class="fa fa-pencil"></span></a> &nbsp;
+                                                            <a type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data role" href="/setting_role/delete?id={{.IdRole}}" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
                                                         </td>
                                                     </tr>
                                                     {{ end }}

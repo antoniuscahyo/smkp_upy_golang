@@ -1,23 +1,28 @@
 package main
 
 import (
-	"gocrud/controllers/homecontroller"
-	"gocrud/controllers/registercontroller"
-	"gocrud/controllers/logincontroller"
-	"gocrud/controllers/productcontroller"
-	"gocrud/controllers/authcontroller"
+	"SMKPUPY/controllers/homecontroller"
+	"SMKPUPY/controllers/registercontroller"
+	"SMKPUPY/controllers/logincontroller"
+	"SMKPUPY/controllers/productcontroller"
+	"SMKPUPY/controllers/authcontroller"
 	"net/http"
 
-	"gocrud/controllers/dashboardcontroller"
-	"gocrud/controllers/rekaplaporanperunitcontroller"
-	"gocrud/controllers/rekaplaporanperpegawaicontroller"
+	"SMKPUPY/controllers/dashboardcontroller"
+	"SMKPUPY/controllers/rekaplaporanperunitcontroller"
+	"SMKPUPY/controllers/rekaplaporanperpegawaicontroller"
 
-	"gocrud/controllers/referensiunitcontroller"
-	"gocrud/controllers/datapegawaicontroller"
-	"gocrud/controllers/settingpenggunacontroller"
-	"gocrud/controllers/settingmenucontroller"
-	"gocrud/controllers/settingrolecontroller"
-	"gocrud/controllers/importlogpresensicontroller"
+	"SMKPUPY/controllers/referensiunitcontroller"
+	"SMKPUPY/controllers/referensijamkerjacontroller"
+	"SMKPUPY/controllers/referensijadwalkerjacontroller"
+
+	"SMKPUPY/controllers/datapegawaicontroller"
+
+	"SMKPUPY/controllers/settingpenggunacontroller"
+	"SMKPUPY/controllers/settingmenucontroller"
+	"SMKPUPY/controllers/settingrolecontroller"
+
+	"SMKPUPY/controllers/importlogpresensicontroller"
 )
 
 func main() {
@@ -45,6 +50,20 @@ func main() {
 	http.HandleFunc("/referensi_unit/delete", referensiunitcontroller.Delete)
 	http.HandleFunc("/referensi_unit/edit", referensiunitcontroller.Edit)
 	http.HandleFunc("/referensi_unit/update", referensiunitcontroller.Update)
+
+	http.HandleFunc("/referensi_jam_kerja", referensijamkerjacontroller.Index)
+	http.HandleFunc("/referensi_jam_kerja/add", referensijamkerjacontroller.Add)
+	http.HandleFunc("/referensi_jam_kerja/processadd", referensijamkerjacontroller.ProcessAdd)
+	http.HandleFunc("/referensi_jam_kerja/delete", referensijamkerjacontroller.Delete)
+	http.HandleFunc("/referensi_jam_kerja/edit", referensijamkerjacontroller.Edit)
+	http.HandleFunc("/referensi_jam_kerja/update", referensijamkerjacontroller.Update)
+
+	http.HandleFunc("/referensi_jadwal_kerja", referensijadwalkerjacontroller.Index)
+	http.HandleFunc("/referensi_jadwal_kerja/add", referensijadwalkerjacontroller.Add)
+	http.HandleFunc("/referensi_jadwal_kerja/processadd", referensijadwalkerjacontroller.ProcessAdd)
+	http.HandleFunc("/referensi_jadwal_kerja/delete", referensijadwalkerjacontroller.Delete)
+	http.HandleFunc("/referensi_jadwal_kerja/edit", referensijadwalkerjacontroller.Edit)
+	http.HandleFunc("/referensi_jadwal_kerja/update", referensijadwalkerjacontroller.Update)
 
 	http.HandleFunc("/data_pegawai", datapegawaicontroller.Index)
 	http.HandleFunc("/data_pegawai/add", datapegawaicontroller.Add)

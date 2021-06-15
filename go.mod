@@ -1,4 +1,4 @@
-module gocrud
+module SMKPUPY
 
 go 1.15
 

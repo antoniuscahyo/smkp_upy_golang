@@ -2,8 +2,8 @@ package productcontroller
 
 import (
 	"html/template"
-	"gocrud/models"
-	"gocrud/entities"
+	"SMKPUPY/models"
+	"SMKPUPY/entities"
 	"github.com/kataras/go-sessions"
 	"net/http"
 	"strconv"

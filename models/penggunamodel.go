@@ -1,8 +1,8 @@
 package models
 
 import (
-	"gocrud/config"
-	"gocrud/entities"
+	"SMKPUPY/config"
+	"SMKPUPY/entities"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"fmt"

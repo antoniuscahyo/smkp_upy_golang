@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"fmt"
 	"github.com/kataras/go-sessions"
-	"gocrud/models"	
-	"gocrud/entities"
+	"SMKPUPY/models"	
+	"SMKPUPY/entities"
 	"strconv"
 )
 

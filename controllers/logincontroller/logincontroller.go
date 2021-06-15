@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"github.com/kataras/go-sessions"
 	"golang.org/x/crypto/bcrypt"
-	"gocrud/config"
+	"SMKPUPY/config"
 	"fmt"
 )
 
