@@ -38,3 +38,22 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	t.Execute(response, data)
 	return
 }
+
+func LoadData(response http.ResponseWriter, request *http.Request) {
+	data := map[string]interface{} {
+		"NamaAplikasi":  "SMKP UPY",
+	}
+
+	var t, err = template.ParseFiles(
+		"views/rekap_laporan_bulanan_perunit/tabel.html",
+	)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		http.Error(response, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	
+	t.Execute(response, data)
+	return
+}

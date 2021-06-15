@@ -91,3 +91,34 @@ func (*MenuModel) Delete(id int64) bool {
 		}
 	}
 }
+
+func (*MenuModel) GetMenuByRole(id int64) (entities.Menu, error) {
+	db, err := config.GetDB()
+	if	err != nil {
+		return entities.Menu{}, err
+	} else {
+		rows, err2 := db.Query(`
+		SELECT
+			menu.nama_menu, 
+			menu.link_menu, 
+			menu.icon_menu
+		FROM role_menu 
+			JOIN role ON role_menu.id_role = role.id_role
+			JOIN menu ON role_menu.id_menu = menu.id_menu
+		WHERE 
+			role_menu.id_role = ? AND
+			role_menu.status_aktif = 1 AND
+			LENGTH(menu.kode_level_menu)=2
+		ORDER BY
+		menu.kode_level_menu ASC`, id)
+		if err2 != nil {
+			return entities.Menu{}, err2
+		} else {
+			var menu entities.Menu
+			for rows.Next() {
+				rows.Scan(&menu.NamaMenu, &menu.LinkMenu, &menu.IconMenu)
+			}
+			return menu, nil
+		}
+	}
+}
