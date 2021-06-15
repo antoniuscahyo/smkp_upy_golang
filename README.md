@@ -1,4 +1,4 @@
-Sistem Monitoring Kehadiran Pegawai UPY
+Sistem Monitoring Kehadiran Pegawai UPY <br>
 Universitas PGRI Yogyakarta
 ===
 Prolog
@@ -11,6 +11,14 @@ Kebutuhan
 ---
 - Install GoLang pada komputer anda
 - Mysql (Versi 5.6 keatas)
+
+
+Fitur
+---
+- Gentelella Admin Panel
+- Import data `.dat` file
+- Admin Menu Mirip RBAC sih..
+- Docker Compose
 
 Penggunaan
 ---
