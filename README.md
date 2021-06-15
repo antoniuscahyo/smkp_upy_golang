@@ -1,4 +1,5 @@
-Sistem Monitoring Kehadiran Pegawai UPY | Universitas PGRI Yogyakarta
+Sistem Monitoring Kehadiran Pegawai UPY
+Universitas PGRI Yogyakarta
 ===
 Prolog
 ---
