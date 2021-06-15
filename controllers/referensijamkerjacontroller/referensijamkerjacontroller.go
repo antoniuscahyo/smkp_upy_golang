@@ -2,11 +2,11 @@ package referensijamkerjacontroller
 
 import (
 	"html/template"
-	// "SMKPUPY/models"
-	// "SMKPUPY/entities"
+	"SMKPUPY/models"
+	"SMKPUPY/entities"
 	"github.com/kataras/go-sessions"
 	"net/http"
-	// "strconv"
+	"strconv"
 	"fmt"
 )
 
@@ -16,7 +16,11 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
+	var unitJamKerja models.UnitJamKerja
+	jamkerja, _ := unitJamKerja.FindAll()
+
 	data := map[string]interface{} {
+		"records": jamkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -24,13 +28,6 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"NamaAplikasi":  "SMKP UPY",
 	}
 
-	/*var data = map[string]string{
-		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
-		"nama_pengguna": session.GetString("nama"),
-		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
-	}*/
 	var t, err = template.ParseFiles(
 		"views/referensi_jam_kerja/index.html",
 		"views/template/_header.html",
