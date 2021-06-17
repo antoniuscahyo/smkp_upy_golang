@@ -16,13 +16,19 @@ func (*JadwalKerjaModel) FindAll() ([]entities.JadwalKerja, error) {
 		return nil, err
 	} else {
 		rows, err2 := db.Query(`SELECT 
-		id_jadwal_kerja, 
-		nama_jadwal_kerja, 
-		unit_id,
-		id_pegawai,
-		id_jam_kerja
+			jadwal_kerja.id_jadwal_kerja, 
+			jadwal_kerja.nama_jadwal_kerja, 
+			jadwal_kerja.unit_id,
+			unit.unit_nama,
+			jam_kerja.nama_jam_kerja,
+			jadwal_kerja.id_pegawai,
+			pegawai.nama_pegawai,
+			jadwal_kerja.id_jam_kerja
 		FROM 
-		jadwal_kerja`)
+			jadwal_kerja
+		LEFT JOIN unit ON jadwal_kerja.unit_id = unit.unit_id
+		LEFT JOIN jam_kerja ON jadwal_kerja.id_jam_kerja = jam_kerja.id_jam_kerja
+		LEFT JOIN pegawai ON jadwal_kerja.id_pegawai = pegawai.id_pegawai`)
 		if err2 != nil {
 			return nil,err2
 		} else {
@@ -32,7 +38,10 @@ func (*JadwalKerjaModel) FindAll() ([]entities.JadwalKerja, error) {
 				rows.Scan(&jadwalkerja.IdJadwalKerja, 
 					&jadwalkerja.NamaJadwalKerja, 
 					&jadwalkerja.IdUnit,
+					&jadwalkerja.UnitNama,
+					&jadwalkerja.NamaJamKerja,
 					&jadwalkerja.IdPegawai,
+					&jadwalkerja.NamaPegawai,
 					&jadwalkerja.IdJamKerja)
 				jadwalkerjas = append(jadwalkerjas, jadwalkerja)
 			}

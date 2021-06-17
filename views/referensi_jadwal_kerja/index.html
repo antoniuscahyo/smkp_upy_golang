@@ -30,6 +30,7 @@
                                                         <th>Id</th>
                                                         <th>Nama Jadwal Kerja</th>
                                                         <th>Nama Jam Kerja</th>
+                                                        <th>Nama Unit</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -38,7 +39,8 @@
                                                     <tr>
                                                         <td>{{.IdJadwalKerja}}</td>
                                                         <td>{{.NamaJadwalKerja}}</td>
-                                                        <td>{{.NamaJadwalKerja}}</td>
+                                                        <td>{{.NamaJamKerja}}</td>
+                                                        <td>{{.UnitNama}}</td>
                                                         <td>
                                                             <a type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data jadwal kerja" href="/referensi_jadwal_kerja/edit?id={{.IdJadwalKerja}}">Edit <span class="fa fa-pencil"></span></a> &nbsp;
                                                             <a type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data jadwal kerja" href="/referensi_jadwal_kerja/delete?id={{.IdJadwalKerja}}" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
