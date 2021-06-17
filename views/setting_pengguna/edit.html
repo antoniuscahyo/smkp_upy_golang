@@ -96,8 +96,8 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
     setTimeout(() => {
-        $('#IdRole').select2('val','{{.records.IdRole}}');
-        $('#IdPegawai').select2('val','{{.records.IdPegawai}}');
+        $("#IdRole").val("{{.records.IdRole}}").trigger("change");
+        $("#IdPegawai").val("{{.records.IdPegawai}}").trigger("change");
         $('#btn-action').show('fast');
     }, 2000);
 </script>
