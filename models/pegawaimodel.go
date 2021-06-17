@@ -152,7 +152,8 @@ func (*PegawaiModel) Update(pegawai entities.Pegawai) bool {
 			pegawai.NisPegawai,
 			pegawai.NamaPegawai,
 			pegawai.JabatanPegawai,
-			pegawai.StatusAktif)
+			pegawai.StatusAktif,
+			pegawai.IdPegawai)
 		if err2 != nil {
 			return false
 		} else {
