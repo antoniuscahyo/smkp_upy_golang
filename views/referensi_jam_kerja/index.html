@@ -33,14 +33,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    {{ range .records }}
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>{{.IdJamKerja}}</td>
+                                                        <td>{{.NamaJamKerja}}</td>
                                                         <td>
-                                                            <a type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data jam kerja" href="/referensi_jam_kerja/edit?id=">Edit <span class="fa fa-pencil"></span></a> &nbsp;
-                                                            <a type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data jam kerja" href="/referensi_jam_kerja/delete?id=" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
+                                                            <a type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data jam kerja" href="/referensi_jam_kerja/edit?id={{.IdJamKerja}}">Edit <span class="fa fa-pencil"></span></a> &nbsp;
+                                                            <a type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data jam kerja" href="/referensi_jam_kerja/delete?id={{.IdJamKerja}}" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
                                                         </td>
                                                     </tr>
+                                                    {{ end }}
                                                 </tbody>
                                             </table>
 
