@@ -38,3 +38,17 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	t.Execute(response, data)
 	return
 }
+
+func routeSubmitPost(w http.ResponseWriter, r *http.Request) {
+    if r.Method != "POST" {
+        http.Error(w, "", http.StatusBadRequest)
+        return
+    }
+
+    if err := r.ParseMultipartForm(1024); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    // ...
+}
