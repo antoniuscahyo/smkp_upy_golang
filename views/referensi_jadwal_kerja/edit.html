@@ -20,6 +20,14 @@
                         <form method="POST" action="/referensi_jadwal_kerja/update" id="form-update-referensi-jadwalkerja" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Id <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" required="required" class="form-control " value="{{.records.IdJadwalKerja}}" disabled="">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Jadwal Kerja <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -52,6 +60,9 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <!-- Untuk mengirimkan parameter edit data -->
+                            <input type="hidden" name="IdJadwalKerja" value="{{.records.IdJadwalKerja}}">
 
                             <div class="ln_solid"></div>
                             <div class="item form-group" id="btn-action" style="display: none;">

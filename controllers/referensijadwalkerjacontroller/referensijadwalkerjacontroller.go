@@ -86,7 +86,6 @@ func Add(response http.ResponseWriter, request *http.Request) {
 }
 
 func ProcessAdd(response http.ResponseWriter, request *http.Request) {
-
 	request.ParseForm()
 	var jadwalkerja entities.JadwalKerja
 	jadwalkerja.NamaJadwalKerja = request.Form.Get("NamaJadwalKerja")
@@ -100,7 +99,7 @@ func ProcessAdd(response http.ResponseWriter, request *http.Request) {
 func Update(response http.ResponseWriter, request *http.Request) {
 	request.ParseForm()
 	var jadwalkerja entities.JadwalKerja
-	jadwalkerja.IdJadwalKerja, _ = strconv.ParseInt(request.Form.Get("id"), 10, 64)
+	jadwalkerja.IdJadwalKerja, _ = strconv.ParseInt(request.Form.Get("IdJadwalKerja"), 10, 64)
 	jadwalkerja.NamaJadwalKerja = request.Form.Get("NamaJadwalKerja")
 	jadwalkerja.IdJamKerja, _ = strconv.ParseInt(request.Form.Get("IdJamKerja"), 10, 64)
 	jadwalkerja.IdUnit, _ = strconv.ParseInt(request.Form.Get("IdUnit"), 10, 64)
