@@ -10,4 +10,7 @@ type Pegawai struct {
 	NamaPegawai    string
 	JabatanPegawai string
 	StatusAktif    string
+	UnitNama	   string
+	NamaFakultas   string
+	NamaProgramStudi	string
 }

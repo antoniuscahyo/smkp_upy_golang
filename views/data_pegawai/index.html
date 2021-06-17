@@ -36,17 +36,19 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    {{ range .records }}
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>{{.IdPegawai}}</td>
+                                                        <td>{{.NamaPegawai}}</td>
+                                                        <td>{{.NisPegawai}}</td>
+                                                        <td>{{.UnitNama}}</td>
+                                                        <td>{{.PinFinger}}</td>
                                                         <td>
-                                                            <a type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data pegawai" href="/data_pegawai/edit?id=">Edit <span class="fa fa-pencil"></span></a> &nbsp;
-                                                            <a type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data pegawai" href="/data_pegawai/delete?id=" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
+                                                            <a type="button" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="left" title="Mengedit data pegawai" href="/data_pegawai/edit?id={{.IdPegawai}}">Edit <span class="fa fa-pencil"></span></a> &nbsp;
+                                                            <a type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="left" title="Menghapus data pegawai" href="/data_pegawai/delete?id={{.IdPegawai}}" onclick="return confirm('Anda yakin menghapus data ini?')">Hapus <span class="fa fa-trash-o"></span></a>
                                                         </td>
                                                     </tr>
+                                                    {{ end }}
                                                 </tbody>
                                             </table>
 

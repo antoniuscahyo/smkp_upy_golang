@@ -15,19 +15,24 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 		return nil, err
 	} else {
 		rows, err2 := db.Query(`
-		SELECT 
-			id_pegawai,
-			id_unit,
-			id_fakultas,
-			id_program_studi,	
-			pin_finger,
-			nis_pegawai,
-			nama_pegawai,
-			jabatan_pegawai,
-			status_aktif
-		FROM 
+		SELECT
+			pegawai.id_pegawai,
+			pegawai.id_unit,
+			pegawai.id_fakultas,
+			pegawai.id_program_studi,
+			pegawai.pin_finger,
+			pegawai.nis_pegawai,
+			pegawai.nama_pegawai,
+			pegawai.jabatan_pegawai,
+			pegawai.status_aktif,
+			unit.unit_nama,
+			fakultas.nama_fakultas,
+			program_studi.nama_program_studi 
+		FROM
 			pegawai
-		`)
+		LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
+		LEFT JOIN fakultas ON pegawai.id_fakultas = fakultas.id_fakultas
+		LEFT JOIN program_studi ON pegawai.id_program_studi = program_studi.id_program_studi`)
 		if err2 != nil {
 			return nil,err2
 		} else {
@@ -42,7 +47,10 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 					&pegawai.NisPegawai,
 					&pegawai.NamaPegawai,
 					&pegawai.JabatanPegawai,
-					&pegawai.StatusAktif)
+					&pegawai.StatusAktif,
+					&pegawai.UnitNama,
+					&pegawai.NamaFakultas,
+					&pegawai.NamaProgramStudi)
 				pegawais = append(pegawais, pegawai)
 			}
 			return pegawais, nil
@@ -50,34 +58,68 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 	}
 }
 
-
-
-/*
-BARU PROSES EDIT
-func (*PegawaiModel) Find(id int64) (entities.Menu, error) {
+func (*PegawaiModel) Find(id int64) (entities.Pegawai, error) {
 	db, err := config.GetDB()
 	if	err != nil {
-		return entities.Menu{}, err
+		return entities.Pegawai{}, err
 	} else {
-		rows, err2 := db.Query("SELECT id_menu,nama_menu,link_menu,icon_menu,kode_level_menu FROM menu WHERE id_menu = ?", id)
+		rows, err2 := db.Query(`SELECT
+		pegawai.id_pegawai, 
+		pegawai.id_unit, 
+		pegawai.id_fakultas, 
+		pegawai.id_program_studi, 
+		pegawai.pin_finger, 
+		pegawai.nis_pegawai, 
+		pegawai.nama_pegawai, 
+		pegawai.jabatan_pegawai, 
+		pegawai.status_aktif
+			FROM
+		pegawai 
+			WHERE
+		pegawai.id_pegawai = ?`, id)
 		if err2 != nil {
-			return entities.Menu{}, err2
+			return entities.Pegawai{}, err2
 		} else {
-			var menu entities.Menu
+			var pegawai entities.Pegawai
 			for rows.Next() {
-				rows.Scan(&menu.IdMenu, &menu.NamaMenu, &menu.LinkMenu, &menu.IconMenu, &menu.KodeLevelMenu)
+				rows.Scan(&pegawai.IdPegawai, 
+					&pegawai.IdUnit, 
+					&pegawai.IdFakultas, 
+					&pegawai.IdProgramStudi, 
+					&pegawai.PinFinger,
+					&pegawai.NisPegawai,
+					&pegawai.NamaPegawai,
+					&pegawai.JabatanPegawai,
+					&pegawai.StatusAktif)
 			}
-			return menu, nil
+			return pegawai, nil
 		}
 	}
 }
 
-func (*PegawaiModel) Create(menu *entities.Menu) bool {
+func (*PegawaiModel) Create(pegawai *entities.Pegawai) bool {
 	db, err := config.GetDB()
 	if	err != nil {
 		return false
 	} else {
-		result, err2 := db.Exec("INSERT INTO menu(nama_menu,link_menu,icon_menu,kode_level_menu) VALUES (?,?,?,?)", menu.NamaMenu, menu.LinkMenu, menu.IconMenu, menu.KodeLevelMenu)
+		result, err2 := db.Exec(`INSERT INTO 
+		pegawai(
+			id_unit, 
+			id_fakultas, 
+			id_program_studi, 
+			pin_finger, 
+			nis_pegawai, 
+			nama_pegawai, 
+			jabatan_pegawai, 
+			status_aktif
+		) VALUES (?,?,?,?,?,?,?,?)`, pegawai.IdUnit, 
+			pegawai.IdFakultas, 
+			pegawai.IdProgramStudi, 
+			pegawai.PinFinger,
+			pegawai.NisPegawai,
+			pegawai.NamaPegawai,
+			pegawai.JabatanPegawai,
+			pegawai.StatusAktif)
 		if err2 != nil {
 			return false
 		} else {
@@ -87,12 +129,30 @@ func (*PegawaiModel) Create(menu *entities.Menu) bool {
 	}
 }
 
-func (*PegawaiModel) Update(menu entities.Menu) bool {
+func (*PegawaiModel) Update(pegawai entities.Pegawai) bool {
 	db, err := config.GetDB()
 	if	err != nil {
 		return false
 	} else {
-		result, err2 := db.Exec("UPDATE menu SET nama_menu = ?, link_menu = ?, icon_menu = ?, kode_level_menu = ? WHERE id_menu = ?", menu.NamaMenu, menu.LinkMenu, menu.IconMenu, menu.IdMenu, menu.KodeLevelMenu)
+		result, err2 := db.Exec(`UPDATE pegawai SET 
+			id_unit = ?, 
+			id_fakultas = ?, 
+			id_program_studi = ?, 
+			pin_finger = ?, 
+			nis_pegawai = ?, 
+			nama_pegawai = ?, 
+			jabatan_pegawai = ?, 
+			status_aktif = ?
+		WHERE 
+			id_pegawai = ?`, 
+			pegawai.IdUnit, 
+			pegawai.IdFakultas, 
+			pegawai.IdProgramStudi, 
+			pegawai.PinFinger, 
+			pegawai.NisPegawai,
+			pegawai.NamaPegawai,
+			pegawai.JabatanPegawai,
+			pegawai.StatusAktif)
 		if err2 != nil {
 			return false
 		} else {
@@ -107,7 +167,7 @@ func (*PegawaiModel) Delete(id int64) bool {
 	if	err != nil {
 		return false
 	} else {
-		result, err2 := db.Exec("DELETE FROM menu WHERE id_menu = ?", id)
+		result, err2 := db.Exec("DELETE FROM pegawai WHERE id_pegawai = ?", id)
 		if err2 != nil {
 			return false
 		} else {
@@ -115,4 +175,4 @@ func (*PegawaiModel) Delete(id int64) bool {
 			return rowsAffected > 0
 		}
 	}
-}*/
+}
