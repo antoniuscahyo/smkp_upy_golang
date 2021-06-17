@@ -29,7 +29,7 @@ func (*JadwalKerjaModel) FindAll() ([]entities.JadwalKerja, error) {
 			for rows.Next() {
 				var jadwalkerja entities.JadwalKerja
 				rows.Scan(&jadwalkerja.IdJadwalKerja, 
-					&jadwalkerja.NamaJadwalkerja, 
+					&jadwalkerja.NamaJadwalKerja, 
 					&jadwalkerja.IdUnit,
 					&jadwalkerja.IdPegawai,
 					&jadwalkerja.IdJamKerja)
@@ -61,7 +61,7 @@ func (*JadwalKerjaModel) Find(id int64) (entities.JadwalKerja, error) {
 			var jadwalkerja entities.JadwalKerja
 			for rows.Next() {
 				rows.Scan(&jadwalkerja.IdJadwalKerja, 
-					&jadwalkerja.NamaJadwalkerja, 
+					&jadwalkerja.NamaJadwalKerja, 
 					&jadwalkerja.IdUnit,
 					&jadwalkerja.IdPegawai,
 					&jadwalkerja.IdJamKerja)
@@ -82,7 +82,7 @@ func (*JadwalKerjaModel) Create(jadwalkerja *entities.JadwalKerja) bool {
 		id_pegawai,
 		id_jam_kerja) 
 		VALUES (?,?,?,?)`, 
-		jadwalkerja.NamaJadwalkerja, 
+		jadwalkerja.NamaJadwalKerja, 
 		jadwalkerja.IdUnit,
 		jadwalkerja.IdPegawai,
 		jadwalkerja.IdJamKerja)
@@ -105,7 +105,7 @@ func (*JadwalKerjaModel) Update(jadwalkerja entities.JadwalKerja) bool {
 		unit_id = ?,
 		id_pegawai = ?,
 		id_jam_kerja = ?
-		WHERE id_jam_kerja = ?`, jadwalkerja.NamaJadwalkerja, 
+		WHERE id_jam_kerja = ?`, jadwalkerja.NamaJadwalKerja, 
 		jadwalkerja.IdUnit,
 		jadwalkerja.IdPegawai,
 		jadwalkerja.IdJamKerja,
