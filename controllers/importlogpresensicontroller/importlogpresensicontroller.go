@@ -1,10 +1,13 @@
 package importlogpresensicontroller
 
 import (
+	"github.com/kataras/go-sessions"
+	"path/filepath"
 	"html/template"
 	"net/http"
 	"fmt"
-	"github.com/kataras/go-sessions"
+	"os"
+	"io"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -39,7 +42,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	return
 }
 
-func routeSubmitPost(w http.ResponseWriter, r *http.Request) {
+func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
     if r.Method != "POST" {
         http.Error(w, "", http.StatusBadRequest)
         return
@@ -50,5 +53,40 @@ func routeSubmitPost(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // ...
+	// STEP 1 CODE FROM https://dasarpemrogramangolang.novalagung.com/B-form-upload-file.html
+    alias := r.FormValue("alias")
+
+	uploadedFile, handler, err := r.FormFile("file")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer uploadedFile.Close()
+
+	dir, err := os.Getwd()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// STEP 2 CODE FROM https://dasarpemrogramangolang.novalagung.com/B-form-upload-file.html
+	filename := handler.Filename
+	if alias != "" {
+		filename = fmt.Sprintf("%s%s", alias, filepath.Ext(handler.Filename))
+	}
+
+	fileLocation := filepath.Join(dir, "/assets/uploads", filename)
+	targetFile, err := os.OpenFile(fileLocation, os.O_WRONLY|os.O_CREATE, 0666)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer targetFile.Close()
+
+	if _, err := io.Copy(targetFile, uploadedFile); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Write([]byte("done"))
 }

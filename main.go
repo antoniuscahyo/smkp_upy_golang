@@ -94,6 +94,7 @@ func main() {
 	http.HandleFunc("/setting_role/update", settingrolecontroller.Update)
 
 	http.HandleFunc("/import_log_presensi", importlogpresensicontroller.Index)
+	http.HandleFunc("/import_log_presensi/process", importlogpresensicontroller.RouteSubmitPost)
 
 	http.Handle("/static/",
 		http.StripPrefix("/static/",

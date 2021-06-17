@@ -17,23 +17,21 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form method="POST" action="/import_log_presensi/upload" id="form-upload-log-presensi" data-parsley-validate class="form-horizontal form-label-left">
+                        <form method="POST" action="/import_log_presensi/process" id="form-upload-log-presensi" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                             <label>Pilih File :</label>
                             <input type="file" name="file" required /><br />
                             
-                            <div>
+                            <div style="display: none;">
                                 <label>Rename to :</label>
-                                <input type="text" name="alias" value="logdata"/><br />
+                                <input type="text" name="alias" value="log_presensi_"/><br />
                             </div>
-                            
-                
 
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                 </label>
-                                    <button type="submit" value="Save" class="btn btn-success">Submit <i class="fa fa-upload"></i></button>
+                                    <button type="submit" class="btn btn-success">Submit <i class="fa fa-upload"></i></button>
                                 </div>
                             </div>
                         </form>
