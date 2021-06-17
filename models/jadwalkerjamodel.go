@@ -3,6 +3,7 @@ package models
 import (
 	"SMKPUPY/config"
 	"SMKPUPY/entities"
+	"fmt"
 )
 
 type JadwalKerjaModel struct {
@@ -105,12 +106,13 @@ func (*JadwalKerjaModel) Update(jadwalkerja entities.JadwalKerja) bool {
 		unit_id = ?,
 		id_pegawai = ?,
 		id_jam_kerja = ?
-		WHERE id_jam_kerja = ?`, jadwalkerja.NamaJadwalKerja, 
-		jadwalkerja.IdUnit,
-		jadwalkerja.IdPegawai,
-		jadwalkerja.IdJamKerja,
-		jadwalkerja.IdJadwalKerja)
+		WHERE id_jadwal_kerja = ?`, &jadwalkerja.NamaJadwalKerja, 
+		&jadwalkerja.IdUnit,
+		&jadwalkerja.IdPegawai,
+		&jadwalkerja.IdJamKerja,
+		&jadwalkerja.IdJadwalKerja)
 		if err2 != nil {
+			fmt.Println(err2)
 			return false
 		} else {
 			rowsAffected, _ := result.RowsAffected()
