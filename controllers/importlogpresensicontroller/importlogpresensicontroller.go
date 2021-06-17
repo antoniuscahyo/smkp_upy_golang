@@ -38,18 +38,3 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	t.Execute(response, data)
 	return
 }
-
-func Add(response http.ResponseWriter, request *http.Request) {
-}
-
-func ProcessAdd(response http.ResponseWriter, request *http.Request) {
-}
-
-func Update(response http.ResponseWriter, request *http.Request) {
-}
-
-func Delete(response http.ResponseWriter, request *http.Request) {
-}
-
-func Edit(response http.ResponseWriter, request *http.Request) {
-}

@@ -94,11 +94,6 @@ func main() {
 	http.HandleFunc("/setting_role/update", settingrolecontroller.Update)
 
 	http.HandleFunc("/import_log_presensi", importlogpresensicontroller.Index)
-	http.HandleFunc("/import_log_presensi/add", importlogpresensicontroller.Add)
-	http.HandleFunc("/import_log_presensi/processadd", importlogpresensicontroller.ProcessAdd)
-	http.HandleFunc("/import_log_presensi/delete", importlogpresensicontroller.Delete)
-	http.HandleFunc("/import_log_presensi/edit", importlogpresensicontroller.Edit)
-	http.HandleFunc("/import_log_presensi/update", importlogpresensicontroller.Update)
 
 	http.Handle("/static/",
 		http.StripPrefix("/static/",
