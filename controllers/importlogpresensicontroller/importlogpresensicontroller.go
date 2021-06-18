@@ -5,7 +5,9 @@ import (
 	"path/filepath"
 	"html/template"
 	"net/http"
+	"time"
 	"fmt"
+	"log"
 	"os"
 	"io"
 )
@@ -75,7 +77,7 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 		filename = fmt.Sprintf("%s%s", alias, filepath.Ext(handler.Filename))
 	}
 
-	fileLocation := filepath.Join(dir, "/assets/uploads", filename)
+	fileLocation := filepath.Join(dir, "/assets/uploads/log_presensi", filename)
 	targetFile, err := os.OpenFile(fileLocation, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -88,5 +90,13 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("done"))
+	// Code Blocks Delete File setelah 10 Detik upload sukses!!!
+	/*time.Sleep(time.Second * 10)
+	e := os.Remove(fileLocation)
+    if e != nil {
+        log.Fatal(e)
+    }*/
+
+	// w.Write([]byte("done"))
+	http.Redirect(w, r, "/import_log_presensi", http.StatusSeeOther)
 }

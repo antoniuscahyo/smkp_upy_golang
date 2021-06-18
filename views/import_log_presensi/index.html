@@ -19,12 +19,17 @@
                         <br />
                         <form method="POST" action="/import_log_presensi/process" id="form-upload-log-presensi" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
-                            <label>Pilih File :</label>
-                            <input type="file" name="file" required /><br />
-                            
+                            <div class="item form-group">
+                                <label class="col-form col-md-3 col-sm-3 label-align" for="last-name">Pilih File (_attlog.dat) <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="file" name="file" required />
+                                </div>
+                            </div>
+
                             <div style="display: none;">
                                 <label>Rename to :</label>
-                                <input type="text" name="alias" value="log_presensi_"/><br />
+                                <input type="text" id="alias" name="alias" value=""/><br />
                             </div>
 
                             <div class="ln_solid"></div>
@@ -42,4 +47,11 @@
     </div>
 </div>
 <!-- page content -->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var now = new Date();
+        var filename = 'log_presensi_'+now.format("dmYhms");
+        $("#alias").val(filename);
+    });
+</script>
 {{template "_footer"}}
