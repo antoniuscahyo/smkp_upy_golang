@@ -42,10 +42,11 @@ func main() {
 	
 	http.HandleFunc("/dashboard", dashboardcontroller.Index)
 
-	http.HandleFunc("/rekap_laporan_bulanan_perunit", rekaplaporanperunitcontroller.LoadData)
 	http.HandleFunc("/rekap_laporan_bulanan_perunit", rekaplaporanperunitcontroller.Index)
+	http.HandleFunc("/rekap_laporan_bulanan_perunit/load_data", rekaplaporanperunitcontroller.LoadData)
 
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawai", rekaplaporanperpegawaicontroller.Index)
+	http.HandleFunc("/rekap_laporan_bulanan_perpegawai/load_data", rekaplaporanperpegawaicontroller.LoadData)
 	
 	http.HandleFunc("/referensi_unit", referensiunitcontroller.Index)
 	http.HandleFunc("/referensi_unit/add", referensiunitcontroller.Add)

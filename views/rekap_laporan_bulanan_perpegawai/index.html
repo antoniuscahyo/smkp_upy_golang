@@ -26,7 +26,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Unit
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control">
+                                    <select class="form-control" id="IdUnit" name="IdUnit">
                                         <option>- Pilih Unit -</option>
                                         <option>Unit 1</option>
                                         <option>Unit 2</option>
@@ -38,7 +38,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pegawai
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control">
+                                    <select class="form-control" id="IdPegawai" name="IdPegawai">
                                         <option>- Pilih Pegawai -</option>
                                         <option>Anton</option>
                                         <option>Bruno</option>
@@ -50,23 +50,23 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal
                                 </label>
                                 <div class="col-md-3 col-sm-3">
-                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <input id="TanggalAwal" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                     <script>
                                         function timeFunctionLong(input) {
                                             setTimeout(function() {
                                                 input.type = 'text';
-                                            }, 60000);
+                                            }, 1000);
                                         }
                                     </script>
                                 </div>
                                 
                                 <div class="col-md-3 col-sm-3">
-                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <input id="TanggalAkhir" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                     <script>
                                         function timeFunctionLong(input) {
                                             setTimeout(function() {
                                                 input.type = 'text';
-                                            }, 60000);
+                                            }, 1000);
                                         }
                                     </script>
                                 </div>
@@ -74,7 +74,7 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Cari Data</button>
+                                    <button type="button" onclick="loadMore()" class="btn btn-success">Cari Data</button>
                                 </div>
                             </div>
                             
@@ -93,62 +93,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card-box table-responsive">
-                                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Tanggal</th>
-                                                <th>Scan Masuk</th>
-                                                <th>Scan Keluar</th>
-                                                <th>Terlambat</th>
-                                                <th>Bolos</th>
-                                                <th>Jumlah Jam Kehadiran</th>
-                                                <th>Tanda Tangan</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>01-01-2021</td>
-                                                <td>08:00</td>
-                                                <td>14:00</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>06:00</td>
-                                                <td></td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>02-01-2021</td>
-                                                <td>08:00</td>
-                                                <td>14:00</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>06:00</td>
-                                                <td></td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>03-01-2021</td>
-                                                <td>08:00</td>
-                                                <td>14:00</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>06:00</td>
-                                                <td></td>
-                                                <td>-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    
-                                </div>
-                            </div>
+                        <div class="row" id="LoadTabel">
                         </div>
                     </div>
                 </div>
@@ -158,4 +103,21 @@
 </div>
 </div>
 </div>
+
+<script>
+    function loadMore() {
+        $.ajax({
+            url: '/rekap_laporan_bulanan_perpegawai/load_data',
+            type: 'POST',
+            data: {
+                IdUnit    : $('#IdUnit').val(),
+                IdBulan    : $('#IdBulan').val(),
+                IdTahun    : $('#IdTahun').val()
+            },
+            success: function (respon) {
+                $('#LoadTabel').html(respon);
+            }
+        });
+    }
+</script>
 {{template "_footer"}}

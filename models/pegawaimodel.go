@@ -3,6 +3,7 @@ package models
 import (
 	"SMKPUPY/config"
 	"SMKPUPY/entities"
+	// "fmt"
 )
 
 type PegawaiModel struct {
@@ -16,18 +17,18 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 	} else {
 		rows, err2 := db.Query(`
 		SELECT
+			pegawai.nama_pegawai,
+			pegawai.nis_pegawai,
+			unit.unit_nama,
+			pegawai.pin_finger,
+			fakultas.nama_fakultas,
+			program_studi.nama_program_studi,
 			pegawai.id_pegawai,
 			pegawai.id_unit,
 			pegawai.id_fakultas,
 			pegawai.id_program_studi,
-			pegawai.pin_finger,
-			pegawai.nis_pegawai,
-			pegawai.nama_pegawai,
 			pegawai.jabatan_pegawai,
-			pegawai.status_aktif,
-			unit.unit_nama,
-			fakultas.nama_fakultas,
-			program_studi.nama_program_studi 
+			pegawai.status_aktif
 		FROM
 			pegawai
 		LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
@@ -39,21 +40,22 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 			var pegawais []entities.Pegawai
 			for rows.Next() {
 				var pegawai entities.Pegawai
-				rows.Scan(&pegawai.IdPegawai,
+				rows.Scan(&pegawai.NamaPegawai,
+					&pegawai.NisPegawai,
+					&pegawai.UnitNama,
+					&pegawai.PinFinger,
+					&pegawai.NamaFakultas,
+					&pegawai.NamaProgramStudi,
+					&pegawai.IdPegawai,
 					&pegawai.IdUnit,
 					&pegawai.IdFakultas,
 					&pegawai.IdProgramStudi,
-					&pegawai.PinFinger,
-					&pegawai.NisPegawai,
-					&pegawai.NamaPegawai,
 					&pegawai.JabatanPegawai,
-					&pegawai.StatusAktif,
-					&pegawai.UnitNama,
-					&pegawai.NamaFakultas,
-					&pegawai.NamaProgramStudi)
+					&pegawai.StatusAktif)
 				pegawais = append(pegawais, pegawai)
 			}
 			return pegawais, nil
+			// fmt.Print(pegawais)
 		}
 	}
 }

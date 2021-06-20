@@ -2,12 +2,16 @@ package importlogpresensicontroller
 
 import (
 	"github.com/kataras/go-sessions"
+	// "SMKPUPY/config"
+	"database/sql"
 	"path/filepath"
 	"html/template"
 	"net/http"
-	// "time"
+	"strings"
+	"bufio"
+	"time"
 	"fmt"
-	// "log"
+	"log"
 	"os"
 	"io"
 )
@@ -45,6 +49,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 }
 
 func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
+
     if r.Method != "POST" {
         http.Error(w, "", http.StatusBadRequest)
         return
@@ -90,12 +95,39 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// INSERT TO SQL CODE
+	file, err := os.Open(fileLocation)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	reader := bufio.NewReader(file)
+	scanner := bufio.NewScanner(reader)
+
+	
+	db, err := sql.Open("mysql", "root:12345@tcp(127.0.0.1:3306)/db_monitoring_kehadiran_pegawai")
+    defer db.Close()
+
+	for scanner.Scan() {
+		someString := scanner.Text()
+		words := strings.Fields(someString)
+		_, err = db.Exec("insert into log_mesin_finger values (?, ?, ?)",words[0],words[1],words[2])
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		fmt.Println("insert success!")
+	}
+	// INSERT TO SQL CODE
+
 	// Code Blocks Delete File setelah 10 Detik upload sukses!!!
-	/*time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * 10)
 	e := os.Remove(fileLocation)
     if e != nil {
         log.Fatal(e)
-    }*/
+    }
 
 	// w.Write([]byte("done"))
 	http.Redirect(w, r, "/import_log_presensi", http.StatusSeeOther)

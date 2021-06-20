@@ -25,8 +25,8 @@
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Unit
                                         </label>
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <select class="form-control">
+                                        <div class="col-md-6 col-sm-6">
+                                            <select class="form-control" id="IdUnit" name="IdUnit">
                                                 <option>- Pilih Unit -</option>
                                                 <option>Unit 1</option>
                                                 <option>Unit 2</option>
@@ -38,20 +38,20 @@
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Bulan
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select class="form-control">
+                                            <select class="form-control" id="IdBulan" name="IdBulan">
                                                 <option>- Pilih Bulan -</option>
-                                                <option>Januari</option>
-                                                <option>Februari</option>
-                                                <option>Maret</option>
-                                                <option>April</option>
-                                                <option>Mei</option>
-                                                <option>Juni</option>
-                                                <option>Juli</option>
-                                                <option>Agustus</option>
-                                                <option>September</option>
-                                                <option>Oktober</option>
-                                                <option>November</option>
-                                                <option>Desember</option>
+                                                <option value="1">Januari</option>
+                                                <option value="2">Februari</option>
+                                                <option value="3">Maret</option>
+                                                <option value="4">April</option>
+                                                <option value="5">Mei</option>
+                                                <option value="6">Juni</option>
+                                                <option value="7">Juli</option>
+                                                <option value="8">Agustus</option>
+                                                <option value="9">September</option>
+                                                <option value="10">Oktober</option>
+                                                <option value="11">November</option>
+                                                <option value="12">Desember</option>
                                             </select>
                                         </div>
                                     </div>
@@ -59,20 +59,19 @@
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tahun
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select class="form-control">
+                                            <select class="form-control" id="IdTahun" name="IdTahun">
                                                 <option>- Pilih Tahun -</option>
-                                                <option>2020</option>
-                                                <option>2021</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>
                                     <div class="item form-group">
                                         <div class="col-md-6 col-sm-6 offset-md-3">
-                                            <a onclick="loadMore()" class="btn btn-success">Cari Data</a>
+                                            <button type="button" onclick="loadMore()" class="btn btn-success">Cari Data</button>
                                         </div>
                                     </div>
-                                    
                                 </form>
                             </div>
                         </div>
@@ -101,15 +100,18 @@
 
 <script>
     function loadMore() {
-        var e = document.getElementById("LoadTabel");
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                e.outerHTML = xhr.responseText;
+        $.ajax({
+            url: '/rekap_laporan_bulanan_perunit/load_data',
+            type: 'POST',
+            data: {
+                IdUnit    : $('#IdUnit').val(),
+                IdBulan    : $('#IdBulan').val(),
+                IdTahun    : $('#IdTahun').val()
+            },
+            success: function (respon) {
+                $('#LoadTabel').html(respon);
             }
-        }
-        xhr.open("GET", "/rekaplaporanperunit/tabel", true);
-        try { xhr.send(); } catch (err) { /* handle error */ }
+        });
     }
 </script>
 {{template "_footer"}}
