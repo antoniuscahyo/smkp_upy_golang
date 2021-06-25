@@ -9,7 +9,7 @@ type Pegawai struct {
 	NisPegawai     string
 	NamaPegawai    string
 	JabatanPegawai string
-	StatusAktif    string
+	StatusAktif    int64
 	UnitNama	   string
 	NamaFakultas   string
 	NamaProgramStudi	string

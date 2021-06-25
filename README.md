@@ -37,6 +37,25 @@ List Web Module Belum Selesai
 - Data Unit ( Masih disusun hirarkinya )
 - Data Pegawai ( Masih dibuat codingnya )
 
+Entitas Login
+---
+- Admin
+user: admin
+pass: admin
+- Admin Biro Kepegawaian
+user: biro_kepegawaian
+pass: admin
+- Admin Biro Keuangan
+user: biro_keuangan
+pass: admin
+- Kepala Unit
+user: kepegawaian
+pass: admin
+- Pegawai
+user: rony
+pass: rony
+
+
 Thanks To
 ---
 - Universitas PGRI Yogyakarta

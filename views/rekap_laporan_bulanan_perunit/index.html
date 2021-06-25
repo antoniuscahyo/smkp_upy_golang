@@ -27,10 +27,10 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6">
                                             <select class="form-control" id="IdUnit" name="IdUnit">
-                                                <option>- Pilih Unit -</option>
-                                                <option>Unit 1</option>
-                                                <option>Unit 2</option>
-                                                <option>Unit 3</option>
+                                                <option value="0">- Pilih Unit Kerja -</option>
+                                                {{ range .unitkerja }}
+                                                <option value="{{.IdUnit}}">{{.IdUnit}} | {{.UnitNama}}</option>
+                                                {{ end }}
                                             </select>
                                         </div>
                                     </div>

@@ -113,12 +113,12 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	for scanner.Scan() {
 		someString := scanner.Text()
 		words := strings.Fields(someString)
-		_, err = db.Exec("insert into log_mesin_finger values (?, ?, ?)",words[0],words[1],words[2])
+		_, err = db.Exec("insert ignore log_mesin_finger values (?, ?, ?)",words[0],words[1],words[2])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
-		fmt.Println("insert success!")
+		// fmt.Println("insert success!")
 	}
 	// INSERT TO SQL CODE
 

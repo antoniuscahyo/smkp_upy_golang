@@ -26,11 +26,11 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Unit
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control" id="IdUnit" name="IdUnit">
-                                        <option>- Pilih Unit -</option>
-                                        <option>Unit 1</option>
-                                        <option>Unit 2</option>
-                                        <option>Unit 3</option>
+                                    <select class="form-control select2" id="IdUnit" name="IdUnit">
+                                        <option value="">- Pilih Unit Kerja -</option>
+                                        {{ range .unitkerja }}
+                                        <option value="{{.IdUnit}}">{{.IdUnit}} | {{.UnitNama}}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                             </div>
@@ -38,11 +38,11 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pegawai
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control" id="IdPegawai" name="IdPegawai">
-                                        <option>- Pilih Pegawai -</option>
-                                        <option>Anton</option>
-                                        <option>Bruno</option>
-                                        <option>Ceri</option>
+                                    <select class="form-control select2" id="IdPegawai" name="IdPegawai">
+                                        <option value="">- Pilih Pegawai -</option>
+                                        {{ range .pegawai }}
+                                        <option value="{{.IdPegawai}}">{{.IdPegawai}} | {{.NamaPegawai}}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                             </div>
@@ -50,25 +50,11 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal
                                 </label>
                                 <div class="col-md-3 col-sm-3">
-                                    <input id="TanggalAwal" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                    <script>
-                                        function timeFunctionLong(input) {
-                                            setTimeout(function() {
-                                                input.type = 'text';
-                                            }, 1000);
-                                        }
-                                    </script>
+                                    <input id="TanggalAwal" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
                                 </div>
                                 
                                 <div class="col-md-3 col-sm-3">
-                                    <input id="TanggalAkhir" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                    <script>
-                                        function timeFunctionLong(input) {
-                                            setTimeout(function() {
-                                                input.type = 'text';
-                                            }, 1000);
-                                        }
-                                    </script>
+                                    <input id="TanggalAkhir" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -104,20 +90,70 @@
 </div>
 </div>
 
-<script>
-    function loadMore() {
-        $.ajax({
-            url: '/rekap_laporan_bulanan_perpegawai/load_data',
-            type: 'POST',
-            data: {
-                IdUnit    : $('#IdUnit').val(),
-                IdBulan    : $('#IdBulan').val(),
-                IdTahun    : $('#IdTahun').val()
-            },
-            success: function (respon) {
-                $('#LoadTabel').html(respon);
-            }
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/static/vendors/moment/min/moment.min.js"></script>
+<script src="/static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/static/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- bootstrap-datetimepicker -->    
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        /*$('#TanggalAwal').datetimepicker({
+            format: 'DD-MM-YYYY'
         });
+        $('#TanggalAkhir').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });*/
+        setTimeout(() => {
+            $('#TanggalAwal').val(GetDateBulanan('awal',Date.now()));
+            $('#TanggalAkhir').val(GetDateBulanan('akhir',Date.now()));
+        }, 100);
+    });
+
+    function GetDateBulanan(range,date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + '15',
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        if (range=='awal') {
+            return [year, month, day].join('-');
+        } else {
+            return [year, month, day].join('-');
+        }
+    }
+
+    function loadMore() {
+        var vIdUnit       = $('#IdUnit').val();
+        var vIdPegawai    = $('#IdPegawai').val();
+        var vTanggalAwal  = $('#TanggalAwal').val();
+        var vTanggalAkhir = $('#TanggalAkhir').val();
+
+        if (vIdUnit=='') {
+            alert('Silahkan pilih unit!');
+        } else if (vIdPegawai=='') {
+            alert('Silahkan pilih pegawai!');
+        } else if (vTanggalAwal=='' && vTanggalAkhir=='') {
+            alert('Silahkan isikan tanggal!');
+        } else {
+            $.ajax({
+                url: '/rekap_laporan_bulanan_perpegawai/load_data',
+                type: 'POST',
+                data: {
+                    IdUnit       : vIdUnit,
+                    IdPegawai    : vIdPegawai,
+                    TanggalAwal  : vTanggalAwal,
+                    TanggalAkhir : vTanggalAkhir
+                },
+                success: function (respon) {
+                    $('#LoadTabel').html(respon);
+                }
+            });
+        }
     }
 </script>
 {{template "_footer"}}

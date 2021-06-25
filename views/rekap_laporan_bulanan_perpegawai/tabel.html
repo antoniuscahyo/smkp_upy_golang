@@ -9,45 +9,25 @@
                     <th>Scan Keluar</th>
                     <th>Terlambat</th>
                     <th>Bolos</th>
-                    <th>Jumlah Jam Kehadiran</th>
+                    <th>Jumlah Kehadiran</th>
                     <th>Tanda Tangan</th>
                     <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
+            {{ range .data }}
                 <tr>
                     <td>1</td>
-                    <td>01-01-2021</td>
-                    <td>08:00</td>
-                    <td>14:00</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>06:00</td>
-                    <td></td>
-                    <td>-</td>
+                    <td>{{.Tanggal}}</td>
+                    <td>{{.ScanMasuk}}</td>
+                    <td>{{.ScanKeluar}}</td>
+                    <td>{{.Terlambat}}</td>
+                    <td>{{.Bolos}}</td>
+                    <td>{{.JumlahKehadiran}}</td>
+                    <td>{{.TandaTangan}}</td>
+                    <td>{{.Keterangan}}</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>02-01-2021</td>
-                    <td>08:00</td>
-                    <td>14:00</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>06:00</td>
-                    <td></td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>03-01-2021</td>
-                    <td>08:00</td>
-                    <td>14:00</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>06:00</td>
-                    <td></td>
-                    <td>-</td>
-                </tr>
+            {{ end }}
             </tbody>
         </table>
     </div>

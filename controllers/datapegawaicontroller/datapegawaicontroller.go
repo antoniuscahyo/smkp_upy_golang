@@ -19,6 +19,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 
 	var pegawaiModel models.PegawaiModel
 	pegawai, _ := pegawaiModel.FindAll()
+	// fmt.Println(pegawai)
 
 	data := map[string]interface{} {
 		"records": pegawai,
@@ -55,8 +56,16 @@ func Add(response http.ResponseWriter, request *http.Request) {
 	var unitkerjaModel models.UnitModel
 	unitkerja, _ := unitkerjaModel.FindAll()
 
+	var fakultasModel models.FakultasModel
+	fakultas, _ := fakultasModel.FindAll()
+
+	var programstudiModel models.ProgramstudiModel
+	programstudi, _ := programstudiModel.FindAll()
+
 	data := map[string]interface{} {
 		"unitkerja": unitkerja,
+		"fakultas": fakultas,
+		"programstudi": programstudi,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -91,7 +100,7 @@ func ProcessAdd(response http.ResponseWriter, request *http.Request) {
 	pegawai.NisPegawai = request.Form.Get("NisPegawai")
 	pegawai.NamaPegawai = request.Form.Get("NamaPegawai")
 	pegawai.JabatanPegawai = request.Form.Get("JabatanPegawai")
-	pegawai.StatusAktif = request.Form.Get("StatusAktif")
+	pegawai.StatusAktif, _ = strconv.ParseInt(request.Form.Get("StatusAktif"), 10, 64)
 	var pegawaiModel models.PegawaiModel
 	pegawaiModel.Create(&pegawai)
 	http.Redirect(response, request, "/data_pegawai", http.StatusSeeOther)
@@ -108,7 +117,7 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	pegawai.NisPegawai = request.Form.Get("NisPegawai")
 	pegawai.NamaPegawai = request.Form.Get("NamaPegawai")
 	pegawai.JabatanPegawai = request.Form.Get("JabatanPegawai")
-	pegawai.StatusAktif = request.Form.Get("StatusAktif")
+	pegawai.StatusAktif, _ = strconv.ParseInt(request.Form.Get("StatusAktif"), 10, 64)
 	var pegawaiModel models.PegawaiModel
 	pegawaiModel.Update(pegawai)
 	http.Redirect(response, request, "/data_pegawai", http.StatusSeeOther)
@@ -136,10 +145,18 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 
 	var unitkerjaModel models.UnitModel
 	unitkerja, _ := unitkerjaModel.FindAll()
+
+	var fakultasModel models.FakultasModel
+	fakultas, _ := fakultasModel.FindAll()
+
+	var programstudiModel models.ProgramstudiModel
+	programstudi, _ := programstudiModel.FindAll()
 	
 	data := map[string]interface{} {
 		"records": pegawai,
 		"unitkerja": unitkerja,
+		"fakultas": fakultas,
+		"programstudi": programstudi,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

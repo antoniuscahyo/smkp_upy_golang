@@ -1,6 +1,7 @@
 package rekaplaporanperunitcontroller
 
 import (
+	"SMKPUPY/models"
 	"html/template"
 	"net/http"
 	"fmt"
@@ -14,7 +15,11 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
+	var unitkerjaModel models.UnitModel
+	unitkerja, _ := unitkerjaModel.FindAll()
+
 	data := map[string]interface{} {
+		"unitkerja": unitkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

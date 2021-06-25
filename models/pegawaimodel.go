@@ -3,7 +3,6 @@ package models
 import (
 	"SMKPUPY/config"
 	"SMKPUPY/entities"
-	// "fmt"
 )
 
 type PegawaiModel struct {
@@ -17,18 +16,18 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 	} else {
 		rows, err2 := db.Query(`
 		SELECT
-			pegawai.nama_pegawai,
-			pegawai.nis_pegawai,
-			unit.unit_nama,
-			pegawai.pin_finger,
-			fakultas.nama_fakultas,
-			program_studi.nama_program_studi,
-			pegawai.id_pegawai,
-			pegawai.id_unit,
-			pegawai.id_fakultas,
-			pegawai.id_program_studi,
-			pegawai.jabatan_pegawai,
-			pegawai.status_aktif
+			IFNULL(pegawai.nama_pegawai,'') AS nama_pegawai,
+			IFNULL(pegawai.nis_pegawai,'') AS nis_pegawai,
+			IFNULL(unit.unit_nama,'') AS unit_nama,
+			IFNULL(pegawai.pin_finger,'') AS pin_finger,
+			IFNULL(fakultas.nama_fakultas,'') AS nama_fakultas,
+			IFNULL(program_studi.nama_program_studi,'') AS nama_program_studi,
+			IFNULL(pegawai.id_pegawai,0) AS id_pegawai,
+			IFNULL(pegawai.id_unit,0) AS id_unit,
+			IFNULL(pegawai.id_fakultas,0) AS id_fakultas,
+			IFNULL(pegawai.id_program_studi,0) AS id_program_studi,
+			IFNULL(pegawai.jabatan_pegawai,'') AS jabatan_pegawai,
+			IFNULL(pegawai.status_aktif,0) AS status_aktif
 		FROM
 			pegawai
 		LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
@@ -55,7 +54,6 @@ func (*PegawaiModel) FindAll() ([]entities.Pegawai, error) {
 				pegawais = append(pegawais, pegawai)
 			}
 			return pegawais, nil
-			// fmt.Print(pegawais)
 		}
 	}
 }
@@ -66,15 +64,15 @@ func (*PegawaiModel) Find(id int64) (entities.Pegawai, error) {
 		return entities.Pegawai{}, err
 	} else {
 		rows, err2 := db.Query(`SELECT
-		pegawai.id_pegawai, 
-		pegawai.id_unit, 
-		pegawai.id_fakultas, 
-		pegawai.id_program_studi, 
-		pegawai.pin_finger, 
-		pegawai.nis_pegawai, 
-		pegawai.nama_pegawai, 
-		pegawai.jabatan_pegawai, 
-		pegawai.status_aktif
+		IFNULL(pegawai.id_pegawai,0) AS id_pegawai, 
+		IFNULL(pegawai.id_unit,0) AS id_unit, 
+		IFNULL(pegawai.id_fakultas,0) AS id_fakultas, 
+		IFNULL(pegawai.id_program_studi,0) AS id_program_studi, 
+		IFNULL(pegawai.pin_finger,'') AS pin_finger, 
+		IFNULL(pegawai.nis_pegawai,'') AS nis_pegawai, 
+		IFNULL(pegawai.nama_pegawai,'') AS nama_pegawai, 
+		IFNULL(pegawai.jabatan_pegawai,'') AS jabatan_pegawai, 
+		IFNULL(pegawai.status_aktif,0) AS status_aktif
 			FROM
 		pegawai 
 			WHERE

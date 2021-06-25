@@ -38,6 +38,9 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2" id="IdFakultas" name="IdFakultas">
                                         <option value="0">- Pilih Fakultas -</option>
+                                        {{ range .fakultas }}
+                                        <option value="{{.IdFakultas}}">{{.IdFakultas}} | {{.NamaFakultas}}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                             </div>
@@ -48,6 +51,9 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2" id="IdProgramStudi" name="IdProgramStudi">
                                         <option value="0">- Pilih Program Studi -</option>
+                                        {{ range .programstudi }}
+                                        <option value="{{.IdProgramStudi}}">{{.IdProgramStudi}} | {{.NamaProgramStudi}}</option>
+                                        {{ end }}
                                     </select>
                                 </div>
                             </div>
