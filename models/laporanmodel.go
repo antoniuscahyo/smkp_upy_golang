@@ -11,6 +11,7 @@ type LaporanModel struct {
 }
 
 type SDetailHarian struct {
+	No				int
 	IdPegawai  		int64
 	IdUnit 	    	int64
 	PinFinger   	string
@@ -28,8 +29,8 @@ type SDetailHarian struct {
 func (*LaporanModel) DetailHarian(TanggalAwal string, TanggalAkhir string, idUnit int64, idPegawai int64) ([]SDetailHarian, error) {
 	db, err := config.GetDB()
 	
-	fmt.Println(TanggalAwal)
-	fmt.Println(TanggalAkhir)
+	// fmt.Println(TanggalAwal)
+	// fmt.Println(TanggalAkhir)
 	
 	if	err != nil {
 		return nil, err
@@ -67,8 +68,11 @@ func (*LaporanModel) DetailHarian(TanggalAwal string, TanggalAkhir string, idUni
 			return nil,err2
 		} else {
 			var data []SDetailHarian
+			i := 1
 			for rows.Next() {
 				var detail SDetailHarian
+				detail.No = i
+				i++
 				rows.Scan(&detail.IdPegawai, 
 				&detail.IdUnit,
 				&detail.PinFinger,

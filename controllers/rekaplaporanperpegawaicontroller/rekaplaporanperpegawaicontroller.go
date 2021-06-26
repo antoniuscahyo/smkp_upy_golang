@@ -59,10 +59,10 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 	TanggalAwal := request.PostFormValue("TanggalAwal")
 	TanggalAkhir := request.PostFormValue("TanggalAkhir")
 
-	fmt.Println(IdUnit)
+	/*fmt.Println(IdUnit)
 	fmt.Println(IdPegawai)
 	fmt.Println(TanggalAwal)
-	fmt.Println(TanggalAkhir)
+	fmt.Println(TanggalAkhir)*/
 
 	var laporanModel models.LaporanModel
 	detailharian, _ := laporanModel.DetailHarian(TanggalAwal,TanggalAkhir,IdUnit,IdPegawai)
