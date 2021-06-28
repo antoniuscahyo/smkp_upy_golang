@@ -4,6 +4,7 @@ import (
 	"SMKPUPY/models"
 	"html/template"
 	"net/http"
+	"strconv"
 	"fmt"
 	"github.com/kataras/go-sessions"
 )
@@ -45,7 +46,15 @@ func Index(response http.ResponseWriter, request *http.Request) {
 }
 
 func LoadData(response http.ResponseWriter, request *http.Request) {
+	IdUnit, _ := strconv.ParseInt(request.PostFormValue("IdUnit"), 10, 64)
+	TanggalAwal := request.PostFormValue("TanggalAwal")
+	TanggalAkhir := request.PostFormValue("TanggalAkhir")
+
+	var laporanModel models.LaporanModel
+	rekaplaporan, _ := laporanModel.RekapLaporan(TanggalAwal,TanggalAkhir,IdUnit)
+
 	data := map[string]interface{} {
+		"data": rekaplaporan,
 		"NamaAplikasi":  "SMKP UPY",
 	}
 

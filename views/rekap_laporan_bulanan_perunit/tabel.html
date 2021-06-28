@@ -19,16 +19,18 @@
                 </tr>
             </thead>
             <tbody>
+            {{ range .data }}
                 <tr>
-                    <td>1</td>
-                    <td>Adi Prasetyo</td>
-                    <td>21</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>18</td>
-                    <td>06:00</td>
-                    <td></td>
+                    <td>{{.No}}</td>
+                    <td>{{.NamaPegawai}}</td>
+                    <td>{{.JumlahKehadiran}}</td>
+                    <td>{{.ValidasiKehadiran}}</td>
+                    <td>{{.PotonganInsentifKehadiran}}</td>
+                    <td>{{.ValidasiInsentifKehadiran}}</td>
+                    <td>{{.UMKKehadiran}}</td>
+                    <td>{{.ValidasiUMKKehadiran}}</td>
                 </tr>
+            {{ end }}
             </tbody>
         </table>
 

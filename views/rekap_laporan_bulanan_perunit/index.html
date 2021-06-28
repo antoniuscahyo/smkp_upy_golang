@@ -26,7 +26,7 @@
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Unit
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            <select class="form-control" id="IdUnit" name="IdUnit">
+                                            <select class="form-control select2" id="IdUnit" name="IdUnit">
                                                 <option value="0">- Pilih Unit Kerja -</option>
                                                 {{ range .unitkerja }}
                                                 <option value="{{.IdUnit}}">{{.IdUnit}} | {{.UnitNama}}</option>
@@ -116,6 +116,35 @@
 <script src="/static/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- bootstrap-datetimepicker -->   
 <script>
+    $(document).ready(function() {
+        /*$('#TanggalAwal').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+        $('#TanggalAkhir').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });*/
+        setTimeout(() => {
+            $('#TanggalAwal').val(GetDateBulanan('awal',Date.now()));
+            $('#TanggalAkhir').val(GetDateBulanan('akhir',Date.now()));
+        }, 100);
+    });
+
+    function GetDateBulanan(range,date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + '15',
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        if (range=='awal') {
+            return [year, month, day].join('-');
+        } else {
+            return [year, month, day].join('-');
+        }
+    }
+
     function loadMore() {
         var vIdUnit       = $('#IdUnit').val();
         var vTanggalAwal  = $('#TanggalAwal').val();

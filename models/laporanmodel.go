@@ -10,6 +10,17 @@ type LaporanModel struct {
 
 }
 
+type SRekapLaporan struct {
+	No						  int
+	NamaPegawai  			  string
+	JumlahKehadiran 		  string
+	ValidasiKehadiran 		  string
+	PotonganInsentifKehadiran string
+	ValidasiInsentifKehadiran string
+	UMKKehadiran 			  string
+	ValidasiUMKKehadiran 	  string
+}
+
 type SDetailHarian struct {
 	No				int
 	IdPegawai  		int64
@@ -24,6 +35,53 @@ type SDetailHarian struct {
 	JumlahKehadiran string
 	TandaTangan 	string
 	Keterangan 		string
+}
+
+func (*LaporanModel) RekapLaporan(TanggalAwal string, TanggalAkhir string, idUnit int64) ([]SRekapLaporan, error) {
+	db, err := config.GetDB()
+	
+	if	err != nil {
+		return nil, err
+	} else {
+		rows, err2 := db.Query(`SELECT
+			pegawai.nama_pegawai AS nama,
+			func_getjumlahkehadiran(?,?,pegawai.id_pegawai) AS jumlah_kehadiran,
+			'-' AS jumlah_validasi,
+			'-' AS jumlah_pot_insentif_kehadiran,
+			'-' AS validasi_pot_insentif_kehadiran,
+			'-' AS umk_kehadiran,
+			'-' AS umk_validasi
+		FROM
+			pegawai
+			LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
+			LEFT JOIN fakultas ON pegawai.id_fakultas = fakultas.id_fakultas
+			LEFT JOIN program_studi ON pegawai.id_program_studi = program_studi.id_program_studi
+		WHERE
+			pegawai.id_unit = ?
+		ORDER BY 
+		pegawai.nis_pegawai DESC`,TanggalAwal,TanggalAkhir,idUnit)
+		if err2 != nil {
+			fmt.Println(err2)
+			return nil,err2
+		} else {
+			var data []SRekapLaporan
+			i := 1
+			for rows.Next() {
+				var detail SRekapLaporan
+				detail.No = i
+				i++
+				rows.Scan(&detail.NamaPegawai, 
+				&detail.JumlahKehadiran,
+				&detail.ValidasiKehadiran,
+				&detail.PotonganInsentifKehadiran,
+				&detail.ValidasiInsentifKehadiran,
+				&detail.UMKKehadiran,
+				&detail.ValidasiUMKKehadiran)
+				data = append(data, detail)
+			}
+			return data, nil
+		}
+	}
 }
 
 func (*LaporanModel) DetailHarian(TanggalAwal string, TanggalAkhir string, idUnit int64, idPegawai int64) ([]SDetailHarian, error) {
