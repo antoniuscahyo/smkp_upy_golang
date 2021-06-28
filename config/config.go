@@ -14,7 +14,7 @@ func GetDB() (db *sql.DB, err error) {
 	dbHost   := "localhost"
 	dbPort   := "3306"
 	dbUser   := "root"
-	dbPass   := ""
+	dbPass   := "12345"
 	db, err = sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbHost+":"+dbPort+")/"+dbName)
 	return
 }

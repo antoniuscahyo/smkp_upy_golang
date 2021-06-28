@@ -41,11 +41,11 @@ func (*LaporanModel) DetailHarian(TanggalAwal string, TanggalAkhir string, idUni
 			IFNULL(pegawai.pin_finger,'') AS pin_finger,
 			IFNULL(pegawai.nama_pegawai,'') AS nama_pegawai,
 			IFNULL(log_mesin_finger.tanggal,'') AS tanggal,
-			IFNULL(func_getscanmasuk(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger),'') AS scan_masuk,
-			IFNULL(func_getscankeluar(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger),'') AS scan_keluar,
-			IFNULL(func_getscanterlambat(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger),'') AS terlambat,
-			IFNULL(func_getscanbolos(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger),'') AS bolos,
-			IFNULL(func_getscanjumlahkehadiran(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger),'') AS jumlah_kehadiran,
+			IFNULL(TIME_FORMAT(func_getscanmasuk(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS scan_masuk,
+			IFNULL(TIME_FORMAT(func_getscankeluar(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS scan_keluar,
+			IFNULL(TIME_FORMAT(func_getscanterlambat(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS terlambat,
+			IFNULL(TIME_FORMAT(func_getscanbolos(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS bolos,
+			IFNULL(TIME_FORMAT(func_getscanjumlahkehadiran(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS jumlah_kehadiran,
 			IFNULL(NULL,'') AS tanda_tangan,
 			IFNULL(NULL,'') AS keterangan
 		FROM
