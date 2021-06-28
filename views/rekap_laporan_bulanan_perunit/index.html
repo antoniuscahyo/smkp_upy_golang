@@ -35,6 +35,17 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal
+                                        </label>
+                                        <div class="col-md-3 col-sm-3">
+                                            <input id="TanggalAwal" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
+                                        </div>
+                                        
+                                        <div class="col-md-3 col-sm-3">
+                                            <input id="TanggalAkhir" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Bulan
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
@@ -65,7 +76,7 @@
                                                 <option value="2021">2021</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="ln_solid"></div>
                                     <div class="item form-group">
                                         <div class="col-md-6 col-sm-6 offset-md-3">
@@ -98,20 +109,36 @@
     </div>
 </div>
 
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/static/vendors/moment/min/moment.min.js"></script>
+<script src="/static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/static/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- bootstrap-datetimepicker -->   
 <script>
     function loadMore() {
-        $.ajax({
-            url: '/rekap_laporan_bulanan_perunit/load_data',
-            type: 'POST',
-            data: {
-                IdUnit    : $('#IdUnit').val(),
-                IdBulan    : $('#IdBulan').val(),
-                IdTahun    : $('#IdTahun').val()
-            },
-            success: function (respon) {
-                $('#LoadTabel').html(respon);
-            }
-        });
+        var vIdUnit       = $('#IdUnit').val();
+        var vTanggalAwal  = $('#TanggalAwal').val();
+        var vTanggalAkhir = $('#TanggalAkhir').val();
+
+        if (vIdUnit=='') {
+            alert('Silahkan pilih unit!');
+        } else if (vTanggalAwal=='' && vTanggalAkhir=='') {
+            alert('Silahkan isikan tanggal!');
+        } else {
+            $.ajax({
+                url: '/rekap_laporan_bulanan_perunit/load_data',
+                type: 'POST',
+                data: {
+                    IdUnit       : vIdUnit,
+                    TanggalAwal  : vTanggalAwal,
+                    TanggalAkhir : vTanggalAkhir
+                },
+                success: function (respon) {
+                    $('#LoadTabel').html(respon);
+                }
+            });
+        }
     }
 </script>
 {{template "_footer"}}
