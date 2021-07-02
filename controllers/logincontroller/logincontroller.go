@@ -37,10 +37,16 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("username", users.Username)
 		session.Set("nama", users.Nama)
 		session.Set("Idrole", users.Idrole)
-		http.Redirect(response, request, "/dashboard", 302)
+		session.Set("namarole", users.NamaRole)
+		if users.Idrole == 4 || users.Idrole == 5 {
+			http.Redirect(response, request, "/profile", 302)
+		} else {
+			http.Redirect(response, request, "/dashboard", 302)
+		}
 		fmt.Println("Login Sukses")
 	} else {
 		//login failed
+		fmt.Println(passwordtes)
 		http.Redirect(response, request, "/login", 302)
 	}
 }
@@ -51,6 +57,7 @@ type user struct {
 	Nama     string
 	Password string
 	Idrole   int
+	NamaRole string
 }
 
 func QueryUser(username string) user {
@@ -62,19 +69,22 @@ func QueryUser(username string) user {
 	
 	db.QueryRow(`
 	SELECT 
-	id_pengguna, 
-	username, 
-	nama, 
-	password,
-	id_role
-	FROM pengguna 
-	WHERE username=?`, username).
+	pengguna.id_pengguna, 
+	pengguna.username, 
+	pengguna.nama, 
+	pengguna.password,
+	pengguna.id_role,
+	role.nama_role
+	FROM pengguna
+	JOIN role ON pengguna.id_role=role.id_role
+	WHERE pengguna.username=?`, username).
 	Scan(
 		&users.ID,
 		&users.Username,
 		&users.Nama,
 		&users.Password,
 		&users.Idrole,
+		&users.NamaRole,
 	)
 	return users
 }

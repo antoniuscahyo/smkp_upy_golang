@@ -1,0 +1,82 @@
+{{template "_header" .}}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>User Profile</h3>
+            </div>
+        </div>
+        
+        <div class="clearfix"></div>
+        
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>User </small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-3 col-sm-3  profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <img class="img-responsive avatar-view" src="images/img.jpg" alt="Avatar" title="Change the avatar" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 ">
+                            
+                            <div class="profile_title">
+                                <div class="col-md-6">
+                                    <h2>Informasi User Login</h2>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item form-group">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pengguna
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="NamaPengguna" name="NamaPengguna" required="required" class="form-control" value="{{ .nama_pengguna }}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Role
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="Role" name="Role" required="required" class="form-control" value="" disabled="disabled">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Username
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="Username" name="Username" required="required" class="form-control" value="{{ .username }}">
+                                </div>
+                            </div>
+                            
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Password
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="Password" name="Password" required="required" class="form-control" value="">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+{{template "_footer"}}
