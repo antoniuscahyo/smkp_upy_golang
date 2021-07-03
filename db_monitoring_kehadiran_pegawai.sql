@@ -11,7 +11,7 @@
  Target Server Version : 100508
  File Encoding         : 65001
 
- Date: 25/06/2021 19:17:45
+ Date: 03/07/2021 22:08:00
 */
 
 SET NAMES utf8mb4;
@@ -28819,7 +28819,7 @@ INSERT INTO `pegawai` VALUES (343, 59, NULL, NULL, NULL, '199002222016012000', '
 INSERT INTO `pegawai` VALUES (344, 59, NULL, NULL, NULL, '198412272016041000', 'Prahenusa Wahyu Ciptadi, S.T., M.T', NULL, 1);
 INSERT INTO `pegawai` VALUES (345, 59, NULL, NULL, NULL, '198712052016041012', 'R. Hafid Hardyanto, S.Pd., M.Pd', NULL, 1);
 INSERT INTO `pegawai` VALUES (346, 59, NULL, NULL, NULL, '198504242016041005', 'Aditya Wahana, S.Pd.T., M.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (347, 59, NULL, NULL, NULL, '198401032015081000', 'Sunggito Oyama, S.Kom., M.T', NULL, 1);
+INSERT INTO `pegawai` VALUES (347, 2, 3, 5, '0', '198401032015081000', 'Sunggito Oyama, S.Kom., M.T', '0', 1);
 INSERT INTO `pegawai` VALUES (348, 59, NULL, NULL, NULL, '198304132018051020', 'Tri Hastono, S.Kom.,M.T', NULL, 1);
 INSERT INTO `pegawai` VALUES (349, 59, NULL, NULL, NULL, '199104232018051004', 'Ari Kusuma Wardana, S.T., M.Cs', NULL, 1);
 INSERT INTO `pegawai` VALUES (350, 59, NULL, NULL, NULL, '198312292018051017', 'Rianto, S.Kom., M.T', NULL, 1);
@@ -28863,8 +28863,8 @@ BEGIN;
 INSERT INTO `pengguna` VALUES (1, 'admin', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Administrator SMKP', 1, NULL, NULL, NULL);
 INSERT INTO `pengguna` VALUES (2, 'biro_kepegawaian', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Biro Kepegawaian', 1, NULL, NULL, NULL);
 INSERT INTO `pengguna` VALUES (3, 'biro_keuangan', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Biro Keuangan', 2, NULL, NULL, NULL);
-INSERT INTO `pengguna` VALUES (4, 'kepegawaian', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Kepala Unit Biro Kepegawaian', 5, NULL, NULL, NULL);
-INSERT INTO `pengguna` VALUES (12, 'cahyonadi', '$2a$04$1hnS2qu.UHDblExAwq6dSenn6ianZJya0WgpYh3UNTdexhV8WmAnK', 'Antonius Eko Cahyo N', 1, 0, NULL, NULL);
+INSERT INTO `pengguna` VALUES (4, 'kepegawaian', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Kepala Unit Biro Kepegawaian', 4, NULL, NULL, '2021-06-30 13:54:27');
+INSERT INTO `pengguna` VALUES (12, 'roni', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Roni', 5, 16, NULL, '2021-06-30 13:54:29');
 COMMIT;
 
 -- ----------------------------
@@ -29141,6 +29141,39 @@ COMMIT;
 -- ----------------------------
 DROP VIEW IF EXISTS `view_log_presensi`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_log_presensi` AS select `pegawai`.`id_pegawai` AS `id_pegawai`,`unit`.`unit_id` AS `unit_id`,`fakultas`.`id_fakultas` AS `id_fakultas`,`program_studi`.`id_program_studi` AS `id_program_studi`,`log_mesin_finger`.`tanggal` AS `tanggal`,`log_mesin_finger`.`jam` AS `jam`,`pegawai`.`nama_pegawai` AS `nama_pegawai`,`pegawai`.`nis_pegawai` AS `nis_pegawai`,`unit`.`unit_nama` AS `unit_nama`,`fakultas`.`nama_fakultas` AS `nama_fakultas`,`program_studi`.`nama_program_studi` AS `nama_program_studi` from ((((`log_mesin_finger` join `pegawai` on(`log_mesin_finger`.`pin_finger` = `pegawai`.`pin_finger`)) left join `unit` on(`pegawai`.`id_unit` = `unit`.`unit_id`)) left join `fakultas` on(`pegawai`.`id_fakultas` = `fakultas`.`id_fakultas`)) left join `program_studi` on(`pegawai`.`id_program_studi` = `program_studi`.`id_program_studi`)) order by `pegawai`.`nis_pegawai` desc,`log_mesin_finger`.`tanggal`;
+
+-- ----------------------------
+-- Function structure for func_getjumlahkehadiran
+-- ----------------------------
+DROP FUNCTION IF EXISTS `func_getjumlahkehadiran`;
+delimiter ;;
+CREATE FUNCTION `func_getjumlahkehadiran`(x_tglawal DATE,x_tglakhir DATE,x_idpegawai INT(11))
+ RETURNS char(8) CHARSET latin1
+BEGIN
+DECLARE x_jumlah_kehadiran INTEGER DEFAULT 0;
+
+SELECT
+	COUNT(tanggal) INTO x_jumlah_kehadiran
+FROM (
+SELECT
+	log_mesin_finger.tanggal
+FROM
+	log_mesin_finger
+LEFT JOIN pegawai ON log_mesin_finger.pin_finger = pegawai.pin_finger
+WHERE
+	log_mesin_finger.tanggal >= x_tglawal AND log_mesin_finger.tanggal <= x_tglakhir
+	AND pegawai.id_pegawai = x_idpegawai
+GROUP BY
+	log_mesin_finger.tanggal
+) a;
+
+RETURN x_jumlah_kehadiran;
+
+
+
+END
+;;
+delimiter ;
 
 -- ----------------------------
 -- Function structure for func_getscanbolos
