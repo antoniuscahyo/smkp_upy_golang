@@ -1,9 +1,11 @@
 package dashboardcontroller
 
 import (
+	"SMKPUPY/models"
 	"fmt"
 	"html/template"
 	"net/http"
+	"strconv"
 
 	"github.com/kataras/go-sessions"
 )
@@ -14,12 +16,22 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
+	var dashboardModel models.DashboardModel
+	jumlahpegawai := dashboardModel.GetJumlahPegawai()
+	jumlahpegawaimasuk := dashboardModel.GetJumlahPegawaiMasuk()
+	jumlahpegawaitidakmasuk := dashboardModel.GetJumlahPegawaiTidakMasuk()
+	jumlahpegawaitidakmemenuhijam := dashboardModel.GetJumlahPegawaiTidakMemenuhiJamKehadiran()
+
 	var data = map[string]string{
-		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
-		"nama_pengguna": session.GetString("nama"),
-		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
+		"username":                          session.GetString("username"),
+		"message":                           "Welcome to the Go !",
+		"nama_pengguna":                     session.GetString("nama"),
+		"Idrole":                            session.GetString("Idrole"),
+		"NamaAplikasi":                      "SMKP UPY",
+		"jumlah_pegawai":                    strconv.Itoa(jumlahpegawai),
+		"jumlah_pegawai_masuk":              strconv.Itoa(jumlahpegawaimasuk),
+		"jumlah_pegawai_tidak_masuk":        strconv.Itoa(jumlahpegawaitidakmasuk),
+		"jumlah_pegawai_tidak_memenuhi_jam": strconv.Itoa(jumlahpegawaitidakmemenuhijam),
 	}
 	var t, err = template.ParseFiles(
 		"views/home/dashboard.html",
