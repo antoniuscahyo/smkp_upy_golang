@@ -1,21 +1,19 @@
 /*
- Navicat Premium Data Transfer
+Navicat MySQL Data Transfer
 
- Source Server         : LOCALHOST-MAMP-PRO
- Source Server Type    : MySQL
- Source Server Version : 100508
- Source Host           : localhost:3306
- Source Schema         : db_monitoring_kehadiran_pegawai
+Source Server         : localhost
+Source Server Version : 100138
+Source Host           : localhost:3306
+Source Database       : db_monitoring_kehadiran_pegawai
 
- Target Server Type    : MySQL
- Target Server Version : 100508
- File Encoding         : 65001
+Target Server Type    : MYSQL
+Target Server Version : 100138
+File Encoding         : 65001
 
- Date: 03/07/2021 22:08:00
+Date: 2021-07-04 23:18:07
 */
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for datapresensi
@@ -29,13 +27,11 @@ CREATE TABLE `datapresensi` (
   `jam_presensi` time DEFAULT NULL,
   PRIMARY KEY (`id_presensi`) USING BTREE,
   KEY `id_pegawai` (`id_pegawai`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='desain dari naskah';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='desain dari naskah';
 
 -- ----------------------------
 -- Records of datapresensi
 -- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for fakultas
@@ -50,13 +46,11 @@ CREATE TABLE `fakultas` (
 -- ----------------------------
 -- Records of fakultas
 -- ----------------------------
-BEGIN;
-INSERT INTO `fakultas` VALUES (1, 'Ekonomi');
-INSERT INTO `fakultas` VALUES (2, 'Pertanian');
-INSERT INTO `fakultas` VALUES (3, 'Sains dan Teknologi');
-INSERT INTO `fakultas` VALUES (4, 'Keguruan dan Ilmu Pendidikan');
-INSERT INTO `fakultas` VALUES (5, 'Program Pascasarjana');
-COMMIT;
+INSERT INTO `fakultas` VALUES ('1', 'Ekonomi');
+INSERT INTO `fakultas` VALUES ('2', 'Pertanian');
+INSERT INTO `fakultas` VALUES ('3', 'Sains dan Teknologi');
+INSERT INTO `fakultas` VALUES ('4', 'Keguruan dan Ilmu Pendidikan');
+INSERT INTO `fakultas` VALUES ('5', 'Program Pascasarjana');
 
 -- ----------------------------
 -- Table structure for jadwal_kerja
@@ -74,11 +68,9 @@ CREATE TABLE `jadwal_kerja` (
 -- ----------------------------
 -- Records of jadwal_kerja
 -- ----------------------------
-BEGIN;
-INSERT INTO `jadwal_kerja` VALUES (1, 'Jadwal Kerja Dosen Reguler', 1, 0, 2);
-INSERT INTO `jadwal_kerja` VALUES (2, 'Jadwal Kerja Dosen Reguler', 59, 0, 2);
-INSERT INTO `jadwal_kerja` VALUES (3, 'Jadwal Kerja Akademik', 62, 0, 2);
-COMMIT;
+INSERT INTO `jadwal_kerja` VALUES ('1', 'Jadwal Kerja Dosen Reguler', '1', '0', '2');
+INSERT INTO `jadwal_kerja` VALUES ('2', 'Jadwal Kerja Dosen Reguler', '59', '0', '2');
+INSERT INTO `jadwal_kerja` VALUES ('3', 'Jadwal Kerja Akademik', '62', '0', '2');
 
 -- ----------------------------
 -- Table structure for jam_kerja
@@ -121,9 +113,7 @@ CREATE TABLE `jam_kerja` (
 -- ----------------------------
 -- Records of jam_kerja
 -- ----------------------------
-BEGIN;
-INSERT INTO `jam_kerja` VALUES (2, 'Jam Kerja Dosen', '08:00:00', '16:00:00', NULL, NULL, '08:00:00', '16:00:00', NULL, NULL, '08:00:00', '16:00:00', NULL, NULL, '08:00:00', '16:00:00', NULL, NULL, '08:00:00', '16:00:00', NULL, NULL, '00:00:00', '00:00:00', NULL, NULL, '00:00:00', '00:00:00', NULL, NULL);
-COMMIT;
+INSERT INTO `jam_kerja` VALUES ('2', 'Jam Kerja Dosen', '08:00:00', '16:00:00', null, null, '08:00:00', '16:00:00', null, null, '08:00:00', '16:00:00', null, null, '08:00:00', '16:00:00', null, null, '08:00:00', '16:00:00', null, null, '00:00:00', '00:00:00', null, null, '00:00:00', '00:00:00', null, null);
 
 -- ----------------------------
 -- Table structure for laporan_rekap_detail
@@ -148,8 +138,6 @@ CREATE TABLE `laporan_rekap_detail` (
 -- ----------------------------
 -- Records of laporan_rekap_detail
 -- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for log_mesin_finger
@@ -166,7 +154,6 @@ CREATE TABLE `log_mesin_finger` (
 -- ----------------------------
 -- Records of log_mesin_finger
 -- ----------------------------
-BEGIN;
 INSERT INTO `log_mesin_finger` VALUES ('010220', '2020-11-24', '10:04:20');
 INSERT INTO `log_mesin_finger` VALUES ('010220', '2020-11-24', '13:28:25');
 INSERT INTO `log_mesin_finger` VALUES ('010220', '2020-11-30', '08:00:39');
@@ -28050,7 +28037,6 @@ INSERT INTO `log_mesin_finger` VALUES ('8049', '2021-05-20', '09:18:47');
 INSERT INTO `log_mesin_finger` VALUES ('8049', '2021-06-09', '08:44:40');
 INSERT INTO `log_mesin_finger` VALUES ('8050', '2021-03-24', '08:08:34');
 INSERT INTO `log_mesin_finger` VALUES ('8050', '2021-05-03', '15:39:03');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for menu
@@ -28068,18 +28054,16 @@ CREATE TABLE `menu` (
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-BEGIN;
-INSERT INTO `menu` VALUES (1, 'Menu Utama', NULL, NULL, '01');
-INSERT INTO `menu` VALUES (2, 'Dashboard', '/dashboard', 'fa fa-home', '01.01');
-INSERT INTO `menu` VALUES (3, 'Rekap Laporan Bulanan Per Unit', '/rekap_laporan_bulanan_perunit', 'fa fa-file-text-o', '01.02');
-INSERT INTO `menu` VALUES (4, 'Rekap Laporan Bulanan Per Pegawai', '/rekap_laporan_bulanan_perpegawai', 'fa fa-file-o', '01.03');
-INSERT INTO `menu` VALUES (5, 'Menu Admin', NULL, NULL, '02');
-INSERT INTO `menu` VALUES (6, 'Referensi Unit', '/referensi_unit', 'fa fa-university', '02.01');
-INSERT INTO `menu` VALUES (7, 'Data Pegawai', '/data_pegawai', 'fa fa-users', '02.02');
-INSERT INTO `menu` VALUES (8, 'Setting Pengguna', '/setting_pengguna', 'fa fa-user', '02.03');
-INSERT INTO `menu` VALUES (9, 'Setting Menu', '/setting_menu', 'fa fa-list-alt', '02.04');
-INSERT INTO `menu` VALUES (10, 'Setting Role', '/setting_role', 'fa fa-key', '02.05');
-COMMIT;
+INSERT INTO `menu` VALUES ('1', 'Menu Utama', null, null, '01');
+INSERT INTO `menu` VALUES ('2', 'Dashboard', '/dashboard', 'fa fa-home', '01.01');
+INSERT INTO `menu` VALUES ('3', 'Rekap Laporan Bulanan Per Unit', '/rekap_laporan_bulanan_perunit', 'fa fa-file-text-o', '01.02');
+INSERT INTO `menu` VALUES ('4', 'Rekap Laporan Bulanan Per Pegawai', '/rekap_laporan_bulanan_perpegawai', 'fa fa-file-o', '01.03');
+INSERT INTO `menu` VALUES ('5', 'Menu Admin', null, null, '02');
+INSERT INTO `menu` VALUES ('6', 'Referensi Unit', '/referensi_unit', 'fa fa-university', '02.01');
+INSERT INTO `menu` VALUES ('7', 'Data Pegawai', '/data_pegawai', 'fa fa-users', '02.02');
+INSERT INTO `menu` VALUES ('8', 'Setting Pengguna', '/setting_pengguna', 'fa fa-user', '02.03');
+INSERT INTO `menu` VALUES ('9', 'Setting Menu', '/setting_menu', 'fa fa-list-alt', '02.04');
+INSERT INTO `menu` VALUES ('10', 'Setting Role', '/setting_role', 'fa fa-key', '02.05');
 
 -- ----------------------------
 -- Table structure for olah_data_pegawai
@@ -28100,355 +28084,353 @@ CREATE TABLE `olah_data_pegawai` (
 -- ----------------------------
 -- Records of olah_data_pegawai
 -- ----------------------------
-BEGIN;
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Okti  Purwaningsih, MP.', 'S3', 'Agroteknologi', '19711009 199812 2 005', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ir. Herman Budi Susetyo, MP.', 'S2', 'Agroteknologi', '19540526 198503 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. M. Kusberyunadi, M.MA', 'S2', 'Agroteknologi', '19650321 199604 1 003', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ir. Ahmad Bahrum, M.P.', 'S2', 'Agroteknologi', '19630917 199503 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ir. Ardiyanto, M.Sc.', 'S2', 'Agroteknologi', '19640314 199503 1 005', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Ir. Paiman, M.P.', 'S3', 'Agroteknologi', '19650916 199503 1 003', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('C. Tri Kusumastuti, S.P., M.Sc.', 'S2', 'Agroteknologi', '19751116 200501 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Puguh Bintang Pamungkas, M.P', 'S2', 'Agroteknologi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. Ir. Prapto Yudhono, M.Sc', 'S3', 'Agroteknologi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Tri Siwi Nugrahani, S.E., M.Si.', 'S2', 'Akuntansi', '19671126 199303 2 002  ', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Dekeng Setyo Budiarto, Ak.CA.', 'S3', 'Akuntansi', '19740814 200607 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Sri Widodo, S.E.,M.Sc', 'S2', 'Akuntansi', '19780201 200607 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Sukhemi, M.Sc.', 'S2', 'Akuntansi', '19760307 200204 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Vidya Vitta Adhivinna., SE., M.Si.Ak', 'S2', 'Akuntansi', '19780429 200404 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hari Purnama, S.E., M.M.', 'S2', 'Akuntansi', '19620221 199503 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ratna Purnama Sari, S.E., M.Si', 'S2', 'Akuntansi', '19880807 201404 2 007', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rani Eka Diansari, S.E., M.Acc', 'S2', 'Akuntansi', '19860114 201508 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Yennisa, S.E., M.Sc.Ak.CA', 'S2', 'Akuntansi', '19850108 201508 2 006', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('M. Sulkhanul Umam, S.E., M.Si', 'S2', 'Akuntansi', '19900324 201604 1 013', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ningrum Pramudiati, S.E., M.Si', 'S2', 'Akuntansi', '19930916 201805 2 013', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Anandita Zulia Putri, S.E., M.Acc', 'S2', 'Akuntansi', '19920523 201805 2 025', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Lulu Amalia Nusron, S.E., M.Ak', 'S2', 'Akuntansi', '19931104 201806 2 026', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Zidni Husnia Fachrunnisa, S.E., M.Ak.', 'S2', 'Akuntansi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Baniady Gennody Pronosokodewo, S.E., M.Si.', 'S2', 'Akuntansi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rahandhika Ivan Adyaksana, S.E., M.Si', 'S2', 'Akuntansi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Ika Ernawati, M.Pd.', 'S2', 'Bimbingan Konseling', '19601212 198703 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Djuwalman, M.Pd.', 'S2', 'Bimbingan Konseling', '19520705 198211 1 002 ', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Makin, M.Pd', 'S2', 'Bimbingan Konseling', '19591107 198703 1 002   ', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Enik Nur Kholidah, S.E., M.A.', 'S2', 'Bimbingan Konseling', '19711028 201004 2 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Arum Setiowati, S.Pd., M.Pd.', 'S2', 'Bimbingan Konseling', '19841129 201302 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Hj. Nurwahyumiani, M.A', 'S2', 'Bimbingan Konseling', '19570310 198503 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Suharni, M.Pd.', 'S2', 'Bimbingan Konseling', '19541109 198103 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drajat Edy Kurniawan, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19901124 201604 1 018', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Shinta Purwaningrum, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19881217 201608 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Taufik Agung Pranowo, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19860902 201604 1 014', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Eko Perianto, S.Pd., M.Si', 'S2', 'Bimbingan Konseling', '19870323 201404 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Iis Latifah Nuryanto, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19881209 201404 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Herwinda Putri Daniswari, S.Pd.,M.Pd', 'S2', 'Bimbingan Konseling', '19940320 201805 2 008', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Fitri Susilowati, S.E., M.Sc', 'S2', 'Manajemen', '19820721 201404 2 006', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Murti Sumarni, MM.', 'S2', 'Manajemen', '19530921 198103 2 001 ', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Yati Suhartini, MA.', 'S2', 'Manajemen', '19590106 198503 2 007', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Arif Sudaryana, M.Si.', 'S2', 'Manajemen', '19610213 198703 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Endang Tri Wahyuni, MM.', 'S2', 'Manajemen', '19580607 199503 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Lilik Siswanto, S.E, M.M', 'S2', 'Manajemen', '19670729 200204 1 003', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Arista Natia Afriany, S.E, M.BA', 'S2', 'Manajemen', '19831029 201508 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ahsan Sumantika, S.E, M.Sc', 'S2', 'Manajemen', '19870724 201508 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Adhi Prakosa,S.E. M.Sc', 'S2', 'Manajemen', '19860827 201508 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Faizal Ardiyanto, S.E., M.M', 'S2', 'Manajemen', '19901017 201604 1 009', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Saptaningsih Sumarmi, S.E., M.M', 'S2', 'Manajemen', '19731022 199710 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Anindita Imam Basri, S.E.I.,M.M', 'S2', 'Manajemen', '19891110 201805 1 003', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Natalia Ratna Ningrum, S.E.,M.M', 'S2', 'Manajemen', '19871217 201805 2 012', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Diah Aryanti Saptowarsi, S.E.,M.Sc', 'S2', 'Manajemen', '19740606 201805 2 005', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Inayat Hanum Indriati,S.E., M.M', 'S2', 'Manajemen', '19690910 201805 2 009', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Pradita Nindya Aryandha, S.E., M.B.A', 'S2', 'Manajemen', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hapsari Dyah Herdiany, S.E., M.M', 'S2', 'Manajemen', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Latifah Putranti, S.E., M.Sc', 'S2', 'Manajemen', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Fikri Farhan, S.E., M.Sc', 'S2', 'Manajemen', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Guruh Ghifar Zalzalah, S.E., M.Sc', 'S2', 'Manajemen', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Kristina Warniasih, M.Pd.', 'S2', 'Pend. Matematika', '19620816 198702 2 001  ', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. MM. Endang Susetyawati, M.Pd.', 'S2', 'Pend. Matematika', '19620516 198803 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Abdul Aziz Saefudin, S.Pd.I.,M.Pd.', 'S2', 'Pend. Matematika', '19820611 201104 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dhian Arista Istikomah, S.Si., M.Sc.', 'S2', 'Pend. Matematika', '19870426 201104 2 004', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Gunawan, S.Si., M.Pd', 'S2', 'Pend. Matematika', '19840704 201004 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Laela Sagita, S.Pd., M.Sc.', 'S2', 'Pend. Matematika', '19841222 201104 2 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Nendra Mursetya S D, S.Pd., M.Sc', 'S2', 'Pend. Matematika', '19831030 201004 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Niken Wahyu Utami, S.Pd.Si., M.Pd.', 'S2', 'Pend. Matematika', '19840422 200904 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Koryna Aviori, S.Si., M.Pd.', 'S2', 'Pend. Matematika', '19861206 201201 2 033', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Siska Candra Ningsih, S.Si., M.Sc.', 'S2', 'Pend. Matematika', '19780923 201401 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Titis Sunanti, S.Pd., M.Si.', 'S2', 'Pend. Matematika', '19800412 201408 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Palupi Sri Wijayanti, S.Pd., M.Pd', 'S2', 'Pend. Matematika', '19890615 201508 2 010', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Padrul Jana, S.Pd., M.Sc', 'S2', 'Pend. Matematika', '19890417 201508 1 012', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Kintoko, S.Pd., M.Pd', 'S2', 'Pend. Matematika', '19861225 201508 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Bintang Wicaksono, S.Pd., M.Pd', 'S2', 'Pend. Matematika', '19890123 201404 1 014', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ch. Eva Nuryani, S.Si., M.Sc', 'S2', 'Pend. Matematika', '19761224 200501 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Tri Wahana, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', '19681217 199412 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Darsono, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', '19671105 199412 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Siswanta, M.Pd', 'S2', 'Pend. Sejarah', '19650216 199109 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Johanes Sabari, M.Si.', 'S2', 'Pend. Sejarah', '19510701 198907 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Muhammad Iqbal Birsyada, S.Pd., M.Pd', 'S3', 'Pend. Sejarah', '19880210 201404 1 009', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Bayu Ananto Wibowo, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Fahruddin, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Sujatmiko, S.Pd.Ing., M.Hum.', 'S2', 'Pend. Bahasa Inggris', '19830609 201310 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Nafisah Endahati, S.Pd., M.Hum', 'S2', 'Pend. Bahasa Inggris', '19780316 201310 2 004', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Sri Wiyanah, S.Pd., M.Hum.', 'S2', 'Pend. Bahasa Inggris', '19790613 201401 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rudha Widagsa, S.S., M.A.', 'S2', 'Pend. Bahasa Inggris', '19850102 201310 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Juang Kurniawan S, S.Pd., M.Pd.B.I', 'S2', 'Pend. Bahasa Inggris', '19870404 201402 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Andi Dian Rahmawan, S.Pd., M.A', 'S2', 'Pend. Bahasa Inggris', '19860421 201404 1 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rifki Irawan, S.Pd., M.Pd', 'S2', 'Pend. Bahasa Inggris', '19921023 201805 1 018', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Primasari Wahyuni, S.Pd., M.Pd.', 'S2', 'PBS Indonesia', '19870421 201310 2 004', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Muncar Tyas Palupi, S.S., M.Hum.', 'S2', 'PBS Indonesia', '19760711 201310 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rika Novita Kusumaningrum, S.S., M.A.', 'S2', 'PBS Indonesia', '19790818 201310 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Tri Ratna Herawati, S.Pd., M.Hum.', 'S2', 'PBS Indonesia', '19710115 201310 2 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Fitri Jamilah, S.Pd., M.Pd', 'S2', 'PBS Indonesia', '19840601 201404 2 005', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Nina Widyaningsih, S.Pd., M.Hum', 'S2', 'PBS Indonesia', '19821020 201404 2 004', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Yanuar Bagas Arwansyah, S.Pd., M.Pd', 'S2', 'PBS Indonesia', '19930113 201805 1 024', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Jalu Norva Illa Putra, S.S., M.A.', 'S2', 'PBS Indonesia', '19920906 201901 1 007', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rosalia Susila Purwanti, S.Sn., M.Pd.', 'S2', 'PGSD', '19560713 198101 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Budiharti, S.Si., M.Pd.', 'S2', 'PGSD', '19850811 200804 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Deri Anggraini, S.Pd., M.Pd.', 'S2', 'PGSD', '19860303 200804 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Dhiniaty Gularso, S.Si., M.Pd.', 'S2', 'PGSD', '19800215 200804 2 004', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Siti Maisaroh, SE., M.Pd.', 'S3', 'PGSD', '19690916 200204 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Wahyu Kurniawati, S.Si., M.Pd.', 'S2', 'PGSD', '19840511 200804 2 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Setyo Eko Atmojo, S.Pd., M.Pd.', 'S3', 'PGSD', '19861227 201201 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Selly Rahmawati, S.Pd., M.Pd.', 'S2', 'PGSD', '19870723 201302 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Ahmad Agung Yuwono, S.E., S.Pd., M.Pd.', 'S3', 'PGSD', '19840510 201302 1 006', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ari Wibowo, S.Pd., M.Pd', 'S2', 'PGSD', '19861105 201302 1 005', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rina Dyah Rahmawati, S.Si., M.Pd', 'S2', 'PGSD', '19790505 201404 2 011', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Taufik Muhtarom, S.Pd., M.Pd', 'S2', 'PGSD', '19880823 201404 1 012', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Danuri, S.Pd.Si., M.Pd', 'S2', 'PGSD', '19851231 201404 1 013', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Mahilda Dea Komalasari, S.Pd., M.Pd', 'S2', 'PGSD', '19900930 201508 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hermawan Wahyu Setiadi, S.Pd., M.Pd', 'S2', 'PGSD', '19860623 201508 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hengki Yudha Barnaba, S.Pd., M.Pd', 'S2', 'PGSD', '19881018 201508 1 003', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Bahtiyar Heru Susanto, S.Pd., M.Pd', 'S2', 'PGSD', '19900402 201604 1 006', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Beny Dwi Lukitoaji, S.Pd., M.Pd', 'S2', 'PGSD', '19891117 201604 1 007', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Urip Muhayat Wiji Wahyudi, S.Pd., M.Pd', 'S2', 'PGSD', '19900606 201805 1 021', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rian Nurizka, S.Pd., M.Pd', 'S2', 'PGSD', '19920130 201805 1 016', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Amanatie, M.Pd., M.Si', 'S3', 'PGSD', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Ganung Anggraeni', 'S3', 'PGSD', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Arip Febrianto, S.Pd., M.Pd.I', 'S2', 'PGSD', '19910205 201606 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hadna Suryantari, S.Pd, M.Pd.', 'S2', 'PGSD', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Henry Aditia Rigianti, S.Pd, M.Pd.', 'S2', 'PGSD', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Heru Purnomo, M.Pd', 'S2', 'PGSD', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Puguh Ardianto Iskandar, S.Pd., M.Pd', 'S2', 'PGSD', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Muhardila Fauziah, S.Pd.I., M.Pd', 'S2', 'PGSD', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Yogi Prihandoko, S.Pd., M.Pd', 'S2', 'PGSD', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Sukadari, SE., SH.,MM.', 'S3', 'Pendidikan IPS', '19570713 198303 1 003 ', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. Buchory MS, M.Pd.', 'S3', 'Pendidikan IPS', '19570425 198403 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Salamah, M.Pd.', 'S3', 'Pendidikan IPS', '19612812 198702 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Sunarti, M.Pd.', 'S3', 'Pendidikan IPS', '19540228 198012 2 001  ', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. Kodiran, MA', 'S3', 'Pendidikan IPS', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. DJoko Suryo', 'S3', 'Pendidikan IPS', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr.Victor Novianto, S.Pd., M.Hum', 'S3', 'Pendidikan IPS', '19761114 200501 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Esti Setiawati, M.Pd', 'S3', 'Pendidikan IPS', '19650909 199512 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Drs. Tarto, S.T., M.Pd', 'S3', 'Pendidikan IPS', '19560613 201704 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Gunawan Sridiyatmiko, M.Pd.', 'S3', 'Pendidikan IPS', '19670719 199610 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Elsa Putri Ermisah Syafril', 'S3', 'Pendidikan IPS', '19771127 201404 2 008', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Sigit Handoko S.H., MH.', 'S2', 'PPKN', '19651110 199202 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ari Retno Purwanti, SH., MH.', 'S2', 'PPKN', '19690307 199301 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Supri Hartanto, S.Pd., M.Pd.', 'S2', 'PPKN', '19730411 201004 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Rosalia Indriyati Saptatiningsih, M.Si', 'S2', 'PPKN', '19590716 198702 2 001  ', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Yitno Pringgowijoyo, SH., M.H', 'S2', 'PPKN', '19540321 198003 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Armansyah Prasakti, SH, Sp.N, M.H', 'S2', 'PPKN', '19650905 199212 1 006', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dr. Septian Aji Permana, S.Pd., M.Pd', 'S3', 'PPKN', '19870911201404 1 010 ', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Abdul Rahim, S.Pd., M.Pd', 'S2', 'PPKN', '19870909 201805 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('T. Heru Nurgiansah, S.Pd., M.Pd', 'S2', 'PPKN', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ahmad Riyadi, S.Si., M.Kom.', 'S2', 'Teknik Informatika', '19690214 199812 1 006', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Meilany Nonsi Tentua, S.Si., MT.', 'S2', 'Teknik Informatika', '19730512 200607 1 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('M. Fairuzabadi, S.Si., M.Kom.', 'S2', 'Teknik Informatika', '19740921 200204 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Marti Widya Sari, S.T., M.Eng', 'S2', 'Teknik Informatika', '19790327 201201 2 009', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Setia Wardani, S.Kom., M.Kom', 'S2', 'Teknik Informatika', '19840928 201504 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Wibawa, S.Si., M.Eng.', 'S2', 'Teknik Informatika', '19690607 201201 1 012', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Nurirwan Saputra, S.Kom., M.Eng', 'S2', 'Teknik Informatika', '19880520 201508 1 014', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Puji Handayani Putri, S.T., M.Kom', 'S2', 'Teknik Informatika', '19900222 201601 2 000', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Prahenusa Wahyu Ciptadi, S.T., M.T', 'S2', 'Teknik Informatika', '19841227 201604 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('R. Hafid Hardyanto, S.Pd., M.Pd', 'S2', 'Teknik Informatika', '19871205 201604 1 012', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Aditya Wahana, S.Pd.T., M.Kom', 'S2', 'Teknik Informatika', '19850424 201604 1 005', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Sunggito Oyama, S.Kom., M.T', 'S2', 'Teknik Informatika', '19840103 201508 1 000', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Tri Hastono, S.Kom.,M.T', 'S2', 'Teknik Informatika', '19830413 201805 1 020', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ari Kusuma Wardana, S.T., M.Cs', 'S2', 'Teknik Informatika', '19910423 201805 1 004', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rianto, S.Kom., M.T', 'S2', 'Teknik Informatika', '19831229 201805 1 017', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Firdiyan Syah, S.Kom., M.Kom', 'S2', 'Teknik Informatika', '19770731 201805 1 006', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Novianti Retno Utami, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19881118 201805 2 014', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Khikmah Novitasari, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19921103 201805 2 010', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Herdi Handoko, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19820314 201805 1 007', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Syahria Anggita Sakti, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19860922 201805 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Titik Mulat Widyastuti, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19641123 201805 2 019', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Windi Wulandari Iman Utama, S.Pd., M.Pd', 'S2', 'PG-PAUD', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Luqman Hidayat, S.Pd.,M.Pd', 'S2', 'Pendidikan Luar Biasa', '19920309 201805 1 011', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Faiz Noormiyanto, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', '19901021 201605 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dwi Setianingsih, M.Pd', 'S2', 'Pendidikan Luar Biasa', '19900804 201605 2 001', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Yulian Agus Suminar, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', '19840726 201608 2 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dwi Putri Fatmawati, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ramdhan Harjana, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Apt. Rahmat A.Hi Wahid, S.Farm., M.Farm', 'S2', 'Farmasi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Apt. Margala Juang Bertorio, S.Farm., M.Clin.Pharm', 'S2', 'Farmasi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Nurul Jannah., S.Farm., M.Pharm.Sci., Apt', 'S2', 'Farmasi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Anis Febri Nilansari, S.Farm., M.Pharm.Sci., Apt', 'S2', 'Farmasi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hanifah Karimatulhajj, S.Farm., M.Farm', 'S2', 'Farmasi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Kurniawanti, S.T., M.Sc', 'S2', 'Teknik Industri', '19850505 201604 2 003', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Yaning Tri Hapsari, S.T., M.Sc', 'S2', 'Teknik Industri', '19851209 201604 2 002', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Hasti Hasanati Marfuah, S.T., M.T', 'S2', 'Teknik Industri', '19870630 201604 2 004', 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Theofilus Bayu Dwinugroho, S.T., M.Sc', 'S2', 'Teknik Industri', '19820122 201610 1 001', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Guntur Samodro, S.T., M.T', 'S3', 'Teknik Industri', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Aldrin Febriansyah, ST., M.Sc.', 'S2', 'Teknik Arsitektur', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Eka Widyaningsih, ST., M.Sc.', 'S2', 'Teknik Arsitektur', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Radiaswari, ST., M.Sc.', 'S2', 'Teknik Arsitektur', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rachmat Wahyu Prabowo, ST., M.Eng.', 'S2', 'Teknik Arsitektur', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Adinda Rafika Dani, S.T., M.Sc', 'S2', 'Teknik Arsitektur', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Amalia Cemara Nur’aidha, S.Si., M.Si', 'S2', 'Biomedis', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dhananjaya Yama Hudha, S.T, M. Biotech ', 'S2', 'Biomedis', '19880105 201610 1 002', 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('dr. R. Bopi Yudha Sapa, M.Sc., MMR', 'S3', 'Biomedis', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Wahyu Sugianto, S.Si., M.Si', 'S2', 'Biomedis', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Mira Setiana, S.Si., M.Si', 'S2', 'Biomedis', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ekha Rifki Fauzi, SKM, M.P.H', 'S2', 'Elektromedis', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Danang Widyawarman, S.ST, M.Sc', 'S2', 'Elektromedis', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dena Anugrah, S.Pd, M.Pd.', 'S2', 'Elektromedis', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Pebri Prihatmoko, S.Pd., M.Eng', 'S2', 'Elektromedis', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Herenda Sela Wismaya, S.Si., M.Si', 'S2', 'Elektromedis', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Brevi Istu Pambudi, S.Gz., M.Gizi.', 'S2', 'Gizi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Laeli Nur Hasanah, S. Gz., M.Si.', 'S2', 'Gizi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Astri Praba Shinta, S.Gz., M.P.H', 'S2', 'Gizi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Rosmauli Jeremia, S.Gz., M.Gizi', 'S3', 'Gizi', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ryan Rohmansyah, S.Gz., M.Gz', 'S2', 'Gizi', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Didik Rohmantoro, S.Pd, M.Pd.', 'S2', 'PVTO', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Bayu Gilang Purnomo, S.Pd, M.Pd.', 'S2', 'PVTO', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Muhammad Priya Permana, S.Pd, M.Pd.', 'S2', 'PVTO', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Ir. Yulia Venti Yoanita,ST, M.Eng.', 'S2', 'PVTO', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Muhamad Amiruddin, S.Pd, M.Pd.', 'S2', 'PVTO', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Lana Santika Nadia, S.T.P., M.Sc.', 'S2', 'THP', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Atika Nur Syarifah, S.TP., M.Sc.', 'S2', 'THP', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Dewi Amrih, S.T.P., M.Sc.', 'S2', 'THP', NULL, 'P', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Adi Sutakwa, S.TP., M.Sc', 'S2', 'THP', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Suharman, S.TP., M.Sc', 'S2', 'THP', NULL, 'L', NULL, NULL, NULL, 2);
-INSERT INTO `olah_data_pegawai` VALUES ('Citra Murti Anggraini, S.Pd', 'S1', 'BAAK', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sru Hardoyo, A.Md.', 'D3', 'BAAK', '19700128 201410 1 001', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Nur Fatimah', 'SMA', 'BAAK', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rahmad Nurcahya, A.Md.Kom', 'D3', 'BAAK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('RA Hastin Kusumaningrum, A.Md.Sek', 'D3', 'BAAK', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rizky Amanda Rachman, A.Md', 'D3', 'BAAK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Muryani', 'S1', 'BAKu', '19651210 199208 2 002', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Setiawan Eko P., S.Kh.', 'S1', 'BAKu', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Mirwan Hanafi, S.E', 'S1', 'BAKu', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Anis Khoirin Nisa, A.Md.Ak', 'D3', 'BAKu', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Restu Dwi Nugraeni, S.Pd.', 'S1', 'Yayasan', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Suradi', 'SMP', 'Yayasan', '19680714 199308 2 003', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Agus Suparyanto', 'SMP', 'Yayasan', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Dra. Juliana Widarjanti', 'S1', 'BAUK', '19650603 198808 1 001', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Anom Wijono, ST.', 'S1', 'BAUK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Suramin, S.Pd.', 'S1', 'BAUK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Krisnayang Vertika, S.Pd', 'S1', 'BAUK', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Melan Tri Prasetya, S.Kom', 'S1', 'BAUK', '19690117 199308 2 004', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rony Hanif Warayang, S.Hut', 'S1', 'BAUK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Febri Aji Wisnulaksito, S.Kom', 'S1', 'BAUK', '19700223 199805 1 003', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Atmuji Handoko', 'SMP', 'BSP', '19831120 201410 1 002', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sugiharto, S.Pd.', 'S1', 'BSP', '197406 20201710 1 003', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Eri Kriswanto', 'SMA', 'BSP', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sudari', 'SMP', 'BSP', '19660227 199208 2 003', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Suparno', 'SMA', 'BSP', '19630914 199805 1 002', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ngatinem, S.Pd.', 'S1', 'BSP', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Paijan', 'SD', 'BSP', '19730702 200710 1 002', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Wahyu Setiawan', 'SMP', 'BSP', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Agust. Suharwanto, M.Pd.', 'S2', 'BSP', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Jono', 'SD', 'BSP', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ariadi Setya Wijaya, A.Md', 'D3', 'BSP', '19610525 200505 1 001', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rakhmat Wahyudi, S.Pd.T', 'S1', 'BSP', '19690603 201710 2 001', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Lita Yuniatri, A.Md.', 'D3', 'TU LPPM', '19690501 199308 1 005', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Suntoro, S.Pd.', 'S1', 'TU FKIP', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Yanning Adhiyanti, S.P', 'S1', 'TU FKIP', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Riezki Desiana Nur Pramono, A.Md.Sek', 'D3', 'TU FKIP', '19720510 201610 2 001', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Iswati', 'SMP', 'TU F. Saintek', '19740620 200804 1 005', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sumardi, S.Pd.', 'S1', 'TU Pascasarjana', '19640410 198808 1 001', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Waginah, S.Pd.', 'S1', 'TU Pend. Mtk', '19600609 200505 2 002', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Endah Rini Astuti, MPd.', 'S2', 'TU Pend. Sejarah', '19690117 199310 2 003', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Samsudin, S.Pd.', 'S1', 'TU PGSD', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Upik Kuswardhani', 'S1', 'TU PPKN', '19751108 201410 2 003', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Novita Setyaningsih, S.Pd', 'S1', 'TU PB Inggris', '19650712 198808 1 003', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ahmad Edy Nugroho, S.Pd', 'S1', 'TU Fakultas Ekonomi', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sri Nurhayati, S.Pd', 'S1', 'TU Manajemen', '19861123 201410 2 004', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rahman Hasto Nugroho, S.Pd', 'S1', 'TU Akuntansi', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Heni Nurrohmah, S.Pd', 'S1', 'TU Fakultas Ekonomi', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Yuli Ibnu Darsana, S.Pd., M.A', 'S2', 'UPT Perpustakaan', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Fitri Riani, A.Md', 'D3', 'UPT Perpustakaan', '19660727 199601 1 001', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Munir Nugroho, SIP', 'S1', 'UPT Perpustakaan', '19640101 199805 1 004', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Nurul Sinto A., SIP', 'S1', 'UPT Perpustakaan', '19641106 201710 1 002', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Pepen Suherman, S.Kom.', 'S1', 'UPT PPTIK', '19741007 201710 1 004', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Friya Fratama Bekti Susanto, S.Kom', 'S1', 'UPT PPTIK', '19691205 201410 1 007', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Edy Purwanto, S.Kom', 'S1', 'UPT PPTIK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Dian Fitri Utami, A.Md', 'D3', 'UPT PPTIK', '19750914 201410 1 005', 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Subur Mulyono', 'S1', 'Satpam ', '19690520 201806 1 001', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Wastono', 'SMP', 'Satpam ', '19751113 201710 1 005', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Abdullah', 'SMA', 'Satpam ', '19680717 201410 1 006', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Eko Pratamasiwi', 'SMA', 'Satpam ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Jumadi', 'SMA', 'Satpam ', '19620112 199308 1 006', 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sujiono, SS.', 'S1', 'Satpam ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sugeng Haryadi', 'SMK', 'Satpam ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Triyanto, S.Pd', 'S1', 'Satpam ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Djulianto', 'SMK', 'Satpam ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sarino', 'SMA', 'Satpam ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Adi Prasetyo, S.Kom.', 'S1', 'Laboran Fakultas Teknik', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Fajar Ampi Dyantoro, S.Kom', 'S1', 'Laboran UPPL', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Eko Asihanto', 'S1', 'Laboran Sejarah', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Cerry Reggiani Catri S.Si', 'S2', 'Laboran Agro', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Danang Hanjaru, S.Pd', 'S1', 'LKK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Drs. Sarjiman', 'S1', 'Pusat Karir', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Nofi Rini Dyah S, S.Pd', 'S1', 'PMB', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Supardi, ST.', 'S1', 'RUSUNAWA', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Hasan Muji Santoso', 'SD', 'Keamanan Unit II', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sukirman ', 'SMP', 'Parkir', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Eka Nugraha Sari, S.Kom', 'S1', 'TIM PAK', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Muhari Agus Nugraha, S.Kom', 'S1', 'TIM PAK', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Margi Untungningsih', 'SMA', 'TU BK', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Karyadi', 'SMK', 'Keamanan Unit II', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ida Setiani', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Tias Anggraheni', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rismawati Artafasara, S.Pd', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Fitria Ratnasari', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Dwi Wulandari, S.Ak', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ita Sari, S.Pd', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Nella Merita Kumalasari, S.Pd', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Naura Syauqina Firdausa', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Tyas Ayu Wahyu Ningsih', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Yunia Afiyati', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Pungki Revianti', 'ISLAM', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Khamidah', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Dhita Murti Santari', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Puspa Tikka Lovianti', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Athalia Fawwaz Agianto', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('M. Riyan Prastya', 'Islam', 'Magang', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Yulina Dwi', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Indri Widyastuti', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Luthfi Nabila', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Eka Cahyati Putri', 'Islam', 'Magang', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Septi Ari Wahyuni', 'ISLAM', 'Satpam Outsourching', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Mohammat Syamsul Hidayat', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Mitun Nur Laksono', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Fany Jaka Susila', NULL, 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Eko Supriyono', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ade', 'ISLAM', 'Satpam Outsourching', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Heru Purnomo', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ariyo Swandoko', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Kurnia Ayus Munandar', 'ISLAM', 'Satpam Outsourching ', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Tri Wahyuni', 'ISLAM', 'Satpam Outsourching', NULL, 'P', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Imam Chusairi', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Bima', 'ISLAM', 'Satpam Outsourching', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sukirdi', 'ISLAM', 'Satpam Outsourching Rusunawa', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Anggoro', 'ISLAM', 'Satpam Outsourching Rusunawa', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Musbadi', NULL, 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Suraji', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Eko Dwi Purnomo', NULL, 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sumirang Jati Caroko', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Rahmat Dion', 'KRISTEN', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Dalud Purnomo', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Sukamto', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Tumiran', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Darobi', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('David', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Totok Supriyadi', 'ISLAM', 'Cleaning Service', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Asri Sudarisman', 'ISLAM', 'Parker', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Wisnu Sukmo Pamungkas', 'ISLAM', 'Parker', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ferry Yulianto', 'ISLAM', 'Parker', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Suparman', 'ISLAM', 'Parker', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Supardiyono', 'ISLAM', 'Kebersihan Mobil/Tenaga Lepas', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Samijo', 'ISLAM', 'THL', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Danur', 'NON', 'THL', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Fatturrohman', 'ISLAM', 'THL', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Danang Prijantoro', 'ISLAM', 'THL', NULL, 'L', NULL, NULL, NULL, 1);
-INSERT INTO `olah_data_pegawai` VALUES ('Ngadiman', 'ISLAM', 'THL', NULL, 'L', NULL, NULL, NULL, 1);
-COMMIT;
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Okti  Purwaningsih, MP.', 'S3', 'Agroteknologi', '19711009 199812 2 005', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ir. Herman Budi Susetyo, MP.', 'S2', 'Agroteknologi', '19540526 198503 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. M. Kusberyunadi, M.MA', 'S2', 'Agroteknologi', '19650321 199604 1 003', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ir. Ahmad Bahrum, M.P.', 'S2', 'Agroteknologi', '19630917 199503 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ir. Ardiyanto, M.Sc.', 'S2', 'Agroteknologi', '19640314 199503 1 005', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Ir. Paiman, M.P.', 'S3', 'Agroteknologi', '19650916 199503 1 003', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('C. Tri Kusumastuti, S.P., M.Sc.', 'S2', 'Agroteknologi', '19751116 200501 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Puguh Bintang Pamungkas, M.P', 'S2', 'Agroteknologi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. Ir. Prapto Yudhono, M.Sc', 'S3', 'Agroteknologi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Tri Siwi Nugrahani, S.E., M.Si.', 'S2', 'Akuntansi', '19671126 199303 2 002  ', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Dekeng Setyo Budiarto, Ak.CA.', 'S3', 'Akuntansi', '19740814 200607 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Sri Widodo, S.E.,M.Sc', 'S2', 'Akuntansi', '19780201 200607 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Sukhemi, M.Sc.', 'S2', 'Akuntansi', '19760307 200204 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Vidya Vitta Adhivinna., SE., M.Si.Ak', 'S2', 'Akuntansi', '19780429 200404 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hari Purnama, S.E., M.M.', 'S2', 'Akuntansi', '19620221 199503 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ratna Purnama Sari, S.E., M.Si', 'S2', 'Akuntansi', '19880807 201404 2 007', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rani Eka Diansari, S.E., M.Acc', 'S2', 'Akuntansi', '19860114 201508 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Yennisa, S.E., M.Sc.Ak.CA', 'S2', 'Akuntansi', '19850108 201508 2 006', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('M. Sulkhanul Umam, S.E., M.Si', 'S2', 'Akuntansi', '19900324 201604 1 013', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ningrum Pramudiati, S.E., M.Si', 'S2', 'Akuntansi', '19930916 201805 2 013', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Anandita Zulia Putri, S.E., M.Acc', 'S2', 'Akuntansi', '19920523 201805 2 025', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Lulu Amalia Nusron, S.E., M.Ak', 'S2', 'Akuntansi', '19931104 201806 2 026', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Zidni Husnia Fachrunnisa, S.E., M.Ak.', 'S2', 'Akuntansi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Baniady Gennody Pronosokodewo, S.E., M.Si.', 'S2', 'Akuntansi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rahandhika Ivan Adyaksana, S.E., M.Si', 'S2', 'Akuntansi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Ika Ernawati, M.Pd.', 'S2', 'Bimbingan Konseling', '19601212 198703 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Djuwalman, M.Pd.', 'S2', 'Bimbingan Konseling', '19520705 198211 1 002 ', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Makin, M.Pd', 'S2', 'Bimbingan Konseling', '19591107 198703 1 002   ', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Enik Nur Kholidah, S.E., M.A.', 'S2', 'Bimbingan Konseling', '19711028 201004 2 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Arum Setiowati, S.Pd., M.Pd.', 'S2', 'Bimbingan Konseling', '19841129 201302 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Hj. Nurwahyumiani, M.A', 'S2', 'Bimbingan Konseling', '19570310 198503 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Suharni, M.Pd.', 'S2', 'Bimbingan Konseling', '19541109 198103 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drajat Edy Kurniawan, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19901124 201604 1 018', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Shinta Purwaningrum, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19881217 201608 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Taufik Agung Pranowo, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19860902 201604 1 014', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Eko Perianto, S.Pd., M.Si', 'S2', 'Bimbingan Konseling', '19870323 201404 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Iis Latifah Nuryanto, S.Pd., M.Pd', 'S2', 'Bimbingan Konseling', '19881209 201404 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Herwinda Putri Daniswari, S.Pd.,M.Pd', 'S2', 'Bimbingan Konseling', '19940320 201805 2 008', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Fitri Susilowati, S.E., M.Sc', 'S2', 'Manajemen', '19820721 201404 2 006', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Murti Sumarni, MM.', 'S2', 'Manajemen', '19530921 198103 2 001 ', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Yati Suhartini, MA.', 'S2', 'Manajemen', '19590106 198503 2 007', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Arif Sudaryana, M.Si.', 'S2', 'Manajemen', '19610213 198703 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Endang Tri Wahyuni, MM.', 'S2', 'Manajemen', '19580607 199503 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Lilik Siswanto, S.E, M.M', 'S2', 'Manajemen', '19670729 200204 1 003', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Arista Natia Afriany, S.E, M.BA', 'S2', 'Manajemen', '19831029 201508 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ahsan Sumantika, S.E, M.Sc', 'S2', 'Manajemen', '19870724 201508 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Adhi Prakosa,S.E. M.Sc', 'S2', 'Manajemen', '19860827 201508 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Faizal Ardiyanto, S.E., M.M', 'S2', 'Manajemen', '19901017 201604 1 009', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Saptaningsih Sumarmi, S.E., M.M', 'S2', 'Manajemen', '19731022 199710 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Anindita Imam Basri, S.E.I.,M.M', 'S2', 'Manajemen', '19891110 201805 1 003', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Natalia Ratna Ningrum, S.E.,M.M', 'S2', 'Manajemen', '19871217 201805 2 012', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Diah Aryanti Saptowarsi, S.E.,M.Sc', 'S2', 'Manajemen', '19740606 201805 2 005', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Inayat Hanum Indriati,S.E., M.M', 'S2', 'Manajemen', '19690910 201805 2 009', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Pradita Nindya Aryandha, S.E., M.B.A', 'S2', 'Manajemen', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hapsari Dyah Herdiany, S.E., M.M', 'S2', 'Manajemen', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Latifah Putranti, S.E., M.Sc', 'S2', 'Manajemen', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Fikri Farhan, S.E., M.Sc', 'S2', 'Manajemen', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Guruh Ghifar Zalzalah, S.E., M.Sc', 'S2', 'Manajemen', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Kristina Warniasih, M.Pd.', 'S2', 'Pend. Matematika', '19620816 198702 2 001  ', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. MM. Endang Susetyawati, M.Pd.', 'S2', 'Pend. Matematika', '19620516 198803 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Abdul Aziz Saefudin, S.Pd.I.,M.Pd.', 'S2', 'Pend. Matematika', '19820611 201104 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dhian Arista Istikomah, S.Si., M.Sc.', 'S2', 'Pend. Matematika', '19870426 201104 2 004', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Gunawan, S.Si., M.Pd', 'S2', 'Pend. Matematika', '19840704 201004 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Laela Sagita, S.Pd., M.Sc.', 'S2', 'Pend. Matematika', '19841222 201104 2 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Nendra Mursetya S D, S.Pd., M.Sc', 'S2', 'Pend. Matematika', '19831030 201004 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Niken Wahyu Utami, S.Pd.Si., M.Pd.', 'S2', 'Pend. Matematika', '19840422 200904 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Koryna Aviori, S.Si., M.Pd.', 'S2', 'Pend. Matematika', '19861206 201201 2 033', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Siska Candra Ningsih, S.Si., M.Sc.', 'S2', 'Pend. Matematika', '19780923 201401 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Titis Sunanti, S.Pd., M.Si.', 'S2', 'Pend. Matematika', '19800412 201408 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Palupi Sri Wijayanti, S.Pd., M.Pd', 'S2', 'Pend. Matematika', '19890615 201508 2 010', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Padrul Jana, S.Pd., M.Sc', 'S2', 'Pend. Matematika', '19890417 201508 1 012', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Kintoko, S.Pd., M.Pd', 'S2', 'Pend. Matematika', '19861225 201508 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Bintang Wicaksono, S.Pd., M.Pd', 'S2', 'Pend. Matematika', '19890123 201404 1 014', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ch. Eva Nuryani, S.Si., M.Sc', 'S2', 'Pend. Matematika', '19761224 200501 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Tri Wahana, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', '19681217 199412 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Darsono, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', '19671105 199412 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Siswanta, M.Pd', 'S2', 'Pend. Sejarah', '19650216 199109 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Johanes Sabari, M.Si.', 'S2', 'Pend. Sejarah', '19510701 198907 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Muhammad Iqbal Birsyada, S.Pd., M.Pd', 'S3', 'Pend. Sejarah', '19880210 201404 1 009', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Bayu Ananto Wibowo, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Fahruddin, S.Pd., M.Pd.', 'S2', 'Pend. Sejarah', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Sujatmiko, S.Pd.Ing., M.Hum.', 'S2', 'Pend. Bahasa Inggris', '19830609 201310 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Nafisah Endahati, S.Pd., M.Hum', 'S2', 'Pend. Bahasa Inggris', '19780316 201310 2 004', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Sri Wiyanah, S.Pd., M.Hum.', 'S2', 'Pend. Bahasa Inggris', '19790613 201401 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rudha Widagsa, S.S., M.A.', 'S2', 'Pend. Bahasa Inggris', '19850102 201310 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Juang Kurniawan S, S.Pd., M.Pd.B.I', 'S2', 'Pend. Bahasa Inggris', '19870404 201402 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Andi Dian Rahmawan, S.Pd., M.A', 'S2', 'Pend. Bahasa Inggris', '19860421 201404 1 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rifki Irawan, S.Pd., M.Pd', 'S2', 'Pend. Bahasa Inggris', '19921023 201805 1 018', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Primasari Wahyuni, S.Pd., M.Pd.', 'S2', 'PBS Indonesia', '19870421 201310 2 004', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Muncar Tyas Palupi, S.S., M.Hum.', 'S2', 'PBS Indonesia', '19760711 201310 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rika Novita Kusumaningrum, S.S., M.A.', 'S2', 'PBS Indonesia', '19790818 201310 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Tri Ratna Herawati, S.Pd., M.Hum.', 'S2', 'PBS Indonesia', '19710115 201310 2 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Fitri Jamilah, S.Pd., M.Pd', 'S2', 'PBS Indonesia', '19840601 201404 2 005', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Nina Widyaningsih, S.Pd., M.Hum', 'S2', 'PBS Indonesia', '19821020 201404 2 004', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Yanuar Bagas Arwansyah, S.Pd., M.Pd', 'S2', 'PBS Indonesia', '19930113 201805 1 024', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Jalu Norva Illa Putra, S.S., M.A.', 'S2', 'PBS Indonesia', '19920906 201901 1 007', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rosalia Susila Purwanti, S.Sn., M.Pd.', 'S2', 'PGSD', '19560713 198101 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Budiharti, S.Si., M.Pd.', 'S2', 'PGSD', '19850811 200804 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Deri Anggraini, S.Pd., M.Pd.', 'S2', 'PGSD', '19860303 200804 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Dhiniaty Gularso, S.Si., M.Pd.', 'S2', 'PGSD', '19800215 200804 2 004', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Siti Maisaroh, SE., M.Pd.', 'S3', 'PGSD', '19690916 200204 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Wahyu Kurniawati, S.Si., M.Pd.', 'S2', 'PGSD', '19840511 200804 2 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Setyo Eko Atmojo, S.Pd., M.Pd.', 'S3', 'PGSD', '19861227 201201 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Selly Rahmawati, S.Pd., M.Pd.', 'S2', 'PGSD', '19870723 201302 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Ahmad Agung Yuwono, S.E., S.Pd., M.Pd.', 'S3', 'PGSD', '19840510 201302 1 006', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ari Wibowo, S.Pd., M.Pd', 'S2', 'PGSD', '19861105 201302 1 005', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rina Dyah Rahmawati, S.Si., M.Pd', 'S2', 'PGSD', '19790505 201404 2 011', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Taufik Muhtarom, S.Pd., M.Pd', 'S2', 'PGSD', '19880823 201404 1 012', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Danuri, S.Pd.Si., M.Pd', 'S2', 'PGSD', '19851231 201404 1 013', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Mahilda Dea Komalasari, S.Pd., M.Pd', 'S2', 'PGSD', '19900930 201508 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hermawan Wahyu Setiadi, S.Pd., M.Pd', 'S2', 'PGSD', '19860623 201508 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hengki Yudha Barnaba, S.Pd., M.Pd', 'S2', 'PGSD', '19881018 201508 1 003', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Bahtiyar Heru Susanto, S.Pd., M.Pd', 'S2', 'PGSD', '19900402 201604 1 006', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Beny Dwi Lukitoaji, S.Pd., M.Pd', 'S2', 'PGSD', '19891117 201604 1 007', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Urip Muhayat Wiji Wahyudi, S.Pd., M.Pd', 'S2', 'PGSD', '19900606 201805 1 021', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rian Nurizka, S.Pd., M.Pd', 'S2', 'PGSD', '19920130 201805 1 016', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Amanatie, M.Pd., M.Si', 'S3', 'PGSD', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Ganung Anggraeni', 'S3', 'PGSD', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Arip Febrianto, S.Pd., M.Pd.I', 'S2', 'PGSD', '19910205 201606 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hadna Suryantari, S.Pd, M.Pd.', 'S2', 'PGSD', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Henry Aditia Rigianti, S.Pd, M.Pd.', 'S2', 'PGSD', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Heru Purnomo, M.Pd', 'S2', 'PGSD', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Puguh Ardianto Iskandar, S.Pd., M.Pd', 'S2', 'PGSD', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Muhardila Fauziah, S.Pd.I., M.Pd', 'S2', 'PGSD', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Yogi Prihandoko, S.Pd., M.Pd', 'S2', 'PGSD', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Sukadari, SE., SH.,MM.', 'S3', 'Pendidikan IPS', '19570713 198303 1 003 ', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. Buchory MS, M.Pd.', 'S3', 'Pendidikan IPS', '19570425 198403 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Salamah, M.Pd.', 'S3', 'Pendidikan IPS', '19612812 198702 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Sunarti, M.Pd.', 'S3', 'Pendidikan IPS', '19540228 198012 2 001  ', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. Kodiran, MA', 'S3', 'Pendidikan IPS', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Prof. Dr. DJoko Suryo', 'S3', 'Pendidikan IPS', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr.Victor Novianto, S.Pd., M.Hum', 'S3', 'Pendidikan IPS', '19761114 200501 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Esti Setiawati, M.Pd', 'S3', 'Pendidikan IPS', '19650909 199512 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Drs. Tarto, S.T., M.Pd', 'S3', 'Pendidikan IPS', '19560613 201704 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Gunawan Sridiyatmiko, M.Pd.', 'S3', 'Pendidikan IPS', '19670719 199610 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Elsa Putri Ermisah Syafril', 'S3', 'Pendidikan IPS', '19771127 201404 2 008', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Sigit Handoko S.H., MH.', 'S2', 'PPKN', '19651110 199202 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ari Retno Purwanti, SH., MH.', 'S2', 'PPKN', '19690307 199301 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Supri Hartanto, S.Pd., M.Pd.', 'S2', 'PPKN', '19730411 201004 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Rosalia Indriyati Saptatiningsih, M.Si', 'S2', 'PPKN', '19590716 198702 2 001  ', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Yitno Pringgowijoyo, SH., M.H', 'S2', 'PPKN', '19540321 198003 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Armansyah Prasakti, SH, Sp.N, M.H', 'S2', 'PPKN', '19650905 199212 1 006', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dr. Septian Aji Permana, S.Pd., M.Pd', 'S3', 'PPKN', '19870911201404 1 010 ', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Abdul Rahim, S.Pd., M.Pd', 'S2', 'PPKN', '19870909 201805 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('T. Heru Nurgiansah, S.Pd., M.Pd', 'S2', 'PPKN', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ahmad Riyadi, S.Si., M.Kom.', 'S2', 'Teknik Informatika', '19690214 199812 1 006', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Meilany Nonsi Tentua, S.Si., MT.', 'S2', 'Teknik Informatika', '19730512 200607 1 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('M. Fairuzabadi, S.Si., M.Kom.', 'S2', 'Teknik Informatika', '19740921 200204 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Marti Widya Sari, S.T., M.Eng', 'S2', 'Teknik Informatika', '19790327 201201 2 009', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Setia Wardani, S.Kom., M.Kom', 'S2', 'Teknik Informatika', '19840928 201504 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Wibawa, S.Si., M.Eng.', 'S2', 'Teknik Informatika', '19690607 201201 1 012', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Nurirwan Saputra, S.Kom., M.Eng', 'S2', 'Teknik Informatika', '19880520 201508 1 014', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Puji Handayani Putri, S.T., M.Kom', 'S2', 'Teknik Informatika', '19900222 201601 2 000', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Prahenusa Wahyu Ciptadi, S.T., M.T', 'S2', 'Teknik Informatika', '19841227 201604 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('R. Hafid Hardyanto, S.Pd., M.Pd', 'S2', 'Teknik Informatika', '19871205 201604 1 012', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Aditya Wahana, S.Pd.T., M.Kom', 'S2', 'Teknik Informatika', '19850424 201604 1 005', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Sunggito Oyama, S.Kom., M.T', 'S2', 'Teknik Informatika', '19840103 201508 1 000', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Tri Hastono, S.Kom.,M.T', 'S2', 'Teknik Informatika', '19830413 201805 1 020', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ari Kusuma Wardana, S.T., M.Cs', 'S2', 'Teknik Informatika', '19910423 201805 1 004', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rianto, S.Kom., M.T', 'S2', 'Teknik Informatika', '19831229 201805 1 017', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Firdiyan Syah, S.Kom., M.Kom', 'S2', 'Teknik Informatika', '19770731 201805 1 006', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Novianti Retno Utami, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19881118 201805 2 014', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Khikmah Novitasari, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19921103 201805 2 010', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Herdi Handoko, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19820314 201805 1 007', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Syahria Anggita Sakti, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19860922 201805 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Titik Mulat Widyastuti, S.Pd., M.Pd', 'S2', 'PG-PAUD', '19641123 201805 2 019', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Windi Wulandari Iman Utama, S.Pd., M.Pd', 'S2', 'PG-PAUD', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Luqman Hidayat, S.Pd.,M.Pd', 'S2', 'Pendidikan Luar Biasa', '19920309 201805 1 011', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Faiz Noormiyanto, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', '19901021 201605 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dwi Setianingsih, M.Pd', 'S2', 'Pendidikan Luar Biasa', '19900804 201605 2 001', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Yulian Agus Suminar, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', '19840726 201608 2 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dwi Putri Fatmawati, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ramdhan Harjana, S.Pd., M.Pd', 'S2', 'Pendidikan Luar Biasa', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Apt. Rahmat A.Hi Wahid, S.Farm., M.Farm', 'S2', 'Farmasi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Apt. Margala Juang Bertorio, S.Farm., M.Clin.Pharm', 'S2', 'Farmasi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Nurul Jannah., S.Farm., M.Pharm.Sci., Apt', 'S2', 'Farmasi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Anis Febri Nilansari, S.Farm., M.Pharm.Sci., Apt', 'S2', 'Farmasi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hanifah Karimatulhajj, S.Farm., M.Farm', 'S2', 'Farmasi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Kurniawanti, S.T., M.Sc', 'S2', 'Teknik Industri', '19850505 201604 2 003', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Yaning Tri Hapsari, S.T., M.Sc', 'S2', 'Teknik Industri', '19851209 201604 2 002', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Hasti Hasanati Marfuah, S.T., M.T', 'S2', 'Teknik Industri', '19870630 201604 2 004', 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Theofilus Bayu Dwinugroho, S.T., M.Sc', 'S2', 'Teknik Industri', '19820122 201610 1 001', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Guntur Samodro, S.T., M.T', 'S3', 'Teknik Industri', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Aldrin Febriansyah, ST., M.Sc.', 'S2', 'Teknik Arsitektur', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Eka Widyaningsih, ST., M.Sc.', 'S2', 'Teknik Arsitektur', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Radiaswari, ST., M.Sc.', 'S2', 'Teknik Arsitektur', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rachmat Wahyu Prabowo, ST., M.Eng.', 'S2', 'Teknik Arsitektur', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Adinda Rafika Dani, S.T., M.Sc', 'S2', 'Teknik Arsitektur', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Amalia Cemara Nur’aidha, S.Si., M.Si', 'S2', 'Biomedis', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dhananjaya Yama Hudha, S.T, M. Biotech ', 'S2', 'Biomedis', '19880105 201610 1 002', 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('dr. R. Bopi Yudha Sapa, M.Sc., MMR', 'S3', 'Biomedis', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Wahyu Sugianto, S.Si., M.Si', 'S2', 'Biomedis', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Mira Setiana, S.Si., M.Si', 'S2', 'Biomedis', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ekha Rifki Fauzi, SKM, M.P.H', 'S2', 'Elektromedis', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Danang Widyawarman, S.ST, M.Sc', 'S2', 'Elektromedis', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dena Anugrah, S.Pd, M.Pd.', 'S2', 'Elektromedis', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Pebri Prihatmoko, S.Pd., M.Eng', 'S2', 'Elektromedis', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Herenda Sela Wismaya, S.Si., M.Si', 'S2', 'Elektromedis', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Brevi Istu Pambudi, S.Gz., M.Gizi.', 'S2', 'Gizi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Laeli Nur Hasanah, S. Gz., M.Si.', 'S2', 'Gizi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Astri Praba Shinta, S.Gz., M.P.H', 'S2', 'Gizi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Rosmauli Jeremia, S.Gz., M.Gizi', 'S3', 'Gizi', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ryan Rohmansyah, S.Gz., M.Gz', 'S2', 'Gizi', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Didik Rohmantoro, S.Pd, M.Pd.', 'S2', 'PVTO', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Bayu Gilang Purnomo, S.Pd, M.Pd.', 'S2', 'PVTO', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Muhammad Priya Permana, S.Pd, M.Pd.', 'S2', 'PVTO', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Ir. Yulia Venti Yoanita,ST, M.Eng.', 'S2', 'PVTO', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Muhamad Amiruddin, S.Pd, M.Pd.', 'S2', 'PVTO', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Lana Santika Nadia, S.T.P., M.Sc.', 'S2', 'THP', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Atika Nur Syarifah, S.TP., M.Sc.', 'S2', 'THP', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Dewi Amrih, S.T.P., M.Sc.', 'S2', 'THP', null, 'P', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Adi Sutakwa, S.TP., M.Sc', 'S2', 'THP', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Suharman, S.TP., M.Sc', 'S2', 'THP', null, 'L', null, null, null, '2');
+INSERT INTO `olah_data_pegawai` VALUES ('Citra Murti Anggraini, S.Pd', 'S1', 'BAAK', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sru Hardoyo, A.Md.', 'D3', 'BAAK', '19700128 201410 1 001', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Nur Fatimah', 'SMA', 'BAAK', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rahmad Nurcahya, A.Md.Kom', 'D3', 'BAAK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('RA Hastin Kusumaningrum, A.Md.Sek', 'D3', 'BAAK', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rizky Amanda Rachman, A.Md', 'D3', 'BAAK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Muryani', 'S1', 'BAKu', '19651210 199208 2 002', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Setiawan Eko P., S.Kh.', 'S1', 'BAKu', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Mirwan Hanafi, S.E', 'S1', 'BAKu', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Anis Khoirin Nisa, A.Md.Ak', 'D3', 'BAKu', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Restu Dwi Nugraeni, S.Pd.', 'S1', 'Yayasan', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Suradi', 'SMP', 'Yayasan', '19680714 199308 2 003', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Agus Suparyanto', 'SMP', 'Yayasan', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Dra. Juliana Widarjanti', 'S1', 'BAUK', '19650603 198808 1 001', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Anom Wijono, ST.', 'S1', 'BAUK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Suramin, S.Pd.', 'S1', 'BAUK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Krisnayang Vertika, S.Pd', 'S1', 'BAUK', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Melan Tri Prasetya, S.Kom', 'S1', 'BAUK', '19690117 199308 2 004', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rony Hanif Warayang, S.Hut', 'S1', 'BAUK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Febri Aji Wisnulaksito, S.Kom', 'S1', 'BAUK', '19700223 199805 1 003', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Atmuji Handoko', 'SMP', 'BSP', '19831120 201410 1 002', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sugiharto, S.Pd.', 'S1', 'BSP', '197406 20201710 1 003', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Eri Kriswanto', 'SMA', 'BSP', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sudari', 'SMP', 'BSP', '19660227 199208 2 003', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Suparno', 'SMA', 'BSP', '19630914 199805 1 002', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ngatinem, S.Pd.', 'S1', 'BSP', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Paijan', 'SD', 'BSP', '19730702 200710 1 002', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Wahyu Setiawan', 'SMP', 'BSP', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Agust. Suharwanto, M.Pd.', 'S2', 'BSP', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Jono', 'SD', 'BSP', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ariadi Setya Wijaya, A.Md', 'D3', 'BSP', '19610525 200505 1 001', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rakhmat Wahyudi, S.Pd.T', 'S1', 'BSP', '19690603 201710 2 001', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Lita Yuniatri, A.Md.', 'D3', 'TU LPPM', '19690501 199308 1 005', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Suntoro, S.Pd.', 'S1', 'TU FKIP', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Yanning Adhiyanti, S.P', 'S1', 'TU FKIP', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Riezki Desiana Nur Pramono, A.Md.Sek', 'D3', 'TU FKIP', '19720510 201610 2 001', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Iswati', 'SMP', 'TU F. Saintek', '19740620 200804 1 005', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sumardi, S.Pd.', 'S1', 'TU Pascasarjana', '19640410 198808 1 001', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Waginah, S.Pd.', 'S1', 'TU Pend. Mtk', '19600609 200505 2 002', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Endah Rini Astuti, MPd.', 'S2', 'TU Pend. Sejarah', '19690117 199310 2 003', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Samsudin, S.Pd.', 'S1', 'TU PGSD', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Upik Kuswardhani', 'S1', 'TU PPKN', '19751108 201410 2 003', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Novita Setyaningsih, S.Pd', 'S1', 'TU PB Inggris', '19650712 198808 1 003', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ahmad Edy Nugroho, S.Pd', 'S1', 'TU Fakultas Ekonomi', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sri Nurhayati, S.Pd', 'S1', 'TU Manajemen', '19861123 201410 2 004', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rahman Hasto Nugroho, S.Pd', 'S1', 'TU Akuntansi', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Heni Nurrohmah, S.Pd', 'S1', 'TU Fakultas Ekonomi', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Yuli Ibnu Darsana, S.Pd., M.A', 'S2', 'UPT Perpustakaan', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Fitri Riani, A.Md', 'D3', 'UPT Perpustakaan', '19660727 199601 1 001', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Munir Nugroho, SIP', 'S1', 'UPT Perpustakaan', '19640101 199805 1 004', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Nurul Sinto A., SIP', 'S1', 'UPT Perpustakaan', '19641106 201710 1 002', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Pepen Suherman, S.Kom.', 'S1', 'UPT PPTIK', '19741007 201710 1 004', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Friya Fratama Bekti Susanto, S.Kom', 'S1', 'UPT PPTIK', '19691205 201410 1 007', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Edy Purwanto, S.Kom', 'S1', 'UPT PPTIK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Dian Fitri Utami, A.Md', 'D3', 'UPT PPTIK', '19750914 201410 1 005', 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Subur Mulyono', 'S1', 'Satpam ', '19690520 201806 1 001', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Wastono', 'SMP', 'Satpam ', '19751113 201710 1 005', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Abdullah', 'SMA', 'Satpam ', '19680717 201410 1 006', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Eko Pratamasiwi', 'SMA', 'Satpam ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Jumadi', 'SMA', 'Satpam ', '19620112 199308 1 006', 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sujiono, SS.', 'S1', 'Satpam ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sugeng Haryadi', 'SMK', 'Satpam ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Triyanto, S.Pd', 'S1', 'Satpam ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Djulianto', 'SMK', 'Satpam ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sarino', 'SMA', 'Satpam ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Adi Prasetyo, S.Kom.', 'S1', 'Laboran Fakultas Teknik', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Fajar Ampi Dyantoro, S.Kom', 'S1', 'Laboran UPPL', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Eko Asihanto', 'S1', 'Laboran Sejarah', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Cerry Reggiani Catri S.Si', 'S2', 'Laboran Agro', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Danang Hanjaru, S.Pd', 'S1', 'LKK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Drs. Sarjiman', 'S1', 'Pusat Karir', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Nofi Rini Dyah S, S.Pd', 'S1', 'PMB', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Supardi, ST.', 'S1', 'RUSUNAWA', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Hasan Muji Santoso', 'SD', 'Keamanan Unit II', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sukirman ', 'SMP', 'Parkir', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Eka Nugraha Sari, S.Kom', 'S1', 'TIM PAK', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Muhari Agus Nugraha, S.Kom', 'S1', 'TIM PAK', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Margi Untungningsih', 'SMA', 'TU BK', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Karyadi', 'SMK', 'Keamanan Unit II', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ida Setiani', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Tias Anggraheni', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rismawati Artafasara, S.Pd', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Fitria Ratnasari', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Dwi Wulandari, S.Ak', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ita Sari, S.Pd', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Nella Merita Kumalasari, S.Pd', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Naura Syauqina Firdausa', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Tyas Ayu Wahyu Ningsih', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Yunia Afiyati', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Pungki Revianti', 'ISLAM', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Khamidah', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Dhita Murti Santari', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Puspa Tikka Lovianti', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Athalia Fawwaz Agianto', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('M. Riyan Prastya', 'Islam', 'Magang', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Yulina Dwi', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Indri Widyastuti', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Luthfi Nabila', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Eka Cahyati Putri', 'Islam', 'Magang', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Septi Ari Wahyuni', 'ISLAM', 'Satpam Outsourching', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Mohammat Syamsul Hidayat', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Mitun Nur Laksono', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Fany Jaka Susila', null, 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Eko Supriyono', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ade', 'ISLAM', 'Satpam Outsourching', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Heru Purnomo', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ariyo Swandoko', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Kurnia Ayus Munandar', 'ISLAM', 'Satpam Outsourching ', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Tri Wahyuni', 'ISLAM', 'Satpam Outsourching', null, 'P', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Imam Chusairi', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Bima', 'ISLAM', 'Satpam Outsourching', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sukirdi', 'ISLAM', 'Satpam Outsourching Rusunawa', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Anggoro', 'ISLAM', 'Satpam Outsourching Rusunawa', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Musbadi', null, 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Suraji', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Eko Dwi Purnomo', null, 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sumirang Jati Caroko', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Rahmat Dion', 'KRISTEN', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Dalud Purnomo', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Sukamto', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Tumiran', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Darobi', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('David', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Totok Supriyadi', 'ISLAM', 'Cleaning Service', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Asri Sudarisman', 'ISLAM', 'Parker', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Wisnu Sukmo Pamungkas', 'ISLAM', 'Parker', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ferry Yulianto', 'ISLAM', 'Parker', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Suparman', 'ISLAM', 'Parker', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Supardiyono', 'ISLAM', 'Kebersihan Mobil/Tenaga Lepas', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Samijo', 'ISLAM', 'THL', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Danur', 'NON', 'THL', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Fatturrohman', 'ISLAM', 'THL', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Danang Prijantoro', 'ISLAM', 'THL', null, 'L', null, null, null, '1');
+INSERT INTO `olah_data_pegawai` VALUES ('Ngadiman', 'ISLAM', 'THL', null, 'L', null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for pegawai
@@ -28463,7 +28445,7 @@ CREATE TABLE `pegawai` (
   `nis_pegawai` varchar(255) DEFAULT NULL,
   `nama_pegawai` varchar(255) DEFAULT NULL,
   `jabatan_pegawai` varchar(255) DEFAULT NULL,
-  `status_aktif` int(11) DEFAULT 1,
+  `status_aktif` int(11) DEFAULT '1',
   PRIMARY KEY (`id_pegawai`),
   KEY `idx_id_pegawai` (`id_pegawai`) USING BTREE,
   KEY `idx_id_unit` (`id_unit`) USING BTREE
@@ -28472,371 +28454,369 @@ CREATE TABLE `pegawai` (
 -- ----------------------------
 -- Records of pegawai
 -- ----------------------------
-BEGIN;
-INSERT INTO `pegawai` VALUES (1, 1, NULL, NULL, NULL, NULL, 'Citra Murti Anggraini, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (2, 1, NULL, NULL, NULL, '197001282014101001', 'Sru Hardoyo, A.Md.', NULL, 1);
-INSERT INTO `pegawai` VALUES (3, 1, NULL, NULL, NULL, NULL, 'Nur Fatimah', NULL, 1);
-INSERT INTO `pegawai` VALUES (4, 1, NULL, NULL, NULL, NULL, 'Rahmad Nurcahya, A.Md.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (5, 1, NULL, NULL, NULL, NULL, 'RA Hastin Kusumaningrum, A.Md.Sek', NULL, 0);
-INSERT INTO `pegawai` VALUES (6, 1, NULL, NULL, NULL, NULL, 'Rizky Amanda Rachman, A.Md', NULL, 1);
-INSERT INTO `pegawai` VALUES (7, 2, NULL, NULL, NULL, '196512101992082002', 'Dra. Muryani', NULL, 1);
-INSERT INTO `pegawai` VALUES (8, 2, NULL, NULL, NULL, NULL, 'Setiawan Eko P., S.Kh.', NULL, 1);
-INSERT INTO `pegawai` VALUES (9, 2, NULL, NULL, NULL, NULL, 'Mirwan Hanafi, S.E', NULL, 1);
-INSERT INTO `pegawai` VALUES (10, 2, NULL, NULL, NULL, NULL, 'Anis Khoirin Nisa, A.Md.Ak', NULL, 1);
-INSERT INTO `pegawai` VALUES (11, 3, NULL, NULL, NULL, '196506031988081001', 'Dra. Juliana Widarjanti', NULL, 1);
-INSERT INTO `pegawai` VALUES (12, 3, NULL, NULL, NULL, NULL, 'Anom Wijono, ST.', NULL, 1);
-INSERT INTO `pegawai` VALUES (13, 3, NULL, NULL, NULL, NULL, 'Suramin, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (14, 3, NULL, NULL, NULL, NULL, 'Krisnayang Vertika, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (15, 3, NULL, NULL, NULL, '196901171993082004', 'Melan Tri Prasetya, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (16, 3, NULL, NULL, NULL, NULL, 'Rony Hanif Warayang, S.Hut', NULL, 1);
-INSERT INTO `pegawai` VALUES (17, 3, NULL, NULL, NULL, '197002231998051003', 'Febri Aji Wisnulaksito, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (18, 4, NULL, NULL, NULL, '198311202014101002', 'Atmuji Handoko', NULL, 1);
-INSERT INTO `pegawai` VALUES (19, 4, NULL, NULL, NULL, '197406202017101003', 'Sugiharto, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (20, 4, NULL, NULL, NULL, NULL, 'Eri Kriswanto', NULL, 1);
-INSERT INTO `pegawai` VALUES (21, 4, NULL, NULL, NULL, '196602271992082003', 'Sudari', NULL, 1);
-INSERT INTO `pegawai` VALUES (22, 4, NULL, NULL, NULL, '196309141998051002', 'Suparno', NULL, 1);
-INSERT INTO `pegawai` VALUES (23, 4, NULL, NULL, NULL, NULL, 'Ngatinem, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (24, 4, NULL, NULL, NULL, '197307022007101002', 'Paijan', NULL, 1);
-INSERT INTO `pegawai` VALUES (25, 4, NULL, NULL, NULL, NULL, 'Wahyu Setiawan', NULL, 1);
-INSERT INTO `pegawai` VALUES (26, 4, NULL, NULL, NULL, NULL, 'Agust. Suharwanto, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (27, 4, NULL, NULL, NULL, NULL, 'Jono', NULL, 1);
-INSERT INTO `pegawai` VALUES (28, 4, NULL, NULL, NULL, '196105252005051001', 'Ariadi Setya Wijaya, A.Md', NULL, 1);
-INSERT INTO `pegawai` VALUES (29, 4, NULL, NULL, NULL, '196906032017102001', 'Rakhmat Wahyudi, S.Pd.T', NULL, 0);
-INSERT INTO `pegawai` VALUES (30, 5, NULL, NULL, NULL, NULL, 'Musbadi', NULL, 1);
-INSERT INTO `pegawai` VALUES (31, 5, NULL, NULL, NULL, NULL, 'Suraji', NULL, 1);
-INSERT INTO `pegawai` VALUES (32, 5, NULL, NULL, NULL, NULL, 'Eko Dwi Purnomo', NULL, 0);
-INSERT INTO `pegawai` VALUES (33, 5, NULL, NULL, NULL, NULL, 'Sumirang Jati Caroko', NULL, 1);
-INSERT INTO `pegawai` VALUES (34, 5, NULL, NULL, NULL, NULL, 'Rahmat Dion', NULL, 1);
-INSERT INTO `pegawai` VALUES (35, 5, NULL, NULL, NULL, NULL, 'Dalud Purnomo', NULL, 1);
-INSERT INTO `pegawai` VALUES (36, 5, NULL, NULL, NULL, NULL, 'Sukamto', NULL, 1);
-INSERT INTO `pegawai` VALUES (37, 5, NULL, NULL, NULL, NULL, 'Tumiran', NULL, 1);
-INSERT INTO `pegawai` VALUES (38, 5, NULL, NULL, NULL, NULL, 'Darobi', NULL, 1);
-INSERT INTO `pegawai` VALUES (39, 5, NULL, NULL, NULL, NULL, 'David', NULL, 1);
-INSERT INTO `pegawai` VALUES (40, 5, NULL, NULL, NULL, NULL, 'Totok Supriyadi', NULL, 1);
-INSERT INTO `pegawai` VALUES (41, 6, NULL, NULL, NULL, NULL, 'Hasan Muji Santoso', NULL, 1);
-INSERT INTO `pegawai` VALUES (42, 6, NULL, NULL, NULL, NULL, 'Karyadi', NULL, 0);
-INSERT INTO `pegawai` VALUES (43, 7, NULL, NULL, NULL, NULL, 'Supardiyono', NULL, 0);
-INSERT INTO `pegawai` VALUES (44, 8, NULL, NULL, NULL, NULL, 'Cerry Reggiani Catri S.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (45, 9, NULL, NULL, NULL, NULL, 'Adi Prasetyo, S.Kom.', NULL, 1);
-INSERT INTO `pegawai` VALUES (46, 10, NULL, NULL, NULL, NULL, 'Drs. Eko Asihanto', NULL, 1);
-INSERT INTO `pegawai` VALUES (47, 11, NULL, NULL, NULL, NULL, 'Fajar Ampi Dyantoro, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (48, 12, NULL, NULL, NULL, NULL, 'Danang Hanjaru, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (49, 13, NULL, NULL, NULL, NULL, 'Ida Setiani', NULL, 1);
-INSERT INTO `pegawai` VALUES (50, 13, NULL, NULL, NULL, NULL, 'Tias Anggraheni', NULL, 1);
-INSERT INTO `pegawai` VALUES (51, 13, NULL, NULL, NULL, NULL, 'Rismawati Artafasara, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (52, 13, NULL, NULL, NULL, NULL, 'Fitria Ratnasari', NULL, 1);
-INSERT INTO `pegawai` VALUES (53, 13, NULL, NULL, NULL, NULL, 'Dwi Wulandari, S.Ak', NULL, 1);
-INSERT INTO `pegawai` VALUES (54, 13, NULL, NULL, NULL, NULL, 'Ita Sari, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (55, 13, NULL, NULL, NULL, NULL, 'Nella Merita Kumalasari, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (56, 13, NULL, NULL, NULL, NULL, 'Naura Syauqina Firdausa', NULL, 1);
-INSERT INTO `pegawai` VALUES (57, 13, NULL, NULL, NULL, NULL, 'Tyas Ayu Wahyu Ningsih', NULL, 1);
-INSERT INTO `pegawai` VALUES (58, 62, NULL, NULL, '141119', '141119', 'Yunia Afiyati', NULL, 1);
-INSERT INTO `pegawai` VALUES (59, 13, NULL, NULL, NULL, NULL, 'Pungki Revianti', NULL, 0);
-INSERT INTO `pegawai` VALUES (60, 13, NULL, NULL, NULL, NULL, 'Khamidah', NULL, 1);
-INSERT INTO `pegawai` VALUES (61, 13, NULL, NULL, NULL, NULL, 'Dhita Murti Santari', NULL, 1);
-INSERT INTO `pegawai` VALUES (62, 13, NULL, NULL, NULL, NULL, 'Puspa Tikka Lovianti', NULL, 1);
-INSERT INTO `pegawai` VALUES (63, 13, NULL, NULL, NULL, NULL, 'Athalia Fawwaz Agianto', NULL, 1);
-INSERT INTO `pegawai` VALUES (64, 13, NULL, NULL, NULL, NULL, 'M. Riyan Prastya', NULL, 1);
-INSERT INTO `pegawai` VALUES (65, 13, NULL, NULL, NULL, NULL, 'Yulina Dwi', NULL, 1);
-INSERT INTO `pegawai` VALUES (66, 13, NULL, NULL, NULL, NULL, 'Indri Widyastuti', NULL, 1);
-INSERT INTO `pegawai` VALUES (67, 13, NULL, NULL, NULL, NULL, 'Luthfi Nabila', NULL, 1);
-INSERT INTO `pegawai` VALUES (68, 13, NULL, NULL, NULL, NULL, 'Eka Cahyati Putri', NULL, 1);
-INSERT INTO `pegawai` VALUES (69, 14, NULL, NULL, NULL, NULL, 'Sukirman ', NULL, 1);
-INSERT INTO `pegawai` VALUES (70, 15, NULL, NULL, NULL, NULL, 'Nofi Rini Dyah S, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (71, 16, NULL, NULL, NULL, NULL, 'Drs. Sarjiman', NULL, 1);
-INSERT INTO `pegawai` VALUES (72, 17, NULL, NULL, NULL, NULL, 'Supardi, ST.', NULL, 1);
-INSERT INTO `pegawai` VALUES (73, 18, NULL, NULL, NULL, '196905202018061001', 'Drs. Subur Mulyono', NULL, 1);
-INSERT INTO `pegawai` VALUES (74, 18, NULL, NULL, NULL, '197511132017101005', 'Wastono', NULL, 1);
-INSERT INTO `pegawai` VALUES (75, 18, NULL, NULL, NULL, '196807172014101006', 'Abdullah', NULL, 1);
-INSERT INTO `pegawai` VALUES (76, 18, NULL, NULL, NULL, NULL, 'Eko Pratamasiwi', NULL, 1);
-INSERT INTO `pegawai` VALUES (77, 18, NULL, NULL, NULL, '196201121993081006', 'Jumadi', NULL, 1);
-INSERT INTO `pegawai` VALUES (78, 18, NULL, NULL, NULL, NULL, 'Sujiono, SS.', NULL, 1);
-INSERT INTO `pegawai` VALUES (79, 18, NULL, NULL, NULL, NULL, 'Sugeng Haryadi', NULL, 1);
-INSERT INTO `pegawai` VALUES (80, 18, NULL, NULL, NULL, NULL, 'Triyanto, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (81, 18, NULL, NULL, NULL, NULL, 'Djulianto', NULL, 1);
-INSERT INTO `pegawai` VALUES (82, 18, NULL, NULL, NULL, NULL, 'Sarino', NULL, 1);
-INSERT INTO `pegawai` VALUES (83, 19, NULL, NULL, NULL, NULL, 'Septi Ari Wahyuni', NULL, 1);
-INSERT INTO `pegawai` VALUES (84, 19, NULL, NULL, NULL, NULL, 'Mohammat Syamsul Hidayat', NULL, 1);
-INSERT INTO `pegawai` VALUES (85, 19, NULL, NULL, NULL, NULL, 'Mitun Nur Laksono', NULL, 1);
-INSERT INTO `pegawai` VALUES (86, 19, NULL, NULL, NULL, NULL, 'Fany Jaka Susila', NULL, 0);
-INSERT INTO `pegawai` VALUES (87, 19, NULL, NULL, NULL, NULL, 'Eko Supriyono', NULL, 1);
-INSERT INTO `pegawai` VALUES (88, 19, NULL, NULL, NULL, NULL, 'Ade', NULL, 0);
-INSERT INTO `pegawai` VALUES (89, 19, NULL, NULL, NULL, NULL, 'Heru Purnomo', NULL, 1);
-INSERT INTO `pegawai` VALUES (90, 19, NULL, NULL, NULL, NULL, 'Ariyo Swandoko', NULL, 1);
-INSERT INTO `pegawai` VALUES (91, 19, NULL, NULL, NULL, NULL, 'Kurnia Ayus Munandar', NULL, 1);
-INSERT INTO `pegawai` VALUES (92, 19, NULL, NULL, NULL, NULL, 'Tri Wahyuni', NULL, 1);
-INSERT INTO `pegawai` VALUES (93, 19, NULL, NULL, NULL, NULL, 'Imam Chusairi', NULL, 1);
-INSERT INTO `pegawai` VALUES (94, 19, NULL, NULL, NULL, NULL, 'Bima', NULL, 1);
-INSERT INTO `pegawai` VALUES (95, 20, NULL, NULL, NULL, NULL, 'Sukirdi', NULL, 0);
-INSERT INTO `pegawai` VALUES (96, 20, NULL, NULL, NULL, NULL, 'Anggoro', NULL, 0);
-INSERT INTO `pegawai` VALUES (97, 21, NULL, NULL, NULL, NULL, 'Samijo', NULL, 1);
-INSERT INTO `pegawai` VALUES (98, 21, NULL, NULL, NULL, NULL, 'Danur', NULL, 1);
-INSERT INTO `pegawai` VALUES (99, 21, NULL, NULL, NULL, NULL, 'Fatturrohman', NULL, 1);
-INSERT INTO `pegawai` VALUES (100, 21, NULL, NULL, NULL, NULL, 'Danang Prijantoro', NULL, 1);
-INSERT INTO `pegawai` VALUES (101, 21, NULL, NULL, NULL, NULL, 'Ngadiman', NULL, 1);
-INSERT INTO `pegawai` VALUES (102, 22, NULL, NULL, NULL, NULL, 'Eka Nugraha Sari, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (103, 22, NULL, NULL, NULL, NULL, 'Muhari Agus Nugraha, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (104, 23, NULL, NULL, NULL, '196711261993032002', 'Dra. Tri Siwi Nugrahani, S.E., M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (105, 23, NULL, NULL, NULL, '197408142006071001', 'Dr. Dekeng Setyo Budiarto, Ak.CA.', NULL, 1);
-INSERT INTO `pegawai` VALUES (106, 23, NULL, NULL, NULL, '197802012006071004', 'Sri Widodo, S.E.,M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (107, 23, NULL, NULL, NULL, '197603072002041002', 'Sukhemi, M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (108, 23, NULL, NULL, NULL, '197804292004042001', 'Vidya Vitta Adhivinna., SE., M.Si.Ak', NULL, 1);
-INSERT INTO `pegawai` VALUES (109, 23, NULL, NULL, NULL, '196202211995031004', 'Hari Purnama, S.E., M.M.', NULL, 1);
-INSERT INTO `pegawai` VALUES (110, 23, NULL, NULL, NULL, '198808072014042007', 'Ratna Purnama Sari, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (111, 23, NULL, NULL, NULL, '198601142015082000', 'Rani Eka Diansari, S.E., M.Acc', NULL, 1);
-INSERT INTO `pegawai` VALUES (112, 23, NULL, NULL, NULL, '198501082015082006', 'Yennisa, S.E., M.Sc.Ak.CA', NULL, 1);
-INSERT INTO `pegawai` VALUES (113, 23, NULL, NULL, NULL, '199003242016041013', 'M. Sulkhanul Umam, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (114, 23, NULL, NULL, NULL, '199309162018052013', 'Ningrum Pramudiati, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (115, 23, NULL, NULL, NULL, '199205232018052025', 'Anandita Zulia Putri, S.E., M.Acc', NULL, 1);
-INSERT INTO `pegawai` VALUES (116, 23, NULL, NULL, NULL, '199311042018062026', 'Lulu Amalia Nusron, S.E., M.Ak', NULL, 1);
-INSERT INTO `pegawai` VALUES (117, 23, NULL, NULL, NULL, NULL, 'Zidni Husnia Fachrunnisa, S.E., M.Ak.', NULL, 1);
-INSERT INTO `pegawai` VALUES (118, 23, NULL, NULL, NULL, NULL, 'Baniady Gennody Pronosokodewo, S.E., M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (119, 23, NULL, NULL, NULL, NULL, 'Rahandhika Ivan Adyaksana, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (120, 24, NULL, NULL, NULL, NULL, 'Margi Untungningsih', NULL, 0);
-INSERT INTO `pegawai` VALUES (121, 25, NULL, NULL, NULL, '197406202008041005', 'Iswati', NULL, 1);
-INSERT INTO `pegawai` VALUES (122, 27, NULL, NULL, NULL, NULL, 'Suntoro, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (123, 27, NULL, NULL, NULL, NULL, 'Yanning Adhiyanti, S.P', NULL, 1);
-INSERT INTO `pegawai` VALUES (124, 27, NULL, NULL, NULL, '197205102016102001', 'Riezki Desiana Nur Pramono, A.Md.Sek', NULL, 1);
-INSERT INTO `pegawai` VALUES (125, 28, NULL, NULL, NULL, '196905011993081005', 'Lita Yuniatri, A.Md.', NULL, 1);
-INSERT INTO `pegawai` VALUES (126, 29, NULL, NULL, NULL, '198611232014102004', 'Sri Nurhayati, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (127, 30, NULL, NULL, NULL, '196404101988081001', 'Sumardi, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (128, 31, NULL, NULL, NULL, '196507121988081003', 'Novita Setyaningsih, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (129, 32, NULL, NULL, NULL, '196006092005052002', 'Waginah, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (130, 33, NULL, NULL, NULL, '196901171993102003', 'Endah Rini Astuti, MPd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (131, 34, NULL, NULL, NULL, NULL, 'Samsudin, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (132, 35, NULL, NULL, NULL, '197511082014102003', 'Upik Kuswardhani', NULL, 1);
-INSERT INTO `pegawai` VALUES (133, 36, NULL, NULL, NULL, NULL, 'Yuli Ibnu Darsana, S.Pd., M.A', NULL, 1);
-INSERT INTO `pegawai` VALUES (134, 36, NULL, NULL, NULL, '196607271996011001', 'Fitri Riani, A.Md', NULL, 1);
-INSERT INTO `pegawai` VALUES (135, 36, NULL, NULL, NULL, '196401011998051004', 'Munir Nugroho, SIP', NULL, 1);
-INSERT INTO `pegawai` VALUES (136, 36, NULL, NULL, NULL, '196411062017101002', 'Nurul Sinto A., SIP', NULL, 1);
-INSERT INTO `pegawai` VALUES (137, 37, NULL, NULL, NULL, '197410072017101004', 'Pepen Suherman, S.Kom.', NULL, 1);
-INSERT INTO `pegawai` VALUES (138, 37, NULL, NULL, NULL, '196912052014101007', 'Friya Fratama Bekti Susanto, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (139, 37, NULL, NULL, NULL, NULL, 'Edy Purwanto, S.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (140, 37, NULL, NULL, NULL, '197509142014101005', 'Dian Fitri Utami, A.Md', NULL, 1);
-INSERT INTO `pegawai` VALUES (141, 38, NULL, NULL, NULL, NULL, 'Restu Dwi Nugraeni, S.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (142, 38, NULL, NULL, NULL, '196807141993082003', 'Suradi', NULL, 1);
-INSERT INTO `pegawai` VALUES (143, 38, NULL, NULL, NULL, NULL, 'Agus Suparyanto', NULL, 1);
-INSERT INTO `pegawai` VALUES (144, 39, NULL, NULL, NULL, '197110091998122005', 'Dr. Okti  Purwaningsih, MP.', NULL, 1);
-INSERT INTO `pegawai` VALUES (145, 39, NULL, NULL, NULL, '195405261985031002', 'Ir. Herman Budi Susetyo, MP.', NULL, 0);
-INSERT INTO `pegawai` VALUES (146, 39, NULL, NULL, NULL, '196503211996041003', 'Drs. M. Kusberyunadi, M.MA', NULL, 0);
-INSERT INTO `pegawai` VALUES (147, 39, NULL, NULL, NULL, '196309171995031002', 'Ir. Ahmad Bahrum, M.P.', NULL, 0);
-INSERT INTO `pegawai` VALUES (148, 39, NULL, NULL, NULL, '196403141995031005', 'Ir. Ardiyanto, M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (149, 39, NULL, NULL, NULL, '196509161995031003', 'Dr. Ir. Paiman, M.P.', NULL, 1);
-INSERT INTO `pegawai` VALUES (150, 39, NULL, NULL, NULL, '197511162005012002', 'C. Tri Kusumastuti, S.P., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (151, 39, NULL, NULL, NULL, NULL, 'Puguh Bintang Pamungkas, M.P', NULL, 1);
-INSERT INTO `pegawai` VALUES (152, 39, NULL, NULL, NULL, NULL, 'Prof. Dr. Ir. Prapto Yudhono, M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (153, 40, NULL, NULL, NULL, '196711261993032002', 'Dra. Tri Siwi Nugrahani, S.E., M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (154, 40, NULL, NULL, NULL, '197408142006071001', 'Dr. Dekeng Setyo Budiarto, Ak.CA.', NULL, 1);
-INSERT INTO `pegawai` VALUES (155, 40, NULL, NULL, NULL, '197802012006071004', 'Sri Widodo, S.E.,M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (156, 40, NULL, NULL, NULL, '197603072002041002', 'Sukhemi, M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (157, 40, NULL, NULL, NULL, '197804292004042001', 'Vidya Vitta Adhivinna., SE., M.Si.Ak', NULL, 1);
-INSERT INTO `pegawai` VALUES (158, 40, NULL, NULL, NULL, '196202211995031004', 'Hari Purnama, S.E., M.M.', NULL, 1);
-INSERT INTO `pegawai` VALUES (159, 40, NULL, NULL, NULL, '198808072014042007', 'Ratna Purnama Sari, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (160, 40, NULL, NULL, NULL, '198601142015082000', 'Rani Eka Diansari, S.E., M.Acc', NULL, 1);
-INSERT INTO `pegawai` VALUES (161, 40, NULL, NULL, NULL, '198501082015082006', 'Yennisa, S.E., M.Sc.Ak.CA', NULL, 1);
-INSERT INTO `pegawai` VALUES (162, 40, NULL, NULL, NULL, '199003242016041013', 'M. Sulkhanul Umam, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (163, 40, NULL, NULL, NULL, '199309162018052013', 'Ningrum Pramudiati, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (164, 40, NULL, NULL, NULL, '199205232018052025', 'Anandita Zulia Putri, S.E., M.Acc', NULL, 1);
-INSERT INTO `pegawai` VALUES (165, 40, NULL, NULL, NULL, '199311042018062026', 'Lulu Amalia Nusron, S.E., M.Ak', NULL, 1);
-INSERT INTO `pegawai` VALUES (166, 40, NULL, NULL, NULL, NULL, 'Zidni Husnia Fachrunnisa, S.E., M.Ak.', NULL, 1);
-INSERT INTO `pegawai` VALUES (167, 40, NULL, NULL, NULL, NULL, 'Baniady Gennody Pronosokodewo, S.E., M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (168, 40, NULL, NULL, NULL, NULL, 'Rahandhika Ivan Adyaksana, S.E., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (169, 41, NULL, NULL, NULL, '196012121987032002', 'Dra. Ika Ernawati, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (170, 41, NULL, NULL, NULL, '195207051982111002', 'Drs. Djuwalman, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (171, 41, NULL, NULL, NULL, '195911071987031002', 'Drs. Makin, M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (172, 41, NULL, NULL, NULL, '197110282010042003', 'Enik Nur Kholidah, S.E., M.A.', NULL, 1);
-INSERT INTO `pegawai` VALUES (173, 41, NULL, NULL, NULL, '198411292013022001', 'Arum Setiowati, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (174, 41, NULL, NULL, NULL, '195703101985032001', 'Dra. Hj. Nurwahyumiani, M.A', NULL, 1);
-INSERT INTO `pegawai` VALUES (175, 41, NULL, NULL, NULL, '195411091981032001', 'Dra. Suharni, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (176, 41, NULL, NULL, NULL, '199011242016041018', 'Drajat Edy Kurniawan, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (177, 41, NULL, NULL, NULL, '198812172016082000', 'Shinta Purwaningrum, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (178, 41, NULL, NULL, NULL, '198609022016041014', 'Taufik Agung Pranowo, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (179, 41, NULL, NULL, NULL, '198703232014041001', 'Eko Perianto, S.Pd., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (180, 41, NULL, NULL, NULL, '198812092014042002', 'Iis Latifah Nuryanto, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (181, 41, NULL, NULL, NULL, '199403202018052008', 'Herwinda Putri Daniswari, S.Pd.,M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (182, 42, NULL, NULL, NULL, NULL, 'Amalia Cemara Nur’aidha, S.Si., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (183, 42, NULL, NULL, NULL, '198801052016101002', 'Dhananjaya Yama Hudha, S.T, M. Biotech ', NULL, 1);
-INSERT INTO `pegawai` VALUES (184, 42, NULL, NULL, NULL, NULL, 'dr. R. Bopi Yudha Sapa, M.Sc., MMR', NULL, 1);
-INSERT INTO `pegawai` VALUES (185, 42, NULL, NULL, NULL, NULL, 'Wahyu Sugianto, S.Si., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (186, 42, NULL, NULL, NULL, NULL, 'Mira Setiana, S.Si., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (187, 43, NULL, NULL, NULL, NULL, 'Ekha Rifki Fauzi, SKM, M.P.H', NULL, 1);
-INSERT INTO `pegawai` VALUES (188, 43, NULL, NULL, NULL, NULL, 'Danang Widyawarman, S.ST, M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (189, 43, NULL, NULL, NULL, NULL, 'Dena Anugrah, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (190, 43, NULL, NULL, NULL, NULL, 'Pebri Prihatmoko, S.Pd., M.Eng', NULL, 1);
-INSERT INTO `pegawai` VALUES (191, 43, NULL, NULL, NULL, NULL, 'Herenda Sela Wismaya, S.Si., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (192, 44, NULL, NULL, NULL, NULL, 'Apt. Rahmat A.Hi Wahid, S.Farm., M.Farm', NULL, 1);
-INSERT INTO `pegawai` VALUES (193, 44, NULL, NULL, NULL, NULL, 'Apt. Margala Juang Bertorio, S.Farm., M.Clin.Pharm', NULL, 1);
-INSERT INTO `pegawai` VALUES (194, 44, NULL, NULL, NULL, NULL, 'Nurul Jannah., S.Farm., M.Pharm.Sci., Apt', NULL, 1);
-INSERT INTO `pegawai` VALUES (195, 44, NULL, NULL, NULL, NULL, 'Anis Febri Nilansari, S.Farm., M.Pharm.Sci., Apt', NULL, 1);
-INSERT INTO `pegawai` VALUES (196, 44, NULL, NULL, NULL, NULL, 'Hanifah Karimatulhajj, S.Farm., M.Farm', NULL, 1);
-INSERT INTO `pegawai` VALUES (197, 45, NULL, NULL, NULL, NULL, 'Brevi Istu Pambudi, S.Gz., M.Gizi.', NULL, 1);
-INSERT INTO `pegawai` VALUES (198, 45, NULL, NULL, NULL, NULL, 'Laeli Nur Hasanah, S. Gz., M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (199, 45, NULL, NULL, NULL, NULL, 'Astri Praba Shinta, S.Gz., M.P.H', NULL, 1);
-INSERT INTO `pegawai` VALUES (200, 45, NULL, NULL, NULL, NULL, 'Rosmauli Jeremia, S.Gz., M.Gizi', NULL, 1);
-INSERT INTO `pegawai` VALUES (201, 45, NULL, NULL, NULL, NULL, 'Ryan Rohmansyah, S.Gz., M.Gz', NULL, 1);
-INSERT INTO `pegawai` VALUES (202, 46, NULL, NULL, NULL, '198207212014042006', 'Fitri Susilowati, S.E., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (203, 46, NULL, NULL, NULL, '195309211981032001', 'Dra. Murti Sumarni, MM.', NULL, 1);
-INSERT INTO `pegawai` VALUES (204, 46, NULL, NULL, NULL, '195901061985032007', 'Dra. Yati Suhartini, MA.', NULL, 1);
-INSERT INTO `pegawai` VALUES (205, 46, NULL, NULL, NULL, '196102131987031001', 'Drs. Arif Sudaryana, M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (206, 46, NULL, NULL, NULL, '195806071995032001', 'Dra. Endang Tri Wahyuni, MM.', NULL, 1);
-INSERT INTO `pegawai` VALUES (207, 46, NULL, NULL, NULL, '196707292002041003', 'Lilik Siswanto, S.E, M.M', NULL, 0);
-INSERT INTO `pegawai` VALUES (208, 46, NULL, NULL, NULL, '198310292015082000', 'Arista Natia Afriany, S.E, M.BA', NULL, 1);
-INSERT INTO `pegawai` VALUES (209, 46, NULL, NULL, NULL, '198707242015081000', 'Ahsan Sumantika, S.E, M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (210, 46, NULL, NULL, NULL, '198608272015081000', 'Adhi Prakosa,S.E. M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (211, 46, NULL, NULL, NULL, '199010172016041009', 'Faizal Ardiyanto, S.E., M.M', NULL, 1);
-INSERT INTO `pegawai` VALUES (212, 46, NULL, NULL, NULL, '197310221997102001', 'Saptaningsih Sumarmi, S.E., M.M', NULL, 1);
-INSERT INTO `pegawai` VALUES (213, 46, NULL, NULL, NULL, '198911102018051003', 'Anindita Imam Basri, S.E.I.,M.M', NULL, 1);
-INSERT INTO `pegawai` VALUES (214, 46, NULL, NULL, NULL, '198712172018052012', 'Natalia Ratna Ningrum, S.E.,M.M', NULL, 1);
-INSERT INTO `pegawai` VALUES (215, 46, NULL, NULL, NULL, '197406062018052005', 'Diah Aryanti Saptowarsi, S.E.,M.Sc', NULL, 0);
-INSERT INTO `pegawai` VALUES (216, 46, NULL, NULL, NULL, '196909102018052009', 'Inayat Hanum Indriati,S.E., M.M', NULL, 1);
-INSERT INTO `pegawai` VALUES (217, 46, NULL, NULL, NULL, NULL, 'Pradita Nindya Aryandha, S.E., M.B.A', NULL, 1);
-INSERT INTO `pegawai` VALUES (218, 46, NULL, NULL, NULL, NULL, 'Hapsari Dyah Herdiany, S.E., M.M', NULL, 1);
-INSERT INTO `pegawai` VALUES (219, 46, NULL, NULL, NULL, NULL, 'Latifah Putranti, S.E., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (220, 46, NULL, NULL, NULL, NULL, 'Fikri Farhan, S.E., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (221, 46, NULL, NULL, NULL, NULL, 'Guruh Ghifar Zalzalah, S.E., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (222, 47, NULL, NULL, NULL, '198704212013102004', 'Primasari Wahyuni, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (223, 47, NULL, NULL, NULL, '197607112013102002', 'Muncar Tyas Palupi, S.S., M.Hum.', NULL, 1);
-INSERT INTO `pegawai` VALUES (224, 47, NULL, NULL, NULL, '197908182013102001', 'Rika Novita Kusumaningrum, S.S., M.A.', NULL, 1);
-INSERT INTO `pegawai` VALUES (225, 47, NULL, NULL, NULL, '197101152013102003', 'Tri Ratna Herawati, S.Pd., M.Hum.', NULL, 1);
-INSERT INTO `pegawai` VALUES (226, 47, NULL, NULL, NULL, '198406012014042005', 'Fitri Jamilah, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (227, 47, NULL, NULL, NULL, '198210202014042004', 'Nina Widyaningsih, S.Pd., M.Hum', NULL, 1);
-INSERT INTO `pegawai` VALUES (228, 47, NULL, NULL, NULL, '199301132018051024', 'Yanuar Bagas Arwansyah, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (229, 47, NULL, NULL, NULL, '199209062019011007', 'Jalu Norva Illa Putra, S.S., M.A.', NULL, 1);
-INSERT INTO `pegawai` VALUES (230, 48, NULL, NULL, NULL, '198306092013101002', 'Sujatmiko, S.Pd.Ing., M.Hum.', NULL, 1);
-INSERT INTO `pegawai` VALUES (231, 48, NULL, NULL, NULL, '197803162013102004', 'Nafisah Endahati, S.Pd., M.Hum', NULL, 1);
-INSERT INTO `pegawai` VALUES (232, 48, NULL, NULL, NULL, '197906132014012001', 'Sri Wiyanah, S.Pd., M.Hum.', NULL, 1);
-INSERT INTO `pegawai` VALUES (233, 48, NULL, NULL, NULL, '198501022013101001', 'Rudha Widagsa, S.S., M.A.', NULL, 1);
-INSERT INTO `pegawai` VALUES (234, 48, NULL, NULL, NULL, '198704042014021000', 'Juang Kurniawan S, S.Pd., M.Pd.B.I', NULL, 1);
-INSERT INTO `pegawai` VALUES (235, 48, NULL, NULL, NULL, '198604212014041003', 'Andi Dian Rahmawan, S.Pd., M.A', NULL, 1);
-INSERT INTO `pegawai` VALUES (236, 48, NULL, NULL, NULL, '199210232018051018', 'Rifki Irawan, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (237, 49, NULL, NULL, NULL, '196208161987022001', 'Dra. Kristina Warniasih, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (238, 49, NULL, NULL, NULL, '196205161988032001', 'Dra. MM. Endang Susetyawati, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (239, 49, NULL, NULL, NULL, '198206112011041001', 'Abdul Aziz Saefudin, S.Pd.I.,M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (240, 49, NULL, NULL, NULL, '198704262011042004', 'Dhian Arista Istikomah, S.Si., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (241, 49, NULL, NULL, NULL, '198407042010041004', 'Gunawan, S.Si., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (242, 49, NULL, NULL, NULL, '198412222011042003', 'Laela Sagita, S.Pd., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (243, 49, NULL, NULL, NULL, '198310302010041001', 'Nendra Mursetya S D, S.Pd., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (244, 62, 2, 4, '11074', '198404222009042002', 'Dr. Niken Wahyu Utami, S.Pd.Si., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (245, 49, NULL, NULL, NULL, '198612062012012033', 'Koryna Aviori, S.Si., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (246, 49, NULL, NULL, NULL, '197809232014012000', 'Siska Candra Ningsih, S.Si., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (247, 49, NULL, NULL, NULL, '198004122014082000', 'Titis Sunanti, S.Pd., M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (248, 49, NULL, NULL, NULL, '198906152015082010', 'Palupi Sri Wijayanti, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (249, 49, NULL, NULL, NULL, '198904172015081012', 'Padrul Jana, S.Pd., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (250, 49, NULL, NULL, NULL, '198612252015081000', 'Kintoko, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (251, 49, NULL, NULL, NULL, '198901232014041014', 'Bintang Wicaksono, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (252, 49, NULL, NULL, NULL, '197612242005012002', 'Ch. Eva Nuryani, S.Si., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (253, 50, NULL, NULL, NULL, '196812171994121001', 'Tri Wahana, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (254, 50, NULL, NULL, NULL, '196711051994121002', 'Darsono, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (255, 50, NULL, NULL, NULL, '196502161991091004', 'Drs. Siswanta, M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (256, 50, NULL, NULL, NULL, '195107011989071001', 'Drs. Johanes Sabari, M.Si.', NULL, 1);
-INSERT INTO `pegawai` VALUES (257, 50, NULL, NULL, NULL, '198802102014041009', 'Dr. Muhammad Iqbal Birsyada, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (258, 50, NULL, NULL, NULL, NULL, 'Bayu Ananto Wibowo, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (259, 50, NULL, NULL, NULL, NULL, 'Fahruddin, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (260, 51, NULL, NULL, NULL, '195707131983031003', 'Dr. Sukadari, SE., SH.,MM.', NULL, 1);
-INSERT INTO `pegawai` VALUES (261, 51, NULL, NULL, NULL, '195704251984031002', 'Prof. Dr. Buchory MS, M.Pd.', NULL, 0);
-INSERT INTO `pegawai` VALUES (262, 51, NULL, NULL, NULL, '196128121987022001', 'Dr. Salamah, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (263, 51, NULL, NULL, NULL, '195402281980122001', 'Dr. Sunarti, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (264, 51, NULL, NULL, NULL, NULL, 'Prof. Dr. Kodiran, MA', NULL, 1);
-INSERT INTO `pegawai` VALUES (265, 51, NULL, NULL, NULL, NULL, 'Prof. Dr. DJoko Suryo', NULL, 1);
-INSERT INTO `pegawai` VALUES (266, 51, NULL, NULL, NULL, '197611142005011001', 'Dr.Victor Novianto, S.Pd., M.Hum', NULL, 1);
-INSERT INTO `pegawai` VALUES (267, 51, NULL, NULL, NULL, '196509091995122001', 'Dr. Esti Setiawati, M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (268, 51, NULL, NULL, NULL, '195606132017041001', 'Dr. Drs. Tarto, S.T., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (269, 51, NULL, NULL, NULL, '196707191996101004', 'Dr. Gunawan Sridiyatmiko, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (270, 51, NULL, NULL, NULL, '197711272014042008', 'Dr. Elsa Putri Ermisah Syafril', NULL, 1);
-INSERT INTO `pegawai` VALUES (271, 52, NULL, NULL, NULL, '199203092018051011', 'Luqman Hidayat, S.Pd.,M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (272, 52, NULL, NULL, NULL, '199010212016051002', 'Faiz Noormiyanto, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (273, 52, NULL, NULL, NULL, '199008042016052001', 'Dwi Setianingsih, M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (274, 52, NULL, NULL, NULL, '198407262016082002', 'Yulian Agus Suminar, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (275, 52, NULL, NULL, NULL, NULL, 'Dwi Putri Fatmawati, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (276, 52, NULL, NULL, NULL, NULL, 'Ramdhan Harjana, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (277, 53, NULL, NULL, NULL, '198811182018052014', 'Novianti Retno Utami, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (278, 53, NULL, NULL, NULL, '199211032018052010', 'Khikmah Novitasari, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (279, 53, NULL, NULL, NULL, '198203142018051007', 'Herdi Handoko, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (280, 53, NULL, NULL, NULL, '198609222018051002', 'Syahria Anggita Sakti, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (281, 53, NULL, NULL, NULL, '196411232018052019', 'Titik Mulat Widyastuti, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (282, 53, NULL, NULL, NULL, NULL, 'Windi Wulandari Iman Utama, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (283, 54, NULL, NULL, NULL, '195607131981012001', 'Rosalia Susila Purwanti, S.Sn., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (284, 54, NULL, NULL, NULL, '198508112008042001', 'Budiharti, S.Si., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (285, 54, NULL, NULL, NULL, '198603032008042002', 'Deri Anggraini, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (286, 54, NULL, NULL, NULL, '198002152008042004', 'Dr. Dhiniaty Gularso, S.Si., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (287, 54, NULL, NULL, NULL, '196909162002042001', 'Dr. Siti Maisaroh, SE., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (288, 54, NULL, NULL, NULL, '198405112008042003', 'Wahyu Kurniawati, S.Si., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (289, 54, NULL, NULL, NULL, '198612272012011001', 'Dr. Setyo Eko Atmojo, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (290, 54, NULL, NULL, NULL, '198707232013022002', 'Selly Rahmawati, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (291, 54, NULL, NULL, NULL, '198405102013021006', 'Dr. Ahmad Agung Yuwono, S.E., S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (292, 54, NULL, NULL, NULL, '198611052013021005', 'Ari Wibowo, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (293, 54, NULL, NULL, NULL, '197905052014042011', 'Rina Dyah Rahmawati, S.Si., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (294, 54, NULL, NULL, NULL, '198808232014041012', 'Taufik Muhtarom, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (295, 54, NULL, NULL, NULL, '198512312014041013', 'Danuri, S.Pd.Si., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (296, 54, NULL, NULL, NULL, '199009302015082000', 'Mahilda Dea Komalasari, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (297, 54, NULL, NULL, NULL, '198606232015081000', 'Hermawan Wahyu Setiadi, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (298, 54, NULL, NULL, NULL, '198810182015081003', 'Hengki Yudha Barnaba, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (299, 54, NULL, NULL, NULL, '199004022016041006', 'Bahtiyar Heru Susanto, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (300, 54, NULL, NULL, NULL, '198911172016041007', 'Beny Dwi Lukitoaji, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (301, 54, NULL, NULL, NULL, '199006062018051021', 'Urip Muhayat Wiji Wahyudi, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (302, 54, NULL, NULL, NULL, '199201302018051016', 'Rian Nurizka, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (303, 54, NULL, NULL, NULL, NULL, 'Dr. Amanatie, M.Pd., M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (304, 54, NULL, NULL, NULL, NULL, 'Dr. Ganung Anggraeni', NULL, 1);
-INSERT INTO `pegawai` VALUES (305, 54, NULL, NULL, NULL, '199102052016061002', 'Arip Febrianto, S.Pd., M.Pd.I', NULL, 1);
-INSERT INTO `pegawai` VALUES (306, 54, NULL, NULL, NULL, NULL, 'Hadna Suryantari, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (307, 54, NULL, NULL, NULL, NULL, 'Henry Aditia Rigianti, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (308, 54, NULL, NULL, NULL, NULL, 'Heru Purnomo, M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (309, 54, NULL, NULL, NULL, NULL, 'Puguh Ardianto Iskandar, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (310, 54, NULL, NULL, NULL, NULL, 'Muhardila Fauziah, S.Pd.I., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (311, 54, NULL, NULL, NULL, NULL, 'Yogi Prihandoko, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (312, 55, NULL, NULL, NULL, '196511101992021001', 'Sigit Handoko S.H., MH.', NULL, 1);
-INSERT INTO `pegawai` VALUES (313, 55, NULL, NULL, NULL, '196903071993012001', 'Ari Retno Purwanti, SH., MH.', NULL, 1);
-INSERT INTO `pegawai` VALUES (314, 62, 17, 4, '241119', '197304112010041002', 'Supri Hartanto, S.Pd., M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (315, 55, NULL, NULL, NULL, '195907161987022001', 'Dra. Rosalia Indriyati Saptatiningsih, M.Si', NULL, 1);
-INSERT INTO `pegawai` VALUES (316, 55, NULL, NULL, NULL, '195403211980031001', 'Yitno Pringgowijoyo, SH., M.H', NULL, 1);
-INSERT INTO `pegawai` VALUES (317, 55, NULL, NULL, NULL, '196509051992121006', 'Armansyah Prasakti, SH, Sp.N, M.H', NULL, 1);
-INSERT INTO `pegawai` VALUES (318, 55, NULL, NULL, NULL, '198709112014041010', 'Dr. Septian Aji Permana, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (319, 55, NULL, NULL, NULL, '198709092018051001', 'Abdul Rahim, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (320, 55, NULL, NULL, NULL, NULL, 'T. Heru Nurgiansah, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (321, 56, NULL, NULL, NULL, NULL, 'Didik Rohmantoro, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (322, 56, NULL, NULL, NULL, NULL, 'Bayu Gilang Purnomo, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (323, 56, NULL, NULL, NULL, NULL, 'Muhammad Priya Permana, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (324, 56, NULL, NULL, NULL, NULL, 'Ir. Yulia Venti Yoanita,ST, M.Eng.', NULL, 1);
-INSERT INTO `pegawai` VALUES (325, 56, NULL, NULL, NULL, NULL, 'Muhamad Amiruddin, S.Pd, M.Pd.', NULL, 1);
-INSERT INTO `pegawai` VALUES (326, 57, NULL, NULL, NULL, NULL, 'Aldrin Febriansyah, ST., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (327, 57, NULL, NULL, NULL, NULL, 'Eka Widyaningsih, ST., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (328, 57, NULL, NULL, NULL, NULL, 'Radiaswari, ST., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (329, 57, NULL, NULL, NULL, NULL, 'Rachmat Wahyu Prabowo, ST., M.Eng.', NULL, 1);
-INSERT INTO `pegawai` VALUES (330, 57, NULL, NULL, NULL, NULL, 'Adinda Rafika Dani, S.T., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (331, 58, NULL, NULL, NULL, '198505052016042003', 'Kurniawanti, S.T., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (332, 58, NULL, NULL, NULL, '198512092016042002', 'Yaning Tri Hapsari, S.T., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (333, 58, NULL, NULL, NULL, '198706302016042004', 'Hasti Hasanati Marfuah, S.T., M.T', NULL, 1);
-INSERT INTO `pegawai` VALUES (334, 58, NULL, NULL, NULL, '198201222016101001', 'Theofilus Bayu Dwinugroho, S.T., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (335, 58, NULL, NULL, NULL, NULL, 'Guntur Samodro, S.T., M.T', NULL, 1);
-INSERT INTO `pegawai` VALUES (336, 59, NULL, NULL, NULL, '196902141998121006', 'Ahmad Riyadi, S.Si., M.Kom.', NULL, 1);
-INSERT INTO `pegawai` VALUES (337, 59, NULL, NULL, NULL, '197305122006071003', 'Meilany Nonsi Tentua, S.Si., MT.', NULL, 1);
-INSERT INTO `pegawai` VALUES (338, 59, NULL, NULL, NULL, '197409212002041004', 'M. Fairuzabadi, S.Si., M.Kom.', NULL, 1);
-INSERT INTO `pegawai` VALUES (339, 59, NULL, NULL, NULL, '197903272012012009', 'Marti Widya Sari, S.T., M.Eng', NULL, 1);
-INSERT INTO `pegawai` VALUES (340, 59, NULL, NULL, NULL, '198409282015042001', 'Setia Wardani, S.Kom., M.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (341, 59, NULL, NULL, NULL, '196906072012011012', 'Wibawa, S.Si., M.Eng.', NULL, 1);
-INSERT INTO `pegawai` VALUES (342, 59, NULL, NULL, NULL, '198805202015081014', 'Nurirwan Saputra, S.Kom., M.Eng', NULL, 1);
-INSERT INTO `pegawai` VALUES (343, 59, NULL, NULL, NULL, '199002222016012000', 'Puji Handayani Putri, S.T., M.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (344, 59, NULL, NULL, NULL, '198412272016041000', 'Prahenusa Wahyu Ciptadi, S.T., M.T', NULL, 1);
-INSERT INTO `pegawai` VALUES (345, 59, NULL, NULL, NULL, '198712052016041012', 'R. Hafid Hardyanto, S.Pd., M.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (346, 59, NULL, NULL, NULL, '198504242016041005', 'Aditya Wahana, S.Pd.T., M.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (347, 2, 3, 5, '0', '198401032015081000', 'Sunggito Oyama, S.Kom., M.T', '0', 1);
-INSERT INTO `pegawai` VALUES (348, 59, NULL, NULL, NULL, '198304132018051020', 'Tri Hastono, S.Kom.,M.T', NULL, 1);
-INSERT INTO `pegawai` VALUES (349, 59, NULL, NULL, NULL, '199104232018051004', 'Ari Kusuma Wardana, S.T., M.Cs', NULL, 1);
-INSERT INTO `pegawai` VALUES (350, 59, NULL, NULL, NULL, '198312292018051017', 'Rianto, S.Kom., M.T', NULL, 1);
-INSERT INTO `pegawai` VALUES (351, 59, NULL, NULL, NULL, '197707312018051006', 'Firdiyan Syah, S.Kom., M.Kom', NULL, 1);
-INSERT INTO `pegawai` VALUES (352, 60, NULL, NULL, NULL, NULL, 'Lana Santika Nadia, S.T.P., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (353, 60, NULL, NULL, NULL, NULL, 'Atika Nur Syarifah, S.TP., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (354, 60, NULL, NULL, NULL, NULL, 'Dewi Amrih, S.T.P., M.Sc.', NULL, 1);
-INSERT INTO `pegawai` VALUES (355, 60, NULL, NULL, NULL, NULL, 'Adi Sutakwa, S.TP., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (356, 60, NULL, NULL, NULL, NULL, 'Suharman, S.TP., M.Sc', NULL, 1);
-INSERT INTO `pegawai` VALUES (357, NULL, NULL, NULL, NULL, NULL, 'Ahmad Edy Nugroho, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (358, NULL, NULL, NULL, NULL, NULL, 'Rahman Hasto Nugroho, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (359, NULL, NULL, NULL, NULL, NULL, 'Heni Nurrohmah, S.Pd', NULL, 1);
-INSERT INTO `pegawai` VALUES (360, NULL, NULL, NULL, NULL, NULL, 'Asri Sudarisman', NULL, 1);
-INSERT INTO `pegawai` VALUES (361, NULL, NULL, NULL, NULL, NULL, 'Wisnu Sukmo Pamungkas', NULL, 1);
-INSERT INTO `pegawai` VALUES (362, NULL, NULL, NULL, NULL, NULL, 'Ferry Yulianto', NULL, 1);
-INSERT INTO `pegawai` VALUES (363, NULL, NULL, NULL, NULL, NULL, 'Suparman', NULL, 1);
-COMMIT;
+INSERT INTO `pegawai` VALUES ('1', '1', null, null, null, null, 'Citra Murti Anggraini, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('2', '1', null, null, null, '197001282014101001', 'Sru Hardoyo, A.Md.', null, '1');
+INSERT INTO `pegawai` VALUES ('3', '1', null, null, null, null, 'Nur Fatimah', null, '1');
+INSERT INTO `pegawai` VALUES ('4', '1', null, null, null, null, 'Rahmad Nurcahya, A.Md.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('5', '1', null, null, null, null, 'RA Hastin Kusumaningrum, A.Md.Sek', null, '0');
+INSERT INTO `pegawai` VALUES ('6', '1', null, null, null, null, 'Rizky Amanda Rachman, A.Md', null, '1');
+INSERT INTO `pegawai` VALUES ('7', '2', null, null, null, '196512101992082002', 'Dra. Muryani', null, '1');
+INSERT INTO `pegawai` VALUES ('8', '2', null, null, null, null, 'Setiawan Eko P., S.Kh.', null, '1');
+INSERT INTO `pegawai` VALUES ('9', '2', null, null, null, null, 'Mirwan Hanafi, S.E', null, '1');
+INSERT INTO `pegawai` VALUES ('10', '2', null, null, null, null, 'Anis Khoirin Nisa, A.Md.Ak', null, '1');
+INSERT INTO `pegawai` VALUES ('11', '3', null, null, null, '196506031988081001', 'Dra. Juliana Widarjanti', null, '1');
+INSERT INTO `pegawai` VALUES ('12', '3', null, null, null, null, 'Anom Wijono, ST.', null, '1');
+INSERT INTO `pegawai` VALUES ('13', '3', null, null, null, null, 'Suramin, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('14', '3', null, null, null, null, 'Krisnayang Vertika, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('15', '3', null, null, null, '196901171993082004', 'Melan Tri Prasetya, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('16', '3', null, null, '190115', null, 'Rony Hanif Warayang, S.Hut', null, '1');
+INSERT INTO `pegawai` VALUES ('17', '3', null, null, null, '197002231998051003', 'Febri Aji Wisnulaksito, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('18', '4', null, null, null, '198311202014101002', 'Atmuji Handoko', null, '1');
+INSERT INTO `pegawai` VALUES ('19', '4', null, null, null, '197406202017101003', 'Sugiharto, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('20', '4', null, null, null, null, 'Eri Kriswanto', null, '1');
+INSERT INTO `pegawai` VALUES ('21', '4', null, null, null, '196602271992082003', 'Sudari', null, '1');
+INSERT INTO `pegawai` VALUES ('22', '4', null, null, null, '196309141998051002', 'Suparno', null, '1');
+INSERT INTO `pegawai` VALUES ('23', '4', null, null, null, null, 'Ngatinem, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('24', '4', null, null, null, '197307022007101002', 'Paijan', null, '1');
+INSERT INTO `pegawai` VALUES ('25', '4', null, null, null, null, 'Wahyu Setiawan', null, '1');
+INSERT INTO `pegawai` VALUES ('26', '4', null, null, null, null, 'Agust. Suharwanto, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('27', '4', null, null, null, null, 'Jono', null, '1');
+INSERT INTO `pegawai` VALUES ('28', '4', null, null, null, '196105252005051001', 'Ariadi Setya Wijaya, A.Md', null, '1');
+INSERT INTO `pegawai` VALUES ('29', '4', null, null, null, '196906032017102001', 'Rakhmat Wahyudi, S.Pd.T', null, '0');
+INSERT INTO `pegawai` VALUES ('30', '5', null, null, null, null, 'Musbadi', null, '1');
+INSERT INTO `pegawai` VALUES ('31', '5', null, null, null, null, 'Suraji', null, '1');
+INSERT INTO `pegawai` VALUES ('32', '5', null, null, null, null, 'Eko Dwi Purnomo', null, '0');
+INSERT INTO `pegawai` VALUES ('33', '5', null, null, null, null, 'Sumirang Jati Caroko', null, '1');
+INSERT INTO `pegawai` VALUES ('34', '5', null, null, null, null, 'Rahmat Dion', null, '1');
+INSERT INTO `pegawai` VALUES ('35', '5', null, null, null, null, 'Dalud Purnomo', null, '1');
+INSERT INTO `pegawai` VALUES ('36', '5', null, null, null, null, 'Sukamto', null, '1');
+INSERT INTO `pegawai` VALUES ('37', '5', null, null, null, null, 'Tumiran', null, '1');
+INSERT INTO `pegawai` VALUES ('38', '5', null, null, null, null, 'Darobi', null, '1');
+INSERT INTO `pegawai` VALUES ('39', '5', null, null, null, null, 'David', null, '1');
+INSERT INTO `pegawai` VALUES ('40', '5', null, null, null, null, 'Totok Supriyadi', null, '1');
+INSERT INTO `pegawai` VALUES ('41', '6', null, null, null, null, 'Hasan Muji Santoso', null, '1');
+INSERT INTO `pegawai` VALUES ('42', '6', null, null, null, null, 'Karyadi', null, '0');
+INSERT INTO `pegawai` VALUES ('43', '7', null, null, null, null, 'Supardiyono', null, '0');
+INSERT INTO `pegawai` VALUES ('44', '8', null, null, null, null, 'Cerry Reggiani Catri S.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('45', '9', null, null, null, null, 'Adi Prasetyo, S.Kom.', null, '1');
+INSERT INTO `pegawai` VALUES ('46', '10', null, null, null, null, 'Drs. Eko Asihanto', null, '1');
+INSERT INTO `pegawai` VALUES ('47', '11', null, null, null, null, 'Fajar Ampi Dyantoro, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('48', '12', null, null, null, null, 'Danang Hanjaru, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('49', '13', null, null, null, null, 'Ida Setiani', null, '1');
+INSERT INTO `pegawai` VALUES ('50', '13', null, null, null, null, 'Tias Anggraheni', null, '1');
+INSERT INTO `pegawai` VALUES ('51', '13', null, null, null, null, 'Rismawati Artafasara, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('52', '13', null, null, null, null, 'Fitria Ratnasari', null, '1');
+INSERT INTO `pegawai` VALUES ('53', '13', null, null, null, null, 'Dwi Wulandari, S.Ak', null, '1');
+INSERT INTO `pegawai` VALUES ('54', '13', null, null, null, null, 'Ita Sari, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('55', '13', null, null, null, null, 'Nella Merita Kumalasari, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('56', '13', null, null, null, null, 'Naura Syauqina Firdausa', null, '1');
+INSERT INTO `pegawai` VALUES ('57', '13', null, null, null, null, 'Tyas Ayu Wahyu Ningsih', null, '1');
+INSERT INTO `pegawai` VALUES ('58', '62', null, null, '141119', '141119', 'Yunia Afiyati', null, '1');
+INSERT INTO `pegawai` VALUES ('59', '13', null, null, null, null, 'Pungki Revianti', null, '0');
+INSERT INTO `pegawai` VALUES ('60', '13', null, null, null, null, 'Khamidah', null, '1');
+INSERT INTO `pegawai` VALUES ('61', '13', null, null, null, null, 'Dhita Murti Santari', null, '1');
+INSERT INTO `pegawai` VALUES ('62', '13', null, null, null, null, 'Puspa Tikka Lovianti', null, '1');
+INSERT INTO `pegawai` VALUES ('63', '13', null, null, null, null, 'Athalia Fawwaz Agianto', null, '1');
+INSERT INTO `pegawai` VALUES ('64', '13', null, null, null, null, 'M. Riyan Prastya', null, '1');
+INSERT INTO `pegawai` VALUES ('65', '13', null, null, null, null, 'Yulina Dwi', null, '1');
+INSERT INTO `pegawai` VALUES ('66', '13', null, null, null, null, 'Indri Widyastuti', null, '1');
+INSERT INTO `pegawai` VALUES ('67', '13', null, null, null, null, 'Luthfi Nabila', null, '1');
+INSERT INTO `pegawai` VALUES ('68', '13', null, null, null, null, 'Eka Cahyati Putri', null, '1');
+INSERT INTO `pegawai` VALUES ('69', '14', null, null, null, null, 'Sukirman ', null, '1');
+INSERT INTO `pegawai` VALUES ('70', '15', null, null, null, null, 'Nofi Rini Dyah S, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('71', '16', null, null, null, null, 'Drs. Sarjiman', null, '1');
+INSERT INTO `pegawai` VALUES ('72', '17', null, null, null, null, 'Supardi, ST.', null, '1');
+INSERT INTO `pegawai` VALUES ('73', '18', null, null, null, '196905202018061001', 'Drs. Subur Mulyono', null, '1');
+INSERT INTO `pegawai` VALUES ('74', '18', null, null, null, '197511132017101005', 'Wastono', null, '1');
+INSERT INTO `pegawai` VALUES ('75', '18', null, null, null, '196807172014101006', 'Abdullah', null, '1');
+INSERT INTO `pegawai` VALUES ('76', '18', null, null, null, null, 'Eko Pratamasiwi', null, '1');
+INSERT INTO `pegawai` VALUES ('77', '18', null, null, null, '196201121993081006', 'Jumadi', null, '1');
+INSERT INTO `pegawai` VALUES ('78', '18', null, null, null, null, 'Sujiono, SS.', null, '1');
+INSERT INTO `pegawai` VALUES ('79', '18', null, null, null, null, 'Sugeng Haryadi', null, '1');
+INSERT INTO `pegawai` VALUES ('80', '18', null, null, null, null, 'Triyanto, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('81', '18', null, null, null, null, 'Djulianto', null, '1');
+INSERT INTO `pegawai` VALUES ('82', '18', null, null, null, null, 'Sarino', null, '1');
+INSERT INTO `pegawai` VALUES ('83', '19', null, null, null, null, 'Septi Ari Wahyuni', null, '1');
+INSERT INTO `pegawai` VALUES ('84', '19', null, null, null, null, 'Mohammat Syamsul Hidayat', null, '1');
+INSERT INTO `pegawai` VALUES ('85', '19', null, null, null, null, 'Mitun Nur Laksono', null, '1');
+INSERT INTO `pegawai` VALUES ('86', '19', null, null, null, null, 'Fany Jaka Susila', null, '0');
+INSERT INTO `pegawai` VALUES ('87', '19', null, null, null, null, 'Eko Supriyono', null, '1');
+INSERT INTO `pegawai` VALUES ('88', '19', null, null, null, null, 'Ade', null, '0');
+INSERT INTO `pegawai` VALUES ('89', '19', null, null, null, null, 'Heru Purnomo', null, '1');
+INSERT INTO `pegawai` VALUES ('90', '19', null, null, null, null, 'Ariyo Swandoko', null, '1');
+INSERT INTO `pegawai` VALUES ('91', '19', null, null, null, null, 'Kurnia Ayus Munandar', null, '1');
+INSERT INTO `pegawai` VALUES ('92', '19', null, null, null, null, 'Tri Wahyuni', null, '1');
+INSERT INTO `pegawai` VALUES ('93', '19', null, null, null, null, 'Imam Chusairi', null, '1');
+INSERT INTO `pegawai` VALUES ('94', '19', null, null, null, null, 'Bima', null, '1');
+INSERT INTO `pegawai` VALUES ('95', '20', null, null, null, null, 'Sukirdi', null, '0');
+INSERT INTO `pegawai` VALUES ('96', '20', null, null, null, null, 'Anggoro', null, '0');
+INSERT INTO `pegawai` VALUES ('97', '21', null, null, null, null, 'Samijo', null, '1');
+INSERT INTO `pegawai` VALUES ('98', '21', null, null, null, null, 'Danur', null, '1');
+INSERT INTO `pegawai` VALUES ('99', '21', null, null, null, null, 'Fatturrohman', null, '1');
+INSERT INTO `pegawai` VALUES ('100', '21', null, null, null, null, 'Danang Prijantoro', null, '1');
+INSERT INTO `pegawai` VALUES ('101', '21', null, null, null, null, 'Ngadiman', null, '1');
+INSERT INTO `pegawai` VALUES ('102', '22', null, null, null, null, 'Eka Nugraha Sari, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('103', '22', null, null, null, null, 'Muhari Agus Nugraha, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('104', '23', null, null, null, '196711261993032002', 'Dra. Tri Siwi Nugrahani, S.E., M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('105', '23', null, null, null, '197408142006071001', 'Dr. Dekeng Setyo Budiarto, Ak.CA.', null, '1');
+INSERT INTO `pegawai` VALUES ('106', '23', null, null, null, '197802012006071004', 'Sri Widodo, S.E.,M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('107', '23', null, null, null, '197603072002041002', 'Sukhemi, M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('108', '23', null, null, null, '197804292004042001', 'Vidya Vitta Adhivinna., SE., M.Si.Ak', null, '1');
+INSERT INTO `pegawai` VALUES ('109', '23', null, null, null, '196202211995031004', 'Hari Purnama, S.E., M.M.', null, '1');
+INSERT INTO `pegawai` VALUES ('110', '23', null, null, null, '198808072014042007', 'Ratna Purnama Sari, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('111', '23', null, null, null, '198601142015082000', 'Rani Eka Diansari, S.E., M.Acc', null, '1');
+INSERT INTO `pegawai` VALUES ('112', '23', null, null, null, '198501082015082006', 'Yennisa, S.E., M.Sc.Ak.CA', null, '1');
+INSERT INTO `pegawai` VALUES ('113', '23', null, null, null, '199003242016041013', 'M. Sulkhanul Umam, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('114', '23', null, null, null, '199309162018052013', 'Ningrum Pramudiati, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('115', '23', null, null, null, '199205232018052025', 'Anandita Zulia Putri, S.E., M.Acc', null, '1');
+INSERT INTO `pegawai` VALUES ('116', '23', null, null, null, '199311042018062026', 'Lulu Amalia Nusron, S.E., M.Ak', null, '1');
+INSERT INTO `pegawai` VALUES ('117', '23', null, null, null, null, 'Zidni Husnia Fachrunnisa, S.E., M.Ak.', null, '1');
+INSERT INTO `pegawai` VALUES ('118', '23', null, null, null, null, 'Baniady Gennody Pronosokodewo, S.E., M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('119', '23', null, null, null, null, 'Rahandhika Ivan Adyaksana, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('120', '24', null, null, null, null, 'Margi Untungningsih', null, '0');
+INSERT INTO `pegawai` VALUES ('121', '25', null, null, null, '197406202008041005', 'Iswati', null, '1');
+INSERT INTO `pegawai` VALUES ('122', '27', null, null, null, null, 'Suntoro, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('123', '27', null, null, null, null, 'Yanning Adhiyanti, S.P', null, '1');
+INSERT INTO `pegawai` VALUES ('124', '27', null, null, null, '197205102016102001', 'Riezki Desiana Nur Pramono, A.Md.Sek', null, '1');
+INSERT INTO `pegawai` VALUES ('125', '28', null, null, null, '196905011993081005', 'Lita Yuniatri, A.Md.', null, '1');
+INSERT INTO `pegawai` VALUES ('126', '29', null, null, null, '198611232014102004', 'Sri Nurhayati, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('127', '30', null, null, null, '196404101988081001', 'Sumardi, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('128', '31', null, null, null, '196507121988081003', 'Novita Setyaningsih, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('129', '32', null, null, null, '196006092005052002', 'Waginah, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('130', '33', null, null, null, '196901171993102003', 'Endah Rini Astuti, MPd.', null, '1');
+INSERT INTO `pegawai` VALUES ('131', '34', null, null, null, null, 'Samsudin, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('132', '35', null, null, null, '197511082014102003', 'Upik Kuswardhani', null, '1');
+INSERT INTO `pegawai` VALUES ('133', '36', null, null, null, null, 'Yuli Ibnu Darsana, S.Pd., M.A', null, '1');
+INSERT INTO `pegawai` VALUES ('134', '36', null, null, null, '196607271996011001', 'Fitri Riani, A.Md', null, '1');
+INSERT INTO `pegawai` VALUES ('135', '36', null, null, null, '196401011998051004', 'Munir Nugroho, SIP', null, '1');
+INSERT INTO `pegawai` VALUES ('136', '36', null, null, null, '196411062017101002', 'Nurul Sinto A., SIP', null, '1');
+INSERT INTO `pegawai` VALUES ('137', '37', null, null, null, '197410072017101004', 'Pepen Suherman, S.Kom.', null, '1');
+INSERT INTO `pegawai` VALUES ('138', '37', null, null, null, '196912052014101007', 'Friya Fratama Bekti Susanto, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('139', '37', null, null, null, null, 'Edy Purwanto, S.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('140', '37', null, null, null, '197509142014101005', 'Dian Fitri Utami, A.Md', null, '1');
+INSERT INTO `pegawai` VALUES ('141', '38', null, null, null, null, 'Restu Dwi Nugraeni, S.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('142', '38', null, null, null, '196807141993082003', 'Suradi', null, '1');
+INSERT INTO `pegawai` VALUES ('143', '38', null, null, null, null, 'Agus Suparyanto', null, '1');
+INSERT INTO `pegawai` VALUES ('144', '39', null, null, null, '197110091998122005', 'Dr. Okti  Purwaningsih, MP.', null, '1');
+INSERT INTO `pegawai` VALUES ('145', '39', null, null, null, '195405261985031002', 'Ir. Herman Budi Susetyo, MP.', null, '0');
+INSERT INTO `pegawai` VALUES ('146', '39', null, null, null, '196503211996041003', 'Drs. M. Kusberyunadi, M.MA', null, '0');
+INSERT INTO `pegawai` VALUES ('147', '39', null, null, null, '196309171995031002', 'Ir. Ahmad Bahrum, M.P.', null, '0');
+INSERT INTO `pegawai` VALUES ('148', '39', null, null, null, '196403141995031005', 'Ir. Ardiyanto, M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('149', '39', null, null, null, '196509161995031003', 'Dr. Ir. Paiman, M.P.', null, '1');
+INSERT INTO `pegawai` VALUES ('150', '39', null, null, null, '197511162005012002', 'C. Tri Kusumastuti, S.P., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('151', '39', null, null, null, null, 'Puguh Bintang Pamungkas, M.P', null, '1');
+INSERT INTO `pegawai` VALUES ('152', '39', null, null, null, null, 'Prof. Dr. Ir. Prapto Yudhono, M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('153', '40', null, null, null, '196711261993032002', 'Dra. Tri Siwi Nugrahani, S.E., M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('154', '40', null, null, null, '197408142006071001', 'Dr. Dekeng Setyo Budiarto, Ak.CA.', null, '1');
+INSERT INTO `pegawai` VALUES ('155', '40', null, null, null, '197802012006071004', 'Sri Widodo, S.E.,M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('156', '40', null, null, null, '197603072002041002', 'Sukhemi, M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('157', '40', null, null, null, '197804292004042001', 'Vidya Vitta Adhivinna., SE., M.Si.Ak', null, '1');
+INSERT INTO `pegawai` VALUES ('158', '40', null, null, null, '196202211995031004', 'Hari Purnama, S.E., M.M.', null, '1');
+INSERT INTO `pegawai` VALUES ('159', '40', null, null, null, '198808072014042007', 'Ratna Purnama Sari, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('160', '40', null, null, null, '198601142015082000', 'Rani Eka Diansari, S.E., M.Acc', null, '1');
+INSERT INTO `pegawai` VALUES ('161', '40', null, null, null, '198501082015082006', 'Yennisa, S.E., M.Sc.Ak.CA', null, '1');
+INSERT INTO `pegawai` VALUES ('162', '40', null, null, null, '199003242016041013', 'M. Sulkhanul Umam, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('163', '40', null, null, null, '199309162018052013', 'Ningrum Pramudiati, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('164', '40', null, null, null, '199205232018052025', 'Anandita Zulia Putri, S.E., M.Acc', null, '1');
+INSERT INTO `pegawai` VALUES ('165', '40', null, null, null, '199311042018062026', 'Lulu Amalia Nusron, S.E., M.Ak', null, '1');
+INSERT INTO `pegawai` VALUES ('166', '40', null, null, null, null, 'Zidni Husnia Fachrunnisa, S.E., M.Ak.', null, '1');
+INSERT INTO `pegawai` VALUES ('167', '40', null, null, null, null, 'Baniady Gennody Pronosokodewo, S.E., M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('168', '40', null, null, null, null, 'Rahandhika Ivan Adyaksana, S.E., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('169', '41', null, null, null, '196012121987032002', 'Dra. Ika Ernawati, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('170', '41', null, null, null, '195207051982111002', 'Drs. Djuwalman, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('171', '41', null, null, null, '195911071987031002', 'Drs. Makin, M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('172', '41', null, null, null, '197110282010042003', 'Enik Nur Kholidah, S.E., M.A.', null, '1');
+INSERT INTO `pegawai` VALUES ('173', '41', null, null, null, '198411292013022001', 'Arum Setiowati, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('174', '41', null, null, null, '195703101985032001', 'Dra. Hj. Nurwahyumiani, M.A', null, '1');
+INSERT INTO `pegawai` VALUES ('175', '41', null, null, null, '195411091981032001', 'Dra. Suharni, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('176', '41', null, null, null, '199011242016041018', 'Drajat Edy Kurniawan, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('177', '41', null, null, null, '198812172016082000', 'Shinta Purwaningrum, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('178', '41', null, null, null, '198609022016041014', 'Taufik Agung Pranowo, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('179', '41', null, null, null, '198703232014041001', 'Eko Perianto, S.Pd., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('180', '41', null, null, null, '198812092014042002', 'Iis Latifah Nuryanto, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('181', '41', null, null, null, '199403202018052008', 'Herwinda Putri Daniswari, S.Pd.,M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('182', '42', null, null, null, null, 'Amalia Cemara Nur’aidha, S.Si., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('183', '42', null, null, null, '198801052016101002', 'Dhananjaya Yama Hudha, S.T, M. Biotech ', null, '1');
+INSERT INTO `pegawai` VALUES ('184', '42', null, null, null, null, 'dr. R. Bopi Yudha Sapa, M.Sc., MMR', null, '1');
+INSERT INTO `pegawai` VALUES ('185', '42', null, null, null, null, 'Wahyu Sugianto, S.Si., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('186', '42', null, null, null, null, 'Mira Setiana, S.Si., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('187', '43', null, null, null, null, 'Ekha Rifki Fauzi, SKM, M.P.H', null, '1');
+INSERT INTO `pegawai` VALUES ('188', '43', null, null, null, null, 'Danang Widyawarman, S.ST, M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('189', '43', null, null, null, null, 'Dena Anugrah, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('190', '43', null, null, null, null, 'Pebri Prihatmoko, S.Pd., M.Eng', null, '1');
+INSERT INTO `pegawai` VALUES ('191', '43', null, null, null, null, 'Herenda Sela Wismaya, S.Si., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('192', '44', null, null, null, null, 'Apt. Rahmat A.Hi Wahid, S.Farm., M.Farm', null, '1');
+INSERT INTO `pegawai` VALUES ('193', '44', null, null, null, null, 'Apt. Margala Juang Bertorio, S.Farm., M.Clin.Pharm', null, '1');
+INSERT INTO `pegawai` VALUES ('194', '44', null, null, null, null, 'Nurul Jannah., S.Farm., M.Pharm.Sci., Apt', null, '1');
+INSERT INTO `pegawai` VALUES ('195', '44', null, null, null, null, 'Anis Febri Nilansari, S.Farm., M.Pharm.Sci., Apt', null, '1');
+INSERT INTO `pegawai` VALUES ('196', '44', null, null, null, null, 'Hanifah Karimatulhajj, S.Farm., M.Farm', null, '1');
+INSERT INTO `pegawai` VALUES ('197', '45', null, null, null, null, 'Brevi Istu Pambudi, S.Gz., M.Gizi.', null, '1');
+INSERT INTO `pegawai` VALUES ('198', '45', null, null, null, null, 'Laeli Nur Hasanah, S. Gz., M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('199', '45', null, null, null, null, 'Astri Praba Shinta, S.Gz., M.P.H', null, '1');
+INSERT INTO `pegawai` VALUES ('200', '45', null, null, null, null, 'Rosmauli Jeremia, S.Gz., M.Gizi', null, '1');
+INSERT INTO `pegawai` VALUES ('201', '45', null, null, null, null, 'Ryan Rohmansyah, S.Gz., M.Gz', null, '1');
+INSERT INTO `pegawai` VALUES ('202', '46', null, null, null, '198207212014042006', 'Fitri Susilowati, S.E., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('203', '46', null, null, null, '195309211981032001', 'Dra. Murti Sumarni, MM.', null, '1');
+INSERT INTO `pegawai` VALUES ('204', '46', null, null, null, '195901061985032007', 'Dra. Yati Suhartini, MA.', null, '1');
+INSERT INTO `pegawai` VALUES ('205', '46', null, null, null, '196102131987031001', 'Drs. Arif Sudaryana, M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('206', '46', null, null, null, '195806071995032001', 'Dra. Endang Tri Wahyuni, MM.', null, '1');
+INSERT INTO `pegawai` VALUES ('207', '46', null, null, null, '196707292002041003', 'Lilik Siswanto, S.E, M.M', null, '0');
+INSERT INTO `pegawai` VALUES ('208', '46', null, null, null, '198310292015082000', 'Arista Natia Afriany, S.E, M.BA', null, '1');
+INSERT INTO `pegawai` VALUES ('209', '46', null, null, null, '198707242015081000', 'Ahsan Sumantika, S.E, M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('210', '46', null, null, null, '198608272015081000', 'Adhi Prakosa,S.E. M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('211', '46', null, null, null, '199010172016041009', 'Faizal Ardiyanto, S.E., M.M', null, '1');
+INSERT INTO `pegawai` VALUES ('212', '46', null, null, null, '197310221997102001', 'Saptaningsih Sumarmi, S.E., M.M', null, '1');
+INSERT INTO `pegawai` VALUES ('213', '46', null, null, null, '198911102018051003', 'Anindita Imam Basri, S.E.I.,M.M', null, '1');
+INSERT INTO `pegawai` VALUES ('214', '46', null, null, null, '198712172018052012', 'Natalia Ratna Ningrum, S.E.,M.M', null, '1');
+INSERT INTO `pegawai` VALUES ('215', '46', null, null, null, '197406062018052005', 'Diah Aryanti Saptowarsi, S.E.,M.Sc', null, '0');
+INSERT INTO `pegawai` VALUES ('216', '46', null, null, null, '196909102018052009', 'Inayat Hanum Indriati,S.E., M.M', null, '1');
+INSERT INTO `pegawai` VALUES ('217', '46', null, null, null, null, 'Pradita Nindya Aryandha, S.E., M.B.A', null, '1');
+INSERT INTO `pegawai` VALUES ('218', '46', null, null, null, null, 'Hapsari Dyah Herdiany, S.E., M.M', null, '1');
+INSERT INTO `pegawai` VALUES ('219', '46', null, null, null, null, 'Latifah Putranti, S.E., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('220', '46', null, null, null, null, 'Fikri Farhan, S.E., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('221', '46', null, null, null, null, 'Guruh Ghifar Zalzalah, S.E., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('222', '47', null, null, null, '198704212013102004', 'Primasari Wahyuni, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('223', '47', null, null, null, '197607112013102002', 'Muncar Tyas Palupi, S.S., M.Hum.', null, '1');
+INSERT INTO `pegawai` VALUES ('224', '47', null, null, null, '197908182013102001', 'Rika Novita Kusumaningrum, S.S., M.A.', null, '1');
+INSERT INTO `pegawai` VALUES ('225', '47', null, null, null, '197101152013102003', 'Tri Ratna Herawati, S.Pd., M.Hum.', null, '1');
+INSERT INTO `pegawai` VALUES ('226', '47', null, null, null, '198406012014042005', 'Fitri Jamilah, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('227', '47', null, null, null, '198210202014042004', 'Nina Widyaningsih, S.Pd., M.Hum', null, '1');
+INSERT INTO `pegawai` VALUES ('228', '47', null, null, null, '199301132018051024', 'Yanuar Bagas Arwansyah, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('229', '47', null, null, null, '199209062019011007', 'Jalu Norva Illa Putra, S.S., M.A.', null, '1');
+INSERT INTO `pegawai` VALUES ('230', '48', null, null, null, '198306092013101002', 'Sujatmiko, S.Pd.Ing., M.Hum.', null, '1');
+INSERT INTO `pegawai` VALUES ('231', '48', null, null, null, '197803162013102004', 'Nafisah Endahati, S.Pd., M.Hum', null, '1');
+INSERT INTO `pegawai` VALUES ('232', '48', null, null, null, '197906132014012001', 'Sri Wiyanah, S.Pd., M.Hum.', null, '1');
+INSERT INTO `pegawai` VALUES ('233', '48', null, null, null, '198501022013101001', 'Rudha Widagsa, S.S., M.A.', null, '1');
+INSERT INTO `pegawai` VALUES ('234', '48', null, null, null, '198704042014021000', 'Juang Kurniawan S, S.Pd., M.Pd.B.I', null, '1');
+INSERT INTO `pegawai` VALUES ('235', '48', null, null, null, '198604212014041003', 'Andi Dian Rahmawan, S.Pd., M.A', null, '1');
+INSERT INTO `pegawai` VALUES ('236', '48', null, null, null, '199210232018051018', 'Rifki Irawan, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('237', '49', null, null, null, '196208161987022001', 'Dra. Kristina Warniasih, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('238', '49', null, null, null, '196205161988032001', 'Dra. MM. Endang Susetyawati, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('239', '49', null, null, null, '198206112011041001', 'Abdul Aziz Saefudin, S.Pd.I.,M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('240', '49', null, null, null, '198704262011042004', 'Dhian Arista Istikomah, S.Si., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('241', '49', null, null, null, '198407042010041004', 'Gunawan, S.Si., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('242', '49', null, null, null, '198412222011042003', 'Laela Sagita, S.Pd., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('243', '49', null, null, null, '198310302010041001', 'Nendra Mursetya S D, S.Pd., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('244', '62', '2', '4', '11074', '198404222009042002', 'Dr. Niken Wahyu Utami, S.Pd.Si., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('245', '49', null, null, null, '198612062012012033', 'Koryna Aviori, S.Si., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('246', '49', null, null, null, '197809232014012000', 'Siska Candra Ningsih, S.Si., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('247', '49', null, null, null, '198004122014082000', 'Titis Sunanti, S.Pd., M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('248', '49', null, null, null, '198906152015082010', 'Palupi Sri Wijayanti, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('249', '49', null, null, null, '198904172015081012', 'Padrul Jana, S.Pd., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('250', '49', null, null, null, '198612252015081000', 'Kintoko, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('251', '49', null, null, null, '198901232014041014', 'Bintang Wicaksono, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('252', '49', null, null, null, '197612242005012002', 'Ch. Eva Nuryani, S.Si., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('253', '50', null, null, null, '196812171994121001', 'Tri Wahana, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('254', '50', null, null, null, '196711051994121002', 'Darsono, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('255', '50', null, null, null, '196502161991091004', 'Drs. Siswanta, M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('256', '50', null, null, null, '195107011989071001', 'Drs. Johanes Sabari, M.Si.', null, '1');
+INSERT INTO `pegawai` VALUES ('257', '50', null, null, null, '198802102014041009', 'Dr. Muhammad Iqbal Birsyada, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('258', '50', null, null, null, null, 'Bayu Ananto Wibowo, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('259', '50', null, null, null, null, 'Fahruddin, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('260', '51', null, null, null, '195707131983031003', 'Dr. Sukadari, SE., SH.,MM.', null, '1');
+INSERT INTO `pegawai` VALUES ('261', '51', null, null, null, '195704251984031002', 'Prof. Dr. Buchory MS, M.Pd.', null, '0');
+INSERT INTO `pegawai` VALUES ('262', '51', null, null, null, '196128121987022001', 'Dr. Salamah, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('263', '51', null, null, null, '195402281980122001', 'Dr. Sunarti, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('264', '51', null, null, null, null, 'Prof. Dr. Kodiran, MA', null, '1');
+INSERT INTO `pegawai` VALUES ('265', '51', null, null, null, null, 'Prof. Dr. DJoko Suryo', null, '1');
+INSERT INTO `pegawai` VALUES ('266', '51', null, null, null, '197611142005011001', 'Dr.Victor Novianto, S.Pd., M.Hum', null, '1');
+INSERT INTO `pegawai` VALUES ('267', '51', null, null, null, '196509091995122001', 'Dr. Esti Setiawati, M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('268', '51', null, null, null, '195606132017041001', 'Dr. Drs. Tarto, S.T., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('269', '51', null, null, null, '196707191996101004', 'Dr. Gunawan Sridiyatmiko, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('270', '51', null, null, null, '197711272014042008', 'Dr. Elsa Putri Ermisah Syafril', null, '1');
+INSERT INTO `pegawai` VALUES ('271', '52', null, null, null, '199203092018051011', 'Luqman Hidayat, S.Pd.,M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('272', '52', null, null, null, '199010212016051002', 'Faiz Noormiyanto, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('273', '52', null, null, null, '199008042016052001', 'Dwi Setianingsih, M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('274', '52', null, null, null, '198407262016082002', 'Yulian Agus Suminar, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('275', '52', null, null, null, null, 'Dwi Putri Fatmawati, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('276', '52', null, null, null, null, 'Ramdhan Harjana, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('277', '53', null, null, null, '198811182018052014', 'Novianti Retno Utami, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('278', '53', null, null, null, '199211032018052010', 'Khikmah Novitasari, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('279', '53', null, null, null, '198203142018051007', 'Herdi Handoko, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('280', '53', null, null, null, '198609222018051002', 'Syahria Anggita Sakti, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('281', '53', null, null, null, '196411232018052019', 'Titik Mulat Widyastuti, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('282', '53', null, null, null, null, 'Windi Wulandari Iman Utama, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('283', '54', null, null, null, '195607131981012001', 'Rosalia Susila Purwanti, S.Sn., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('284', '54', null, null, null, '198508112008042001', 'Budiharti, S.Si., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('285', '54', null, null, null, '198603032008042002', 'Deri Anggraini, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('286', '54', null, null, null, '198002152008042004', 'Dr. Dhiniaty Gularso, S.Si., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('287', '54', null, null, null, '196909162002042001', 'Dr. Siti Maisaroh, SE., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('288', '54', null, null, null, '198405112008042003', 'Wahyu Kurniawati, S.Si., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('289', '54', null, null, null, '198612272012011001', 'Dr. Setyo Eko Atmojo, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('290', '54', null, null, null, '198707232013022002', 'Selly Rahmawati, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('291', '54', null, null, null, '198405102013021006', 'Dr. Ahmad Agung Yuwono, S.E., S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('292', '54', null, null, null, '198611052013021005', 'Ari Wibowo, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('293', '54', null, null, null, '197905052014042011', 'Rina Dyah Rahmawati, S.Si., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('294', '54', null, null, null, '198808232014041012', 'Taufik Muhtarom, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('295', '54', null, null, null, '198512312014041013', 'Danuri, S.Pd.Si., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('296', '54', null, null, null, '199009302015082000', 'Mahilda Dea Komalasari, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('297', '54', null, null, null, '198606232015081000', 'Hermawan Wahyu Setiadi, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('298', '54', null, null, null, '198810182015081003', 'Hengki Yudha Barnaba, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('299', '54', null, null, null, '199004022016041006', 'Bahtiyar Heru Susanto, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('300', '54', null, null, null, '198911172016041007', 'Beny Dwi Lukitoaji, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('301', '54', null, null, null, '199006062018051021', 'Urip Muhayat Wiji Wahyudi, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('302', '54', null, null, null, '199201302018051016', 'Rian Nurizka, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('303', '54', null, null, null, null, 'Dr. Amanatie, M.Pd., M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('304', '54', null, null, null, null, 'Dr. Ganung Anggraeni', null, '1');
+INSERT INTO `pegawai` VALUES ('305', '54', null, null, null, '199102052016061002', 'Arip Febrianto, S.Pd., M.Pd.I', null, '1');
+INSERT INTO `pegawai` VALUES ('306', '54', null, null, null, null, 'Hadna Suryantari, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('307', '54', null, null, null, null, 'Henry Aditia Rigianti, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('308', '54', null, null, null, null, 'Heru Purnomo, M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('309', '54', null, null, null, null, 'Puguh Ardianto Iskandar, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('310', '54', null, null, null, null, 'Muhardila Fauziah, S.Pd.I., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('311', '54', null, null, null, null, 'Yogi Prihandoko, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('312', '55', null, null, null, '196511101992021001', 'Sigit Handoko S.H., MH.', null, '1');
+INSERT INTO `pegawai` VALUES ('313', '55', null, null, null, '196903071993012001', 'Ari Retno Purwanti, SH., MH.', null, '1');
+INSERT INTO `pegawai` VALUES ('314', '62', '17', '4', '241119', '197304112010041002', 'Supri Hartanto, S.Pd., M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('315', '55', null, null, null, '195907161987022001', 'Dra. Rosalia Indriyati Saptatiningsih, M.Si', null, '1');
+INSERT INTO `pegawai` VALUES ('316', '55', null, null, null, '195403211980031001', 'Yitno Pringgowijoyo, SH., M.H', null, '1');
+INSERT INTO `pegawai` VALUES ('317', '55', null, null, null, '196509051992121006', 'Armansyah Prasakti, SH, Sp.N, M.H', null, '1');
+INSERT INTO `pegawai` VALUES ('318', '55', null, null, null, '198709112014041010', 'Dr. Septian Aji Permana, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('319', '55', null, null, null, '198709092018051001', 'Abdul Rahim, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('320', '55', null, null, null, null, 'T. Heru Nurgiansah, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('321', '56', null, null, null, null, 'Didik Rohmantoro, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('322', '56', null, null, null, null, 'Bayu Gilang Purnomo, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('323', '56', null, null, null, null, 'Muhammad Priya Permana, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('324', '56', null, null, null, null, 'Ir. Yulia Venti Yoanita,ST, M.Eng.', null, '1');
+INSERT INTO `pegawai` VALUES ('325', '56', null, null, null, null, 'Muhamad Amiruddin, S.Pd, M.Pd.', null, '1');
+INSERT INTO `pegawai` VALUES ('326', '57', null, null, null, null, 'Aldrin Febriansyah, ST., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('327', '57', null, null, null, null, 'Eka Widyaningsih, ST., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('328', '57', null, null, null, null, 'Radiaswari, ST., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('329', '57', null, null, null, null, 'Rachmat Wahyu Prabowo, ST., M.Eng.', null, '1');
+INSERT INTO `pegawai` VALUES ('330', '57', null, null, null, null, 'Adinda Rafika Dani, S.T., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('331', '58', null, null, null, '198505052016042003', 'Kurniawanti, S.T., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('332', '58', null, null, null, '198512092016042002', 'Yaning Tri Hapsari, S.T., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('333', '58', null, null, null, '198706302016042004', 'Hasti Hasanati Marfuah, S.T., M.T', null, '1');
+INSERT INTO `pegawai` VALUES ('334', '58', null, null, null, '198201222016101001', 'Theofilus Bayu Dwinugroho, S.T., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('335', '58', null, null, null, null, 'Guntur Samodro, S.T., M.T', null, '1');
+INSERT INTO `pegawai` VALUES ('336', '59', null, null, null, '196902141998121006', 'Ahmad Riyadi, S.Si., M.Kom.', null, '1');
+INSERT INTO `pegawai` VALUES ('337', '59', null, null, null, '197305122006071003', 'Meilany Nonsi Tentua, S.Si., MT.', null, '1');
+INSERT INTO `pegawai` VALUES ('338', '59', null, null, null, '197409212002041004', 'M. Fairuzabadi, S.Si., M.Kom.', null, '1');
+INSERT INTO `pegawai` VALUES ('339', '59', null, null, null, '197903272012012009', 'Marti Widya Sari, S.T., M.Eng', null, '1');
+INSERT INTO `pegawai` VALUES ('340', '59', null, null, null, '198409282015042001', 'Setia Wardani, S.Kom., M.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('341', '59', null, null, null, '196906072012011012', 'Wibawa, S.Si., M.Eng.', null, '1');
+INSERT INTO `pegawai` VALUES ('342', '59', null, null, null, '198805202015081014', 'Nurirwan Saputra, S.Kom., M.Eng', null, '1');
+INSERT INTO `pegawai` VALUES ('343', '59', null, null, null, '199002222016012000', 'Puji Handayani Putri, S.T., M.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('344', '59', null, null, null, '198412272016041000', 'Prahenusa Wahyu Ciptadi, S.T., M.T', null, '1');
+INSERT INTO `pegawai` VALUES ('345', '59', null, null, null, '198712052016041012', 'R. Hafid Hardyanto, S.Pd., M.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('346', '59', null, null, null, '198504242016041005', 'Aditya Wahana, S.Pd.T., M.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('347', '2', '3', '5', '0', '198401032015081000', 'Sunggito Oyama, S.Kom., M.T', '-', '1');
+INSERT INTO `pegawai` VALUES ('348', '59', null, null, null, '198304132018051020', 'Tri Hastono, S.Kom.,M.T', null, '1');
+INSERT INTO `pegawai` VALUES ('349', '59', null, null, null, '199104232018051004', 'Ari Kusuma Wardana, S.T., M.Cs', null, '1');
+INSERT INTO `pegawai` VALUES ('350', '59', null, null, null, '198312292018051017', 'Rianto, S.Kom., M.T', null, '1');
+INSERT INTO `pegawai` VALUES ('351', '59', null, null, null, '197707312018051006', 'Firdiyan Syah, S.Kom., M.Kom', null, '1');
+INSERT INTO `pegawai` VALUES ('352', '60', null, null, null, null, 'Lana Santika Nadia, S.T.P., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('353', '60', null, null, null, null, 'Atika Nur Syarifah, S.TP., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('354', '60', null, null, null, null, 'Dewi Amrih, S.T.P., M.Sc.', null, '1');
+INSERT INTO `pegawai` VALUES ('355', '60', null, null, null, null, 'Adi Sutakwa, S.TP., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('356', '60', null, null, null, null, 'Suharman, S.TP., M.Sc', null, '1');
+INSERT INTO `pegawai` VALUES ('357', null, null, null, null, null, 'Ahmad Edy Nugroho, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('358', null, null, null, null, null, 'Rahman Hasto Nugroho, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('359', null, null, null, null, null, 'Heni Nurrohmah, S.Pd', null, '1');
+INSERT INTO `pegawai` VALUES ('360', null, null, null, null, null, 'Asri Sudarisman', null, '1');
+INSERT INTO `pegawai` VALUES ('361', null, null, null, null, null, 'Wisnu Sukmo Pamungkas', null, '1');
+INSERT INTO `pegawai` VALUES ('362', null, null, null, null, null, 'Ferry Yulianto', null, '1');
+INSERT INTO `pegawai` VALUES ('363', null, null, null, null, null, 'Suparman', null, '1');
 
 -- ----------------------------
 -- Table structure for pengguna
@@ -28848,24 +28828,24 @@ CREATE TABLE `pengguna` (
   `password` varchar(120) DEFAULT NULL,
   `nama` varchar(255) DEFAULT NULL,
   `id_role` int(11) DEFAULT NULL,
+  `id_unit` int(11) DEFAULT NULL,
   `id_pegawai` int(11) unsigned DEFAULT NULL,
   `datetime_create` datetime DEFAULT NULL,
-  `datetime_update` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `datetime_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_pengguna`) USING BTREE,
   KEY `id_role` (`id_role`),
   KEY `id_pegawai` (`id_pegawai`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COMMENT='desain dari naskah';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='desain dari naskah';
 
 -- ----------------------------
 -- Records of pengguna
 -- ----------------------------
-BEGIN;
-INSERT INTO `pengguna` VALUES (1, 'admin', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Administrator SMKP', 1, NULL, NULL, NULL);
-INSERT INTO `pengguna` VALUES (2, 'biro_kepegawaian', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Biro Kepegawaian', 1, NULL, NULL, NULL);
-INSERT INTO `pengguna` VALUES (3, 'biro_keuangan', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Biro Keuangan', 2, NULL, NULL, NULL);
-INSERT INTO `pengguna` VALUES (4, 'kepegawaian', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Kepala Unit Biro Kepegawaian', 4, NULL, NULL, '2021-06-30 13:54:27');
-INSERT INTO `pengguna` VALUES (12, 'roni', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Roni', 5, 16, NULL, '2021-06-30 13:54:29');
-COMMIT;
+INSERT INTO `pengguna` VALUES ('1', 'admin', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Administrator SMKP', '1', null, null, null, null);
+INSERT INTO `pengguna` VALUES ('2', 'kepegawaian', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Biro Kepegawaian', '2', '3', null, null, '2021-07-04 23:13:33');
+INSERT INTO `pengguna` VALUES ('3', 'keuangan', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Biro Keuangan', '3', null, null, null, '2021-07-04 23:14:46');
+INSERT INTO `pengguna` VALUES ('4', 'roni', '$2y$10$.Fn8oY1zaoo3RZiuhBbRneNjSMNhtWO8UINoYygcw8vDV1JSBNSaS', 'Kepala Unit Biro Kepegawaian', '5', null, '16', null, '2021-07-03 00:41:52');
+INSERT INTO `pengguna` VALUES ('12', 'cahyonadi', '$2a$04$1hnS2qu.UHDblExAwq6dSenn6ianZJya0WgpYh3UNTdexhV8WmAnK', 'Antonius Eko Cahyo N', '1', null, '0', null, null);
+INSERT INTO `pengguna` VALUES ('13', 'unit_kepegawaian', '$2a$04$1hnS2qu.UHDblExAwq6dSenn6ianZJya0WgpYh3UNTdexhV8WmAnK', 'Unit Kepegawaian', '4', '3', null, null, '2021-07-04 23:14:10');
 
 -- ----------------------------
 -- Table structure for product
@@ -28876,17 +28856,15 @@ CREATE TABLE `product` (
   `name` varchar(255) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='tabel riset, tidak terpakai';
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-BEGIN;
-INSERT INTO `product` VALUES (1, 'Kopiss', 60000, 4, 'Kopi Luwaksss');
-INSERT INTO `product` VALUES (6, 'Americano', 15000, 3, 'Americano Ice');
-COMMIT;
+INSERT INTO `product` VALUES ('1', 'Kopiss', '60000', '4', 'Kopi Luwaksss');
+INSERT INTO `product` VALUES ('6', 'Americano', '15000', '3', 'Americano Ice');
 
 -- ----------------------------
 -- Table structure for program_studi
@@ -28902,30 +28880,28 @@ CREATE TABLE `program_studi` (
 -- ----------------------------
 -- Records of program_studi
 -- ----------------------------
-BEGIN;
-INSERT INTO `program_studi` VALUES (1, 1, 'Akuntansi');
-INSERT INTO `program_studi` VALUES (2, 1, 'Manajemen');
-INSERT INTO `program_studi` VALUES (3, 2, 'Agroteknologi');
-INSERT INTO `program_studi` VALUES (4, 2, 'Teknologi Hasil Pertanian');
-INSERT INTO `program_studi` VALUES (5, 3, 'Teknik Informatika');
-INSERT INTO `program_studi` VALUES (6, 3, 'Teknik Industri');
-INSERT INTO `program_studi` VALUES (7, 3, 'Teknik Biomedis');
-INSERT INTO `program_studi` VALUES (8, 3, 'Teknik Rekayasa Elektromedis');
-INSERT INTO `program_studi` VALUES (9, 3, 'Gizi');
-INSERT INTO `program_studi` VALUES (10, 3, 'Farmasi');
-INSERT INTO `program_studi` VALUES (11, 3, 'Arsitektur');
-INSERT INTO `program_studi` VALUES (12, 4, 'Pendidikan Guru Sekolah Dasar');
-INSERT INTO `program_studi` VALUES (13, 4, 'Pendidikan Sejarah');
-INSERT INTO `program_studi` VALUES (14, 4, 'Pendidikan Matematika');
-INSERT INTO `program_studi` VALUES (15, 4, 'Pendidikan Bahasa Inggris');
-INSERT INTO `program_studi` VALUES (16, 4, 'Pendidikan Bahasa dan Sastra Indonesia');
-INSERT INTO `program_studi` VALUES (17, 4, 'Pendidikan Pancasila dan Kewarganegaraan');
-INSERT INTO `program_studi` VALUES (18, 4, 'Bimbingan dan Konseling');
-INSERT INTO `program_studi` VALUES (19, 4, 'Pendidikan Luar Biasa');
-INSERT INTO `program_studi` VALUES (20, 4, 'Pendidikan Guru PAUD');
-INSERT INTO `program_studi` VALUES (21, 4, 'Pendidikan Vokasional Teknologi Otomotif');
-INSERT INTO `program_studi` VALUES (22, 5, 'Pendidikan Ilmu Pengetahuan Sosial');
-COMMIT;
+INSERT INTO `program_studi` VALUES ('1', '1', 'Akuntansi');
+INSERT INTO `program_studi` VALUES ('2', '1', 'Manajemen');
+INSERT INTO `program_studi` VALUES ('3', '2', 'Agroteknologi');
+INSERT INTO `program_studi` VALUES ('4', '2', 'Teknologi Hasil Pertanian');
+INSERT INTO `program_studi` VALUES ('5', '3', 'Teknik Informatika');
+INSERT INTO `program_studi` VALUES ('6', '3', 'Teknik Industri');
+INSERT INTO `program_studi` VALUES ('7', '3', 'Teknik Biomedis');
+INSERT INTO `program_studi` VALUES ('8', '3', 'Teknik Rekayasa Elektromedis');
+INSERT INTO `program_studi` VALUES ('9', '3', 'Gizi');
+INSERT INTO `program_studi` VALUES ('10', '3', 'Farmasi');
+INSERT INTO `program_studi` VALUES ('11', '3', 'Arsitektur');
+INSERT INTO `program_studi` VALUES ('12', '4', 'Pendidikan Guru Sekolah Dasar');
+INSERT INTO `program_studi` VALUES ('13', '4', 'Pendidikan Sejarah');
+INSERT INTO `program_studi` VALUES ('14', '4', 'Pendidikan Matematika');
+INSERT INTO `program_studi` VALUES ('15', '4', 'Pendidikan Bahasa Inggris');
+INSERT INTO `program_studi` VALUES ('16', '4', 'Pendidikan Bahasa dan Sastra Indonesia');
+INSERT INTO `program_studi` VALUES ('17', '4', 'Pendidikan Pancasila dan Kewarganegaraan');
+INSERT INTO `program_studi` VALUES ('18', '4', 'Bimbingan dan Konseling');
+INSERT INTO `program_studi` VALUES ('19', '4', 'Pendidikan Luar Biasa');
+INSERT INTO `program_studi` VALUES ('20', '4', 'Pendidikan Guru PAUD');
+INSERT INTO `program_studi` VALUES ('21', '4', 'Pendidikan Vokasional Teknologi Otomotif');
+INSERT INTO `program_studi` VALUES ('22', '5', 'Pendidikan Ilmu Pengetahuan Sosial');
 
 -- ----------------------------
 -- Table structure for role
@@ -28940,13 +28916,11 @@ CREATE TABLE `role` (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-BEGIN;
-INSERT INTO `role` VALUES (1, 'Admin');
-INSERT INTO `role` VALUES (2, 'Biro Kepegawaian');
-INSERT INTO `role` VALUES (3, 'Biro Keuangan');
-INSERT INTO `role` VALUES (4, 'Kepala Unit Kerja');
-INSERT INTO `role` VALUES (5, 'Pegawai');
-COMMIT;
+INSERT INTO `role` VALUES ('1', 'Admin');
+INSERT INTO `role` VALUES ('2', 'Biro Kepegawaian');
+INSERT INTO `role` VALUES ('3', 'Biro Keuangan');
+INSERT INTO `role` VALUES ('4', 'Unit Kerja');
+INSERT INTO `role` VALUES ('5', 'Pegawai');
 
 -- ----------------------------
 -- Table structure for role_menu
@@ -28965,58 +28939,56 @@ CREATE TABLE `role_menu` (
 -- ----------------------------
 -- Records of role_menu
 -- ----------------------------
-BEGIN;
-INSERT INTO `role_menu` VALUES (1, 1, 1, 1);
-INSERT INTO `role_menu` VALUES (2, 1, 2, 1);
-INSERT INTO `role_menu` VALUES (3, 1, 3, 1);
-INSERT INTO `role_menu` VALUES (4, 1, 4, 1);
-INSERT INTO `role_menu` VALUES (5, 1, 5, 1);
-INSERT INTO `role_menu` VALUES (6, 1, 6, 1);
-INSERT INTO `role_menu` VALUES (7, 1, 7, 1);
-INSERT INTO `role_menu` VALUES (8, 1, 8, 1);
-INSERT INTO `role_menu` VALUES (9, 1, 9, 1);
-INSERT INTO `role_menu` VALUES (10, 1, 10, 1);
-INSERT INTO `role_menu` VALUES (16, 2, 1, 1);
-INSERT INTO `role_menu` VALUES (17, 2, 2, 1);
-INSERT INTO `role_menu` VALUES (18, 2, 3, 1);
-INSERT INTO `role_menu` VALUES (19, 2, 4, 1);
-INSERT INTO `role_menu` VALUES (20, 2, 5, 1);
-INSERT INTO `role_menu` VALUES (21, 2, 6, 1);
-INSERT INTO `role_menu` VALUES (22, 2, 7, 1);
-INSERT INTO `role_menu` VALUES (23, 2, 8, 1);
-INSERT INTO `role_menu` VALUES (24, 2, 9, 1);
-INSERT INTO `role_menu` VALUES (25, 2, 10, 1);
-INSERT INTO `role_menu` VALUES (31, 3, 1, 1);
-INSERT INTO `role_menu` VALUES (32, 3, 2, 1);
-INSERT INTO `role_menu` VALUES (33, 3, 3, 1);
-INSERT INTO `role_menu` VALUES (34, 3, 4, 1);
-INSERT INTO `role_menu` VALUES (35, 3, 5, 1);
-INSERT INTO `role_menu` VALUES (36, 3, 6, 1);
-INSERT INTO `role_menu` VALUES (37, 3, 7, 1);
-INSERT INTO `role_menu` VALUES (38, 3, 8, 1);
-INSERT INTO `role_menu` VALUES (39, 3, 9, 1);
-INSERT INTO `role_menu` VALUES (40, 3, 10, 1);
-INSERT INTO `role_menu` VALUES (46, 4, 1, 1);
-INSERT INTO `role_menu` VALUES (47, 4, 2, 1);
-INSERT INTO `role_menu` VALUES (48, 4, 3, 1);
-INSERT INTO `role_menu` VALUES (49, 4, 4, 1);
-INSERT INTO `role_menu` VALUES (50, 4, 5, 1);
-INSERT INTO `role_menu` VALUES (51, 4, 6, 1);
-INSERT INTO `role_menu` VALUES (52, 4, 7, 1);
-INSERT INTO `role_menu` VALUES (53, 4, 8, 1);
-INSERT INTO `role_menu` VALUES (54, 4, 9, 1);
-INSERT INTO `role_menu` VALUES (55, 4, 10, 1);
-INSERT INTO `role_menu` VALUES (61, 5, 1, 1);
-INSERT INTO `role_menu` VALUES (62, 5, 2, 1);
-INSERT INTO `role_menu` VALUES (63, 5, 3, 1);
-INSERT INTO `role_menu` VALUES (64, 5, 4, 1);
-INSERT INTO `role_menu` VALUES (65, 5, 5, 1);
-INSERT INTO `role_menu` VALUES (66, 5, 6, 1);
-INSERT INTO `role_menu` VALUES (67, 5, 7, 1);
-INSERT INTO `role_menu` VALUES (68, 5, 8, 1);
-INSERT INTO `role_menu` VALUES (69, 5, 9, 1);
-INSERT INTO `role_menu` VALUES (70, 5, 10, 1);
-COMMIT;
+INSERT INTO `role_menu` VALUES ('1', '1', '1', '1');
+INSERT INTO `role_menu` VALUES ('2', '1', '2', '1');
+INSERT INTO `role_menu` VALUES ('3', '1', '3', '1');
+INSERT INTO `role_menu` VALUES ('4', '1', '4', '1');
+INSERT INTO `role_menu` VALUES ('5', '1', '5', '1');
+INSERT INTO `role_menu` VALUES ('6', '1', '6', '1');
+INSERT INTO `role_menu` VALUES ('7', '1', '7', '1');
+INSERT INTO `role_menu` VALUES ('8', '1', '8', '1');
+INSERT INTO `role_menu` VALUES ('9', '1', '9', '1');
+INSERT INTO `role_menu` VALUES ('10', '1', '10', '1');
+INSERT INTO `role_menu` VALUES ('16', '2', '1', '1');
+INSERT INTO `role_menu` VALUES ('17', '2', '2', '1');
+INSERT INTO `role_menu` VALUES ('18', '2', '3', '1');
+INSERT INTO `role_menu` VALUES ('19', '2', '4', '1');
+INSERT INTO `role_menu` VALUES ('20', '2', '5', '1');
+INSERT INTO `role_menu` VALUES ('21', '2', '6', '1');
+INSERT INTO `role_menu` VALUES ('22', '2', '7', '1');
+INSERT INTO `role_menu` VALUES ('23', '2', '8', '1');
+INSERT INTO `role_menu` VALUES ('24', '2', '9', '1');
+INSERT INTO `role_menu` VALUES ('25', '2', '10', '1');
+INSERT INTO `role_menu` VALUES ('31', '3', '1', '1');
+INSERT INTO `role_menu` VALUES ('32', '3', '2', '1');
+INSERT INTO `role_menu` VALUES ('33', '3', '3', '1');
+INSERT INTO `role_menu` VALUES ('34', '3', '4', '1');
+INSERT INTO `role_menu` VALUES ('35', '3', '5', '1');
+INSERT INTO `role_menu` VALUES ('36', '3', '6', '1');
+INSERT INTO `role_menu` VALUES ('37', '3', '7', '1');
+INSERT INTO `role_menu` VALUES ('38', '3', '8', '1');
+INSERT INTO `role_menu` VALUES ('39', '3', '9', '1');
+INSERT INTO `role_menu` VALUES ('40', '3', '10', '1');
+INSERT INTO `role_menu` VALUES ('46', '4', '1', '1');
+INSERT INTO `role_menu` VALUES ('47', '4', '2', '1');
+INSERT INTO `role_menu` VALUES ('48', '4', '3', '1');
+INSERT INTO `role_menu` VALUES ('49', '4', '4', '1');
+INSERT INTO `role_menu` VALUES ('50', '4', '5', '1');
+INSERT INTO `role_menu` VALUES ('51', '4', '6', '1');
+INSERT INTO `role_menu` VALUES ('52', '4', '7', '1');
+INSERT INTO `role_menu` VALUES ('53', '4', '8', '1');
+INSERT INTO `role_menu` VALUES ('54', '4', '9', '1');
+INSERT INTO `role_menu` VALUES ('55', '4', '10', '1');
+INSERT INTO `role_menu` VALUES ('61', '5', '1', '1');
+INSERT INTO `role_menu` VALUES ('62', '5', '2', '1');
+INSERT INTO `role_menu` VALUES ('63', '5', '3', '1');
+INSERT INTO `role_menu` VALUES ('64', '5', '4', '1');
+INSERT INTO `role_menu` VALUES ('65', '5', '5', '1');
+INSERT INTO `role_menu` VALUES ('66', '5', '6', '1');
+INSERT INTO `role_menu` VALUES ('67', '5', '7', '1');
+INSERT INTO `role_menu` VALUES ('68', '5', '8', '1');
+INSERT INTO `role_menu` VALUES ('69', '5', '9', '1');
+INSERT INTO `role_menu` VALUES ('70', '5', '10', '1');
 
 -- ----------------------------
 -- Table structure for unit
@@ -29028,73 +29000,71 @@ CREATE TABLE `unit` (
   `unit_id_child` int(11) DEFAULT NULL,
   `unit_level` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`unit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COMMENT='desain dari naskah';
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='desain dari naskah';
 
 -- ----------------------------
 -- Records of unit
 -- ----------------------------
-BEGIN;
-INSERT INTO `unit` VALUES (1, 'BAAK', NULL, '');
-INSERT INTO `unit` VALUES (2, 'BAKu', NULL, '');
-INSERT INTO `unit` VALUES (3, 'BAUK', NULL, '');
-INSERT INTO `unit` VALUES (4, 'BSP', NULL, '');
-INSERT INTO `unit` VALUES (5, 'Cleaning Service', NULL, '');
-INSERT INTO `unit` VALUES (6, 'Keamanan Unit II', NULL, '');
-INSERT INTO `unit` VALUES (7, 'Kebersihan Mobil/Tenaga Lepas', NULL, '');
-INSERT INTO `unit` VALUES (8, 'Laboran Agro', NULL, '');
-INSERT INTO `unit` VALUES (9, 'Laboran Fakultas Teknik', NULL, '');
-INSERT INTO `unit` VALUES (10, 'Laboran Sejarah', NULL, '');
-INSERT INTO `unit` VALUES (11, 'Laboran UPPL', NULL, '');
-INSERT INTO `unit` VALUES (12, 'LKK', NULL, '');
-INSERT INTO `unit` VALUES (14, 'Parkir', NULL, '');
-INSERT INTO `unit` VALUES (15, 'PMB', NULL, '');
-INSERT INTO `unit` VALUES (16, 'Pusat Karir', NULL, '');
-INSERT INTO `unit` VALUES (17, 'RUSUNAWA', NULL, '');
-INSERT INTO `unit` VALUES (18, 'Satpam ', NULL, '');
-INSERT INTO `unit` VALUES (19, 'Satpam Outsourching', NULL, '');
-INSERT INTO `unit` VALUES (20, 'Satpam Outsourching Rusunawa', NULL, '');
-INSERT INTO `unit` VALUES (21, 'THL', NULL, '');
-INSERT INTO `unit` VALUES (22, 'TIM PAK', NULL, '');
-INSERT INTO `unit` VALUES (23, 'Akuntansi', NULL, '');
-INSERT INTO `unit` VALUES (24, 'TU BK', NULL, '');
-INSERT INTO `unit` VALUES (25, 'TU F. Saintek', NULL, '');
-INSERT INTO `unit` VALUES (26, 'Fakultas Ekonomi', NULL, '');
-INSERT INTO `unit` VALUES (27, 'TU FKIP', NULL, '');
-INSERT INTO `unit` VALUES (28, 'TU LPPM', NULL, '');
-INSERT INTO `unit` VALUES (29, 'TU Manajemen', NULL, '');
-INSERT INTO `unit` VALUES (30, 'TU Pascasarjana', NULL, '');
-INSERT INTO `unit` VALUES (31, 'TU PB Inggris', NULL, NULL);
-INSERT INTO `unit` VALUES (32, 'TU Pend. Mtk', NULL, NULL);
-INSERT INTO `unit` VALUES (33, 'TU Pend. Sejarah', NULL, NULL);
-INSERT INTO `unit` VALUES (34, 'TU PGSD', NULL, NULL);
-INSERT INTO `unit` VALUES (35, 'TU PPKN', NULL, NULL);
-INSERT INTO `unit` VALUES (36, 'UPT Perpustakaan', NULL, NULL);
-INSERT INTO `unit` VALUES (37, 'UPT PPTIK', NULL, NULL);
-INSERT INTO `unit` VALUES (38, 'Yayasan', NULL, NULL);
-INSERT INTO `unit` VALUES (39, 'Agroteknologi', NULL, NULL);
-INSERT INTO `unit` VALUES (40, 'Akuntansi', NULL, NULL);
-INSERT INTO `unit` VALUES (41, 'Bimbingan Konseling', NULL, NULL);
-INSERT INTO `unit` VALUES (42, 'Biomedis', NULL, NULL);
-INSERT INTO `unit` VALUES (43, 'Elektromedis', NULL, NULL);
-INSERT INTO `unit` VALUES (44, 'Farmasi', NULL, NULL);
-INSERT INTO `unit` VALUES (45, 'Gizi', NULL, NULL);
-INSERT INTO `unit` VALUES (46, 'Manajemen', NULL, NULL);
-INSERT INTO `unit` VALUES (47, 'PBS Indonesia', NULL, NULL);
-INSERT INTO `unit` VALUES (48, 'Pend. Bahasa Inggris', NULL, NULL);
-INSERT INTO `unit` VALUES (49, 'Pend. Matematika', NULL, NULL);
-INSERT INTO `unit` VALUES (50, 'Pend. Sejarah', NULL, NULL);
-INSERT INTO `unit` VALUES (51, 'Pendidikan IPS', NULL, NULL);
-INSERT INTO `unit` VALUES (52, 'Pendidikan Luar Biasa', NULL, NULL);
-INSERT INTO `unit` VALUES (53, 'PG-PAUD', NULL, NULL);
-INSERT INTO `unit` VALUES (54, 'PGSD', NULL, NULL);
-INSERT INTO `unit` VALUES (55, 'PPKN', NULL, NULL);
-INSERT INTO `unit` VALUES (56, 'PVTO', NULL, NULL);
-INSERT INTO `unit` VALUES (57, 'Teknik Arsitektur', NULL, NULL);
-INSERT INTO `unit` VALUES (58, 'Teknik Industri', NULL, NULL);
-INSERT INTO `unit` VALUES (59, 'Teknik Informatika', NULL, NULL);
-INSERT INTO `unit` VALUES (60, 'THP', NULL, NULL);
-INSERT INTO `unit` VALUES (62, 'Lembaga Pengembangan Pendidikan', NULL, NULL);
-COMMIT;
+INSERT INTO `unit` VALUES ('1', 'BAAK', null, '');
+INSERT INTO `unit` VALUES ('2', 'BAKu', null, '');
+INSERT INTO `unit` VALUES ('3', 'BAUK', null, '');
+INSERT INTO `unit` VALUES ('4', 'BSP', null, '');
+INSERT INTO `unit` VALUES ('5', 'Cleaning Service', null, '');
+INSERT INTO `unit` VALUES ('6', 'Keamanan Unit II', null, '');
+INSERT INTO `unit` VALUES ('7', 'Kebersihan Mobil/Tenaga Lepas', null, '');
+INSERT INTO `unit` VALUES ('8', 'Laboran Agro', null, '');
+INSERT INTO `unit` VALUES ('9', 'Laboran Fakultas Teknik', null, '');
+INSERT INTO `unit` VALUES ('10', 'Laboran Sejarah', null, '');
+INSERT INTO `unit` VALUES ('11', 'Laboran UPPL', null, '');
+INSERT INTO `unit` VALUES ('12', 'LKK', null, '');
+INSERT INTO `unit` VALUES ('14', 'Parkir', null, '');
+INSERT INTO `unit` VALUES ('15', 'PMB', null, '');
+INSERT INTO `unit` VALUES ('16', 'Pusat Karir', null, '');
+INSERT INTO `unit` VALUES ('17', 'RUSUNAWA', null, '');
+INSERT INTO `unit` VALUES ('18', 'Satpam ', null, '');
+INSERT INTO `unit` VALUES ('19', 'Satpam Outsourching', null, '');
+INSERT INTO `unit` VALUES ('20', 'Satpam Outsourching Rusunawa', null, '');
+INSERT INTO `unit` VALUES ('21', 'THL', null, '');
+INSERT INTO `unit` VALUES ('22', 'TIM PAK', null, '');
+INSERT INTO `unit` VALUES ('23', 'Akuntansi', null, '');
+INSERT INTO `unit` VALUES ('24', 'TU BK', null, '');
+INSERT INTO `unit` VALUES ('25', 'TU F. Saintek', null, '');
+INSERT INTO `unit` VALUES ('26', 'Fakultas Ekonomi', null, '');
+INSERT INTO `unit` VALUES ('27', 'TU FKIP', null, '');
+INSERT INTO `unit` VALUES ('28', 'TU LPPM', null, '');
+INSERT INTO `unit` VALUES ('29', 'TU Manajemen', null, '');
+INSERT INTO `unit` VALUES ('30', 'TU Pascasarjana', null, '');
+INSERT INTO `unit` VALUES ('31', 'TU PB Inggris', null, null);
+INSERT INTO `unit` VALUES ('32', 'TU Pend. Mtk', null, null);
+INSERT INTO `unit` VALUES ('33', 'TU Pend. Sejarah', null, null);
+INSERT INTO `unit` VALUES ('34', 'TU PGSD', null, null);
+INSERT INTO `unit` VALUES ('35', 'TU PPKN', null, null);
+INSERT INTO `unit` VALUES ('36', 'UPT Perpustakaan', null, null);
+INSERT INTO `unit` VALUES ('37', 'UPT PPTIK', null, null);
+INSERT INTO `unit` VALUES ('38', 'Yayasan', null, null);
+INSERT INTO `unit` VALUES ('39', 'Agroteknologi', null, null);
+INSERT INTO `unit` VALUES ('40', 'Akuntansi', null, null);
+INSERT INTO `unit` VALUES ('41', 'Bimbingan Konseling', null, null);
+INSERT INTO `unit` VALUES ('42', 'Biomedis', null, null);
+INSERT INTO `unit` VALUES ('43', 'Elektromedis', null, null);
+INSERT INTO `unit` VALUES ('44', 'Farmasi', null, null);
+INSERT INTO `unit` VALUES ('45', 'Gizi', null, null);
+INSERT INTO `unit` VALUES ('46', 'Manajemen', null, null);
+INSERT INTO `unit` VALUES ('47', 'PBS Indonesia', null, null);
+INSERT INTO `unit` VALUES ('48', 'Pend. Bahasa Inggris', null, null);
+INSERT INTO `unit` VALUES ('49', 'Pend. Matematika', null, null);
+INSERT INTO `unit` VALUES ('50', 'Pend. Sejarah', null, null);
+INSERT INTO `unit` VALUES ('51', 'Pendidikan IPS', null, null);
+INSERT INTO `unit` VALUES ('52', 'Pendidikan Luar Biasa', null, null);
+INSERT INTO `unit` VALUES ('53', 'PG-PAUD', null, null);
+INSERT INTO `unit` VALUES ('54', 'PGSD', null, null);
+INSERT INTO `unit` VALUES ('55', 'PPKN', null, null);
+INSERT INTO `unit` VALUES ('56', 'PVTO', null, null);
+INSERT INTO `unit` VALUES ('57', 'Teknik Arsitektur', null, null);
+INSERT INTO `unit` VALUES ('58', 'Teknik Industri', null, null);
+INSERT INTO `unit` VALUES ('59', 'Teknik Informatika', null, null);
+INSERT INTO `unit` VALUES ('60', 'THP', null, null);
+INSERT INTO `unit` VALUES ('62', 'Lembaga Pengembangan Pendidikan', null, null);
 
 -- ----------------------------
 -- Table structure for unit_simpeg
@@ -29111,44 +29081,41 @@ CREATE TABLE `unit_simpeg` (
 -- ----------------------------
 -- Records of unit_simpeg
 -- ----------------------------
-BEGIN;
-INSERT INTO `unit_simpeg` VALUES (1, 'Biro Administrasi Umum dan Kepegawaian', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (2, 'Biro Administrasi Keuangan', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (3, 'Biro Administrasi Akademik dan Kemahasiswaan', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (4, 'Biro Sarana Prasarana', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (5, 'BPM', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (6, 'Pusat Karir', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (7, 'LPP', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (8, 'LKK', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (9, 'UPPL', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (10, 'Pusat Bahasa', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (11, 'Rusunawa', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (12, 'LPPM', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (13, 'PMB', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (14, 'FKIP', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (15, 'Pascasarjana', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (16, 'PPTIK', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (17, 'Fakultas Sains & Teknologi', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (18, 'Fakultas Pertanian', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (19, 'Fakultas Bisnis', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (20, 'Rektorat', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (21, 'UPT Perpustakaan', NULL, NULL);
-INSERT INTO `unit_simpeg` VALUES (22, 'Yayasan', NULL, NULL);
-COMMIT;
+INSERT INTO `unit_simpeg` VALUES ('1', 'Biro Administrasi Umum dan Kepegawaian', null, null);
+INSERT INTO `unit_simpeg` VALUES ('2', 'Biro Administrasi Keuangan', null, null);
+INSERT INTO `unit_simpeg` VALUES ('3', 'Biro Administrasi Akademik dan Kemahasiswaan', null, null);
+INSERT INTO `unit_simpeg` VALUES ('4', 'Biro Sarana Prasarana', null, null);
+INSERT INTO `unit_simpeg` VALUES ('5', 'BPM', null, null);
+INSERT INTO `unit_simpeg` VALUES ('6', 'Pusat Karir', null, null);
+INSERT INTO `unit_simpeg` VALUES ('7', 'LPP', null, null);
+INSERT INTO `unit_simpeg` VALUES ('8', 'LKK', null, null);
+INSERT INTO `unit_simpeg` VALUES ('9', 'UPPL', null, null);
+INSERT INTO `unit_simpeg` VALUES ('10', 'Pusat Bahasa', null, null);
+INSERT INTO `unit_simpeg` VALUES ('11', 'Rusunawa', null, null);
+INSERT INTO `unit_simpeg` VALUES ('12', 'LPPM', null, null);
+INSERT INTO `unit_simpeg` VALUES ('13', 'PMB', null, null);
+INSERT INTO `unit_simpeg` VALUES ('14', 'FKIP', null, null);
+INSERT INTO `unit_simpeg` VALUES ('15', 'Pascasarjana', null, null);
+INSERT INTO `unit_simpeg` VALUES ('16', 'PPTIK', null, null);
+INSERT INTO `unit_simpeg` VALUES ('17', 'Fakultas Sains & Teknologi', null, null);
+INSERT INTO `unit_simpeg` VALUES ('18', 'Fakultas Pertanian', null, null);
+INSERT INTO `unit_simpeg` VALUES ('19', 'Fakultas Bisnis', null, null);
+INSERT INTO `unit_simpeg` VALUES ('20', 'Rektorat', null, null);
+INSERT INTO `unit_simpeg` VALUES ('21', 'UPT Perpustakaan', null, null);
+INSERT INTO `unit_simpeg` VALUES ('22', 'Yayasan', null, null);
 
 -- ----------------------------
 -- View structure for view_log_presensi
 -- ----------------------------
 DROP VIEW IF EXISTS `view_log_presensi`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_log_presensi` AS select `pegawai`.`id_pegawai` AS `id_pegawai`,`unit`.`unit_id` AS `unit_id`,`fakultas`.`id_fakultas` AS `id_fakultas`,`program_studi`.`id_program_studi` AS `id_program_studi`,`log_mesin_finger`.`tanggal` AS `tanggal`,`log_mesin_finger`.`jam` AS `jam`,`pegawai`.`nama_pegawai` AS `nama_pegawai`,`pegawai`.`nis_pegawai` AS `nis_pegawai`,`unit`.`unit_nama` AS `unit_nama`,`fakultas`.`nama_fakultas` AS `nama_fakultas`,`program_studi`.`nama_program_studi` AS `nama_program_studi` from ((((`log_mesin_finger` join `pegawai` on(`log_mesin_finger`.`pin_finger` = `pegawai`.`pin_finger`)) left join `unit` on(`pegawai`.`id_unit` = `unit`.`unit_id`)) left join `fakultas` on(`pegawai`.`id_fakultas` = `fakultas`.`id_fakultas`)) left join `program_studi` on(`pegawai`.`id_program_studi` = `program_studi`.`id_program_studi`)) order by `pegawai`.`nis_pegawai` desc,`log_mesin_finger`.`tanggal`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_log_presensi` AS select `pegawai`.`id_pegawai` AS `id_pegawai`,`unit`.`unit_id` AS `unit_id`,`fakultas`.`id_fakultas` AS `id_fakultas`,`program_studi`.`id_program_studi` AS `id_program_studi`,`log_mesin_finger`.`tanggal` AS `tanggal`,`log_mesin_finger`.`jam` AS `jam`,`pegawai`.`nama_pegawai` AS `nama_pegawai`,`pegawai`.`nis_pegawai` AS `nis_pegawai`,`unit`.`unit_nama` AS `unit_nama`,`fakultas`.`nama_fakultas` AS `nama_fakultas`,`program_studi`.`nama_program_studi` AS `nama_program_studi` from ((((`log_mesin_finger` join `pegawai` on(`log_mesin_finger`.`pin_finger` = `pegawai`.`pin_finger`)) left join `unit` on(`pegawai`.`id_unit` = `unit`.`unit_id`)) left join `fakultas` on(`pegawai`.`id_fakultas` = `fakultas`.`id_fakultas`)) left join `program_studi` on(`pegawai`.`id_program_studi` = `program_studi`.`id_program_studi`)) order by `pegawai`.`nis_pegawai` desc,`log_mesin_finger`.`tanggal` ;
 
 -- ----------------------------
 -- Function structure for func_getjumlahkehadiran
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getjumlahkehadiran`;
-delimiter ;;
-CREATE FUNCTION `func_getjumlahkehadiran`(x_tglawal DATE,x_tglakhir DATE,x_idpegawai INT(11))
- RETURNS char(8) CHARSET latin1
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_getjumlahkehadiran`(x_tglawal DATE,x_tglakhir DATE,x_idpegawai INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_jumlah_kehadiran INTEGER DEFAULT 0;
 
@@ -29173,15 +29140,14 @@ RETURN x_jumlah_kehadiran;
 
 END
 ;;
-delimiter ;
+DELIMITER ;
 
 -- ----------------------------
 -- Function structure for func_getscanbolos
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanbolos`;
-delimiter ;;
-CREATE FUNCTION `func_getscanbolos`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11))
- RETURNS char(10) CHARSET latin1
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanbolos`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(10) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -29350,15 +29316,14 @@ RETURN datapresensi;
 
 END
 ;;
-delimiter ;
+DELIMITER ;
 
 -- ----------------------------
 -- Function structure for func_getscanjumlahkehadiran
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanjumlahkehadiran`;
-delimiter ;;
-CREATE FUNCTION `func_getscanjumlahkehadiran`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11))
- RETURNS char(8) CHARSET latin1
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanjumlahkehadiran`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -29530,7 +29495,7 @@ END IF;
 IF (scandatang <> '00:00:00') AND (scanpulang <> '00:00:00') THEN
 	SET datapresensi = sec_to_time(time_to_sec(scanpulang)-(time_to_sec(scandatang)));
 ELSE
- SET datapresensi = NULL;
+ SET datapresensi = '00:00:00';
 END IF;
 
 RETURN datapresensi;
@@ -29539,15 +29504,14 @@ RETURN datapresensi;
 
 END
 ;;
-delimiter ;
+DELIMITER ;
 
 -- ----------------------------
 -- Function structure for func_getscankeluar
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscankeluar`;
-delimiter ;;
-CREATE FUNCTION `func_getscankeluar`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11))
- RETURNS char(8) CHARSET latin1
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscankeluar`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -29712,15 +29676,14 @@ RETURN datapresensi;
 
 END
 ;;
-delimiter ;
+DELIMITER ;
 
 -- ----------------------------
 -- Function structure for func_getscanmasuk
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanmasuk`;
-delimiter ;;
-CREATE FUNCTION `func_getscanmasuk`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11))
- RETURNS char(8) CHARSET latin1
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanmasuk`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -29885,15 +29848,14 @@ RETURN datapresensi;
 
 END
 ;;
-delimiter ;
+DELIMITER ;
 
 -- ----------------------------
 -- Function structure for func_getscanterlambat
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanterlambat`;
-delimiter ;;
-CREATE FUNCTION `func_getscanterlambat`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11))
- RETURNS char(8) CHARSET latin1
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanterlambat`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -30061,6 +30023,5 @@ RETURN datapresensi;
 
 END
 ;;
-delimiter ;
-
-SET FOREIGN_KEY_CHECKS = 1;
+DELIMITER ;
+SET FOREIGN_KEY_CHECKS=1;
