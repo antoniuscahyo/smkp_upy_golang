@@ -10,11 +10,11 @@ import (
 func GetDB() (db *sql.DB, err error) {
 	//DB_DRIVER := goDotEnvVariable("DB_DRIVER")
 	dbDriver := "mysql"
-	dbName 	 := "db_monitoring_kehadiran_pegawai"
-	dbHost   := "localhost"
-	dbPort   := "3306"
-	dbUser   := "root"
-	dbPass   := "12345"
+	dbName := "db_monitoring_kehadiran_pegawai"
+	dbHost := "localhost"
+	dbPort := "3306"
+	dbUser := "root"
+	dbPass := ""
 	db, err = sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbHost+":"+dbPort+")/"+dbName)
 	return
 }

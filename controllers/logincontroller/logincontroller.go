@@ -1,12 +1,13 @@
 package logincontroller
 
 import (
-	"html/template"
-	"net/http"
-	"github.com/kataras/go-sessions"
-	"golang.org/x/crypto/bcrypt"
 	"SMKPUPY/config"
 	"fmt"
+	"html/template"
+	"net/http"
+
+	"github.com/kataras/go-sessions"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -37,7 +38,9 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("username", users.Username)
 		session.Set("nama", users.Nama)
 		session.Set("Idrole", users.Idrole)
-		session.Set("namarole", users.NamaRole)
+		session.Set("id_unit", users.IdUnit)
+		session.Set("id_pegawai", users.IdPegawai)
+		session.Set("nama_role", users.NamaRole)
 		if users.Idrole == 4 || users.Idrole == 5 {
 			http.Redirect(response, request, "/profile", 302)
 		} else {
@@ -52,39 +55,45 @@ func Login(response http.ResponseWriter, request *http.Request) {
 }
 
 type user struct {
-	ID       int
-	Username string
-	Nama     string
-	Password string
-	Idrole   int
-	NamaRole string
+	ID        int
+	Username  string
+	Nama      string
+	Password  string
+	Idrole    int
+	IdUnit    int
+	IdPegawai int
+	NamaRole  string
 }
 
 func QueryUser(username string) user {
 	var users = user{}
-	db,err := config.GetDB()
+	db, err := config.GetDB()
 	if err != nil {
-
+		fmt.Println(err)
 	}
-	
+
 	db.QueryRow(`
 	SELECT 
-	pengguna.id_pengguna, 
-	pengguna.username, 
-	pengguna.nama, 
-	pengguna.password,
-	pengguna.id_role,
-	role.nama_role
+	IFNULL(pengguna.id_pengguna,0) AS id_pengguna, 
+	IFNULL(pengguna.username,'') AS username, 
+	IFNULL(pengguna.nama,'') AS nama, 
+	IFNULL(pengguna.password,'') AS password,
+	IFNULL(pengguna.id_role,0) AS id_role,
+	IFNULL(pengguna.id_unit,0) AS id_unit,
+	IFNULL(pengguna.id_pegawai,0) AS id_pegawai,
+	IFNULL(role.nama_role,'') AS nama_role
 	FROM pengguna
 	JOIN role ON pengguna.id_role=role.id_role
 	WHERE pengguna.username=?`, username).
-	Scan(
-		&users.ID,
-		&users.Username,
-		&users.Nama,
-		&users.Password,
-		&users.Idrole,
-		&users.NamaRole,
-	)
+		Scan(
+			&users.ID,
+			&users.Username,
+			&users.Nama,
+			&users.Password,
+			&users.Idrole,
+			&users.IdUnit,
+			&users.IdPegawai,
+			&users.NamaRole,
+		)
 	return users
 }

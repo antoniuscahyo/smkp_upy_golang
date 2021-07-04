@@ -4,9 +4,10 @@ import (
 	"html/template"
 	// "SMKPUPY/models"
 	// "SMKPUPY/entities"
-	"net/http"
-	"github.com/kataras/go-sessions"
 	"fmt"
+	"net/http"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -20,6 +21,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"nama_role":     session.GetString("nama_role"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
 	var t, err = template.ParseFiles(

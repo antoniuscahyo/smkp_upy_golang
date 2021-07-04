@@ -2,33 +2,39 @@ package rekaplaporanperpegawaicontroller
 
 import (
 	"SMKPUPY/models"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
-	"fmt"
+
 	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
-	
+
 	session := sessions.Start(response, request)
 	if len(session.GetString("username")) == 0 {
 		http.Redirect(response, request, "/login", 301)
 	}
 
+	IdRole, _ := strconv.ParseInt(session.GetString("Idrole"), 10, 64)
+	IdUnit, _ := strconv.ParseInt(session.GetString("id_unit"), 10, 64)
+
+	var pegawaiModel models.PegawaiModel
+	pegawai, _ := pegawaiModel.FindAll2(IdRole, IdUnit)
+
 	var unitkerjaModel models.UnitModel
 	unitkerja, _ := unitkerjaModel.FindAll()
 
-	var pegawaiModel models.PegawaiModel
-	pegawai, _ := pegawaiModel.FindAll()
-
-	data := map[string]interface{} {
-		"unitkerja": unitkerja,
-		"pegawai": pegawai,
+	data := map[string]interface{}{
+		"unitkerja":     unitkerja,
+		"pegawai":       pegawai,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"id_unit":       session.GetString("id_unit"),
+		"id_pegawai":    session.GetString("id_pegawai"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
 
@@ -50,26 +56,24 @@ func Index(response http.ResponseWriter, request *http.Request) {
 }
 
 func LoadData(response http.ResponseWriter, request *http.Request) {
-
-	// pegawai.IdProgramStudi, _ = strconv.ParseInt(request.Form.Get("IdProgramStudi"), 10, 64)
-	// pegawai.PinFinger = request.Form.Get("PinFinger")
+	session := sessions.Start(response, request)
+	if len(session.GetString("username")) == 0 {
+		http.Redirect(response, request, "/login", 301)
+	}
 
 	IdUnit, _ := strconv.ParseInt(request.PostFormValue("IdUnit"), 10, 64)
 	IdPegawai, _ := strconv.ParseInt(request.PostFormValue("IdPegawai"), 10, 64)
 	TanggalAwal := request.PostFormValue("TanggalAwal")
 	TanggalAkhir := request.PostFormValue("TanggalAkhir")
 
-	/*fmt.Println(IdUnit)
-	fmt.Println(IdPegawai)
-	fmt.Println(TanggalAwal)
-	fmt.Println(TanggalAkhir)*/
+	IdRole, _ := strconv.ParseInt(session.GetString("Idrole"), 10, 64)
 
 	var laporanModel models.LaporanModel
-	detailharian, _ := laporanModel.DetailHarian(TanggalAwal,TanggalAkhir,IdUnit,IdPegawai)
+	detailharian, _ := laporanModel.DetailHarian(TanggalAwal, TanggalAkhir, IdUnit, IdPegawai, IdRole)
 
-	data := map[string]interface{} {
-		"data": detailharian,
-		"NamaAplikasi":  "SMKP UPY",
+	data := map[string]interface{}{
+		"data":         detailharian,
+		"NamaAplikasi": "SMKP UPY",
 	}
 
 	var t, err = template.ParseFiles(
@@ -81,7 +85,7 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 		http.Error(response, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	
+
 	t.Execute(response, data)
 	return
 }

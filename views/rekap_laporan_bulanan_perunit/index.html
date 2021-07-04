@@ -127,6 +127,13 @@
             $('#TanggalAwal').val(GetDateBulanan('awal',Date.now()));
             $('#TanggalAkhir').val(GetDateBulanan('akhir',Date.now()));
         }, 100);
+
+        '{{if (eq .Idrole "4") }}'
+            $("#IdUnit").val("{{.id_unit}}").trigger("change");
+            $('#IdUnit').attr("disabled", true); 
+        '{{ else }}'
+
+        '{{ end }}'
     });
 
     function GetDateBulanan(range,date) {

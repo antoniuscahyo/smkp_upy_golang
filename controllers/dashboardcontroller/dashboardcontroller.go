@@ -1,10 +1,11 @@
 package dashboardcontroller
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
+
 	"github.com/kataras/go-sessions"
-	"fmt"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -48,6 +49,7 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"nama_role":     session.GetString("nama_role"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
 	var t, err = template.ParseFiles(

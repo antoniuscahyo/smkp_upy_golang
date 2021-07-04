@@ -21,7 +21,8 @@
                     <div class="x_content">
                         <br />
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                            
+                            <!-- how to code operators like in next line -> https://pkg.go.dev/text/template#hdr-Functions -->
+                            {{if (ne .Idrole "5") }}
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Unit
                                 </label>
@@ -34,6 +35,7 @@
                                     </select>
                                 </div>
                             </div>
+                            {{end}}
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pegawai
                                 </label>
@@ -109,6 +111,16 @@
             $('#TanggalAwal').val(GetDateBulanan('awal',Date.now()));
             $('#TanggalAkhir').val(GetDateBulanan('akhir',Date.now()));
         }, 100);
+
+        '{{if (eq .Idrole "5") }}'
+            $("#IdPegawai").val("{{.id_pegawai}}").trigger("change");
+            $('#IdPegawai').attr("disabled", true); 
+        '{{else if (eq .Idrole "4") }}'
+            $("#IdUnit").val("{{.id_unit}}").trigger("change");
+            $('#IdUnit').attr("disabled", true); 
+        '{{ else }}'
+
+        '{{ end }}'
     });
 
     function GetDateBulanan(range,date) {

@@ -2,10 +2,11 @@ package rekaplaporanperunitcontroller
 
 import (
 	"SMKPUPY/models"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
-	"fmt"
+
 	"github.com/kataras/go-sessions"
 )
 
@@ -19,12 +20,13 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	var unitkerjaModel models.UnitModel
 	unitkerja, _ := unitkerjaModel.FindAll()
 
-	data := map[string]interface{} {
-		"unitkerja": unitkerja,
+	data := map[string]interface{}{
+		"unitkerja":     unitkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"id_unit":       session.GetString("id_unit"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
 
@@ -51,11 +53,11 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 	TanggalAkhir := request.PostFormValue("TanggalAkhir")
 
 	var laporanModel models.LaporanModel
-	rekaplaporan, _ := laporanModel.RekapLaporan(TanggalAwal,TanggalAkhir,IdUnit)
+	rekaplaporan, _ := laporanModel.RekapLaporan(TanggalAwal, TanggalAkhir, IdUnit)
 
-	data := map[string]interface{} {
-		"data": rekaplaporan,
-		"NamaAplikasi":  "SMKP UPY",
+	data := map[string]interface{}{
+		"data":         rekaplaporan,
+		"NamaAplikasi": "SMKP UPY",
 	}
 
 	var t, err = template.ParseFiles(
@@ -67,7 +69,7 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 		http.Error(response, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	
+
 	t.Execute(response, data)
 	return
 }
