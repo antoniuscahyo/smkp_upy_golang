@@ -50,7 +50,17 @@ func Login(response http.ResponseWriter, request *http.Request) {
 	} else {
 		//login failed
 		fmt.Println(passwordtes)
-		http.Redirect(response, request, "/login", 302)
+		// http.Redirect(response, request, "/login", 302)
+
+		js := `<script type="text/javascript"  charset="utf-8">
+		if (confirm('Username/Password yang anda masukkan salah!')){
+			window.location = window.location.protocol+window.location.hostname+":3000";
+		 }else{
+			window.location = window.location.protocol+window.location.hostname+":3000";
+		 }
+		</script>`
+
+		response.Write([]byte(js))
 	}
 }
 
