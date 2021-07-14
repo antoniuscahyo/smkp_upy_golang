@@ -1,25 +1,26 @@
 package main
 
 import (
+	"SMKPUPY/controllers/authcontroller"
 	"SMKPUPY/controllers/homecontroller"
-	"SMKPUPY/controllers/registercontroller"
 	"SMKPUPY/controllers/logincontroller"
 	"SMKPUPY/controllers/productcontroller"
-	"SMKPUPY/controllers/authcontroller"
+	"SMKPUPY/controllers/registercontroller"
+	"fmt"
 	"net/http"
 
 	"SMKPUPY/controllers/dashboardcontroller"
-	"SMKPUPY/controllers/rekaplaporanperunitcontroller"
 	"SMKPUPY/controllers/rekaplaporanperpegawaicontroller"
+	"SMKPUPY/controllers/rekaplaporanperunitcontroller"
 
-	"SMKPUPY/controllers/referensiunitcontroller"
-	"SMKPUPY/controllers/referensijamkerjacontroller"
 	"SMKPUPY/controllers/referensijadwalkerjacontroller"
+	"SMKPUPY/controllers/referensijamkerjacontroller"
+	"SMKPUPY/controllers/referensiunitcontroller"
 
 	"SMKPUPY/controllers/datapegawaicontroller"
 
-	"SMKPUPY/controllers/settingpenggunacontroller"
 	"SMKPUPY/controllers/settingmenucontroller"
+	"SMKPUPY/controllers/settingpenggunacontroller"
 	"SMKPUPY/controllers/settingrolecontroller"
 
 	"SMKPUPY/controllers/importlogpresensicontroller"
@@ -39,7 +40,7 @@ func main() {
 	http.HandleFunc("/product/delete", productcontroller.Delete)
 	http.HandleFunc("/product/edit", productcontroller.Edit)
 	http.HandleFunc("/product/update", productcontroller.Update)
-	
+
 	http.HandleFunc("/dashboard", dashboardcontroller.Index)
 	http.HandleFunc("/profile", dashboardcontroller.Profile)
 
@@ -48,7 +49,7 @@ func main() {
 
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawai", rekaplaporanperpegawaicontroller.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawai/load_data", rekaplaporanperpegawaicontroller.LoadData)
-	
+
 	http.HandleFunc("/referensi_unit", referensiunitcontroller.Index)
 	http.HandleFunc("/referensi_unit/add", referensiunitcontroller.Add)
 	http.HandleFunc("/referensi_unit/processadd", referensiunitcontroller.ProcessAdd)
@@ -109,6 +110,6 @@ func main() {
 		http.StripPrefix("/images/",
 			http.FileServer(http.Dir("assets/images"))))
 
+	fmt.Println("App SMKP UPY Run ON Port :3000")
 	http.ListenAndServe(":3000", nil)
-
 }
