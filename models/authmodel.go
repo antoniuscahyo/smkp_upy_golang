@@ -6,12 +6,11 @@ import (
 )
 
 type AuthModel struct {
-
 }
 
 func (*AuthModel) GetUser(username string) (entities.User, error) {
 	db, err := config.GetDB()
-	if	err != nil {
+	if err != nil {
 		return entities.User{}, err
 	} else {
 		rows, err2 := db.Query(`SELECT 
@@ -29,7 +28,7 @@ func (*AuthModel) GetUser(username string) (entities.User, error) {
 		} else {
 			var users entities.User
 			for rows.Next() {
-				rows.Scan(&users.ID, &users.Username,  &users.Nama, &users.Password, &users.Idrole)
+				rows.Scan(&users.ID, &users.Username, &users.Nama, &users.Password, &users.Idrole)
 			}
 			return users, nil
 		}
