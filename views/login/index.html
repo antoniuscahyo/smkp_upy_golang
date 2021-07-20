@@ -36,10 +36,10 @@
             <form method="POST" action="/login/auth">
               <h1>Login SMKP UPY</h1>
               <div>
-                <input type="text" class="form-control" name="username" id="email" placeholder="Username" required="" />
+                <input type="text" class="form-control" name="username" id="email" placeholder="Username" required="" oninvalid="this.setCustomValidity('Silahkan isikan username!')" oninput="setCustomValidity('')" />
               </div>
               <div>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="" />
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="" oninvalid="this.setCustomValidity('Silahkan isikan password!')" oninput="setCustomValidity('')" />
               </div>
               <div>
                 <button class="btn btn-default submit" type="submit" href="">Log in</button>
