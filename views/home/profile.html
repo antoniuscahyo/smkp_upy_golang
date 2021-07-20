@@ -71,11 +71,13 @@
                                     </div>
                                 </div>
 
+                                <input type="hidden" name="IdMenu" value="{{ .IdPengguna }}">
+
                                 <div class="item form-group">
                                     <label class="col-form col-md-3 col-sm-3 label-align" for="last-name">Pilih Foto (png,jpg,jpeg) <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="file" required />
+                                        <input type="file" name="file" accept="image/png, image/jpg, image/jpeg" required />
                                     </div>
                                 </div>
 

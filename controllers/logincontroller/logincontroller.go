@@ -38,6 +38,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("username", users.Username)
 		session.Set("nama", users.Nama)
 		session.Set("Idrole", users.Idrole)
+		session.Set("IdPengguna", users.ID)
 		session.Set("id_unit", users.IdUnit)
 		session.Set("id_pegawai", users.IdPegawai)
 		session.Set("nama_role", users.NamaRole)

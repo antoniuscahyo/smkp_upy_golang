@@ -64,6 +64,7 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"IdPengguna":    session.GetString("IdPengguna"),
 		"nama_role":     session.GetString("nama_role"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
