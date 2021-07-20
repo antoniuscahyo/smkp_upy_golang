@@ -43,6 +43,7 @@ func main() {
 
 	http.HandleFunc("/dashboard", dashboardcontroller.Index)
 	http.HandleFunc("/profile", dashboardcontroller.Profile)
+	http.HandleFunc("/profile/update_profile", dashboardcontroller.UpdateProfile)
 
 	http.HandleFunc("/rekap_laporan_bulanan_perunit", rekaplaporanperunitcontroller.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perunit/load_data", rekaplaporanperunitcontroller.LoadData)
