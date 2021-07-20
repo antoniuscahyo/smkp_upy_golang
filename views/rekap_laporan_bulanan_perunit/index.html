@@ -128,6 +128,16 @@
             $('#TanggalAkhir').val(GetDateBulanan('akhir',Date.now()));
         }, 100);
 
+        $("#TanggalAkhir").change(function () {
+            var TanggalAwal = document.getElementById("TanggalAwal").value;
+            var TanggalAkhir = document.getElementById("TanggalAkhir").value;
+
+            if ((Date.parse(TanggalAwal) >= Date.parse(TanggalAkhir))) {
+                alert("Silahkan isi tanggal akhir lebih besar dari tanggal awal!");
+                document.getElementById("TanggalAkhir").value = GetDateBulanan('akhir',Date.now());
+            }
+        });
+
         '{{if (eq .Idrole "4") }}'
             $("#IdUnit").val("{{.id_unit}}").trigger("change");
             $('#IdUnit').attr("disabled", true); 

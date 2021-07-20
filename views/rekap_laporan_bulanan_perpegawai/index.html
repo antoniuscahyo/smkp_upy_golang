@@ -123,6 +123,16 @@
         '{{ end }}'
     });
 
+    $("#TanggalAkhir").change(function () {
+        var TanggalAwal = document.getElementById("TanggalAwal").value;
+        var TanggalAkhir = document.getElementById("TanggalAkhir").value;
+
+        if ((Date.parse(TanggalAwal) >= Date.parse(TanggalAkhir))) {
+            alert("Silahkan isi tanggal akhir lebih besar dari tanggal awal!");
+            document.getElementById("TanggalAkhir").value = GetDateBulanan('akhir',Date.now());
+        }
+    });
+
     function GetDateBulanan(range,date) {
         var d = new Date(date),
             month = '' + (d.getMonth() + 1),
