@@ -1,6 +1,7 @@
 package dashboardcontroller
 
 import (
+	"SMKPUPY/entities"
 	"SMKPUPY/models"
 	"fmt"
 	"html/template"
@@ -66,8 +67,10 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 		"Idrole":        session.GetString("Idrole"),
 		"IdPengguna":    session.GetString("IdPengguna"),
 		"nama_role":     session.GetString("nama_role"),
+		"foto":          session.GetString("foto"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
+	fmt.Println(session.GetString("foto"))
 	var t, err = template.ParseFiles(
 		"views/home/profile.html",
 		"views/template/_header.html",
@@ -85,8 +88,24 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 	return
 }
 
-func UpdateProfile(w http.ResponseWriter, r *http.Request) {
+func Update(response http.ResponseWriter, request *http.Request) {
+	request.ParseForm()
+	var pengguna entities.Pengguna
+	pengguna.IdPengguna, _ = strconv.ParseInt(request.Form.Get("IdPengguna"), 10, 64)
+	pengguna.Username = request.Form.Get("Username")
+	pengguna.Password = request.Form.Get("Password")
+	pengguna.PasswordLama = request.Form.Get("PasswordLama")
+	pengguna.Nama = request.Form.Get("NamaPengguna")
+	pengguna.IdRole, _ = strconv.ParseInt(request.Form.Get("IdRole"), 10, 64)
+	pengguna.IdPegawai, _ = strconv.ParseInt(request.Form.Get("IdPegawai"), 10, 64)
+	var penggunaModel models.PenggunaModel
+	penggunaModel.Update(pengguna)
 
+	http.Redirect(response, request, "/profile", http.StatusSeeOther)
+}
+
+func UpdateProfile(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Update Profile Jalan!")
 	if r.Method != "POST" {
 		http.Error(w, "", http.StatusBadRequest)
 		return
@@ -132,6 +151,16 @@ func UpdateProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	r.ParseForm()
+	var pengguna entities.Pengguna
+	pengguna.IdPengguna, _ = strconv.ParseInt(r.Form.Get("IdPengguna"), 10, 64)
+	pengguna.Password = r.Form.Get("Password")
+	pengguna.PasswordLama = r.Form.Get("PasswordLama")
+	pengguna.Nama = r.Form.Get("NamaPengguna")
+	pengguna.Foto = alias
+	var penggunaModel models.PenggunaModel
+	penggunaModel.Update(pengguna)
+
 	// w.Write([]byte("done"))
-	http.Redirect(w, r, "/import_log_presensi", http.StatusSeeOther)
+	http.Redirect(w, r, "/profile", http.StatusSeeOther)
 }

@@ -18,16 +18,16 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-3 col-sm-3  profile_left">
-                            <div class="profile_img">
-                                <div id="crop-avatar">
-                                    <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="images/img.jpg" alt="Avatar" title="Change the avatar" style="width: 100%;">
+                        <form method="POST" action="/profile/update_profile" id="form-simpan-profile" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <div class="col-md-3 col-sm-3  profile_left">
+                                <div class="profile_img">
+                                    <div id="crop-avatar">
+                                        <!-- Current avatar -->
+                                        <img class="img-responsive avatar-view" src="{{ .foto }}" alt="Avatar" title="Change the avatar" style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-9 col-sm-9 ">
-                            <form method="POST" action="/dashboard/update_profile" id="form-simpan-profile" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data"></form>
+                            <div class="col-md-9 col-sm-9 ">
                                 <div class="profile_title">
                                     <div class="col-md-6">
                                         <h2>Informasi User Login</h2>
@@ -67,7 +67,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Password
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" id="Password" name="Password" required="required" class="form-control" value="">
+                                        <input type="text" id="Password" name="Password" class="form-control" value="">
                                     </div>
                                 </div>
 
@@ -92,9 +92,9 @@
                                     </label>
                                         <button type="submit" class="btn btn-success">Simpan <i class="fa fa-save"></i></button>
                                     </div>
-                                </div>
-                            </form>   
-                        </div>
+                                </div>   
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -102,4 +102,11 @@
     </div>
 </div>
 <!-- /page content -->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var now = new Date();
+        var filename = 'foto_'+now.format("dmYhms");
+        $("#alias").val(filename);
+    });
+</script>
 {{template "_footer"}}

@@ -42,6 +42,12 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("id_unit", users.IdUnit)
 		session.Set("id_pegawai", users.IdPegawai)
 		session.Set("nama_role", users.NamaRole)
+		if users.Foto == "" {
+			session.Set("foto", "images/img.jpg")
+		} else {
+			session.Set("foto", "uploads/profile/"+users.Foto)
+		}
+
 		if users.Idrole == 4 || users.Idrole == 5 {
 			http.Redirect(response, request, "/profile", 302)
 		} else {
@@ -74,6 +80,7 @@ type user struct {
 	IdUnit    int
 	IdPegawai int
 	NamaRole  string
+	Foto      string
 }
 
 func QueryUser(username string) user {
@@ -92,7 +99,8 @@ func QueryUser(username string) user {
 	IFNULL(pengguna.id_role,0) AS id_role,
 	IFNULL(pengguna.id_unit,0) AS id_unit,
 	IFNULL(pengguna.id_pegawai,0) AS id_pegawai,
-	IFNULL(role.nama_role,'') AS nama_role
+	IFNULL(role.nama_role,'') AS nama_role,
+	IFNULL(pengguna.foto,'') AS foto
 	FROM pengguna
 	JOIN role ON pengguna.id_role=role.id_role
 	WHERE pengguna.username=?`, username).
@@ -105,6 +113,7 @@ func QueryUser(username string) user {
 			&users.IdUnit,
 			&users.IdPegawai,
 			&users.NamaRole,
+			&users.Foto,
 		)
 	return users
 }
