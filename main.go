@@ -111,6 +111,10 @@ func main() {
 		http.StripPrefix("/images/",
 			http.FileServer(http.Dir("assets/images"))))
 
+	http.Handle("/uploads/",
+		http.StripPrefix("/uploads/",
+			http.FileServer(http.Dir("assets/uploads"))))
+
 	fmt.Println("App SMKP UPY Run ON Port :3000")
 	http.ListenAndServe(":3000", nil)
 }

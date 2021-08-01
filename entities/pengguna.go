@@ -10,4 +10,5 @@ type Pengguna struct {
 	IdPegawai    int64
 	NamaRole     string
 	Foto         string
+	FotoLama     string
 }

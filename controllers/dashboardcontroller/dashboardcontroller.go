@@ -36,6 +36,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"jumlah_pegawai_masuk":              strconv.Itoa(jumlahpegawaimasuk),
 		"jumlah_pegawai_tidak_masuk":        strconv.Itoa(jumlahpegawaitidakmasuk),
 		"jumlah_pegawai_tidak_memenuhi_jam": strconv.Itoa(jumlahpegawaitidakmemenuhijam),
+		"foto":                              session.GetString("foto"),
 	}
 	var t, err = template.ParseFiles(
 		"views/home/dashboard.html",
@@ -60,7 +61,13 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
-	var data = map[string]string{
+	id, _ := strconv.ParseInt(session.GetString("IdPengguna"), 10, 64)
+
+	var penggunaModel models.PenggunaModel
+	datauser, _ := penggunaModel.Find(id)
+
+	var data = map[string]interface{}{
+		"datauser":      datauser,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -70,7 +77,6 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 		"foto":          session.GetString("foto"),
 		"NamaAplikasi":  "SMKP UPY",
 	}
-	fmt.Println(session.GetString("foto"))
 	var t, err = template.ParseFiles(
 		"views/home/profile.html",
 		"views/template/_header.html",
@@ -88,28 +94,15 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 	return
 }
 
-func Update(response http.ResponseWriter, request *http.Request) {
-	request.ParseForm()
-	var pengguna entities.Pengguna
-	pengguna.IdPengguna, _ = strconv.ParseInt(request.Form.Get("IdPengguna"), 10, 64)
-	pengguna.Username = request.Form.Get("Username")
-	pengguna.Password = request.Form.Get("Password")
-	pengguna.PasswordLama = request.Form.Get("PasswordLama")
-	pengguna.Nama = request.Form.Get("NamaPengguna")
-	pengguna.IdRole, _ = strconv.ParseInt(request.Form.Get("IdRole"), 10, 64)
-	pengguna.IdPegawai, _ = strconv.ParseInt(request.Form.Get("IdPegawai"), 10, 64)
-	var penggunaModel models.PenggunaModel
-	penggunaModel.Update(pengguna)
-
-	http.Redirect(response, request, "/profile", http.StatusSeeOther)
-}
-
 func UpdateProfile(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Update Profile Jalan!")
+	session := sessions.Start(w, r)
 	if r.Method != "POST" {
 		http.Error(w, "", http.StatusBadRequest)
 		return
 	}
+
+	r.ParseForm()
+	var pengguna entities.Pengguna
 
 	if err := r.ParseMultipartForm(1024); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -118,48 +111,55 @@ func UpdateProfile(w http.ResponseWriter, r *http.Request) {
 
 	// STEP 1 CODE FROM https://dasarpemrogramangolang.novalagung.com/B-form-upload-file.html
 	alias := r.FormValue("alias")
-
-	uploadedFile, handler, err := r.FormFile("file")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	defer uploadedFile.Close()
-
-	dir, err := os.Getwd()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	// STEP 2 CODE FROM https://dasarpemrogramangolang.novalagung.com/B-form-upload-file.html
-	filename := handler.Filename
 	if alias != "" {
-		filename = fmt.Sprintf("%s%s", alias, filepath.Ext(handler.Filename))
+		fmt.Println("Upload Foto Jalan!")
+		uploadedFile, handler, err := r.FormFile("file")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer uploadedFile.Close()
+
+		dir, err := os.Getwd()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		// STEP 2 CODE FROM https://dasarpemrogramangolang.novalagung.com/B-form-upload-file.html
+		filename := handler.Filename
+		if alias != "" {
+			filename = fmt.Sprintf("%s%s", alias, filepath.Ext(handler.Filename))
+		}
+		pengguna.Foto = filename
+		session.Set("foto", "uploads/profile/"+filename)
+
+		fileLocation := filepath.Join(dir, "/assets/uploads/profile", filename)
+		targetFile, err := os.OpenFile(fileLocation, os.O_WRONLY|os.O_CREATE, 0666)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer targetFile.Close()
+
+		if _, err := io.Copy(targetFile, uploadedFile); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
 	}
 
-	fileLocation := filepath.Join(dir, "/assets/uploads/profile", filename)
-	targetFile, err := os.OpenFile(fileLocation, os.O_WRONLY|os.O_CREATE, 0666)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	defer targetFile.Close()
-
-	if _, err := io.Copy(targetFile, uploadedFile); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	r.ParseForm()
-	var pengguna entities.Pengguna
 	pengguna.IdPengguna, _ = strconv.ParseInt(r.Form.Get("IdPengguna"), 10, 64)
+	pengguna.Username = r.Form.Get("Username")
 	pengguna.Password = r.Form.Get("Password")
 	pengguna.PasswordLama = r.Form.Get("PasswordLama")
 	pengguna.Nama = r.Form.Get("NamaPengguna")
-	pengguna.Foto = alias
 	var penggunaModel models.PenggunaModel
-	penggunaModel.Update(pengguna)
+	penggunaModel.UpdateProfile(pengguna)
+
+	session.Set("nama", pengguna.Nama)
+
+	// fmt.Println("ini foto :" + r.FormValue("alias"))
 
 	// w.Write([]byte("done"))
 	http.Redirect(w, r, "/profile", http.StatusSeeOther)

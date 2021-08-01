@@ -1,13 +1,14 @@
 package referensijamkerjacontroller
 
 import (
-	"html/template"
-	"SMKPUPY/models"
 	"SMKPUPY/entities"
-	"github.com/kataras/go-sessions"
+	"SMKPUPY/models"
+	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
-	"fmt"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -19,13 +20,14 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	var jamkerjaModel models.JamKerjaModel
 	jamkerja, _ := jamkerjaModel.FindAll()
 
-	data := map[string]interface{} {
-		"records": jamkerja,
+	data := map[string]interface{}{
+		"records":       jamkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -42,9 +44,8 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	}
 
 	t.Execute(response, data)
-	return	
+	return
 }
-
 
 func Add(response http.ResponseWriter, request *http.Request) {
 	session := sessions.Start(response, request)
@@ -52,7 +53,7 @@ func Add(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
-	data := map[string]interface{} {
+	data := map[string]interface{}{
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -124,7 +125,6 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	http.Redirect(response, request, "/referensi_jam_kerja", http.StatusSeeOther)
 }
 
-
 func Delete(response http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
@@ -144,8 +144,8 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 	var jamkerjaModel models.JamKerjaModel
 	jamkerja, _ := jamkerjaModel.Find(id)
 
-	data := map[string]interface{} {
-		"records": jamkerja,
+	data := map[string]interface{}{
+		"records":       jamkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

@@ -1,13 +1,14 @@
 package referensiunitcontroller
 
 import (
+	"SMKPUPY/entities"
+	"SMKPUPY/models"
+	"fmt"
 	"html/template"
 	"net/http"
-	"fmt"
-	"SMKPUPY/models"	
-	"SMKPUPY/entities"
-	"github.com/kataras/go-sessions"
 	"strconv"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -20,13 +21,14 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	var unitModel models.UnitModel
 	unit, _ := unitModel.FindAll()
 
-	data := map[string]interface{} {
-		"records": unit,
+	data := map[string]interface{}{
+		"records":       unit,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -52,7 +54,7 @@ func Add(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
-	data := map[string]interface{} {
+	data := map[string]interface{}{
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -116,9 +118,9 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
 	var unitModel models.UnitModel
 	unit, _ := unitModel.Find(id)
-	
-	data := map[string]interface{} {
-		"records": unit,
+
+	data := map[string]interface{}{
+		"records":       unit,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

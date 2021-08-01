@@ -1,13 +1,14 @@
 package settingpenggunacontroller
 
 import (
+	"SMKPUPY/entities"
+	"SMKPUPY/models"
+	"fmt"
 	"html/template"
 	"net/http"
-	"fmt"
-	"github.com/kataras/go-sessions"
-	"SMKPUPY/models"	
-	"SMKPUPY/entities"
 	"strconv"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -16,19 +17,20 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	if len(session.GetString("username")) == 0 {
 		http.Redirect(response, request, "/login", 301)
 	}
-	
+
 	var penggunaModel models.PenggunaModel
 	records, _ := penggunaModel.FindAll()
 
 	// fmt.Printf("%+v\n", records)
 
-	data := map[string]interface{} {
-		"records" : records,
+	data := map[string]interface{}{
+		"records":       records,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -60,9 +62,9 @@ func Add(response http.ResponseWriter, request *http.Request) {
 	var pegawaiModel models.PegawaiModel
 	pegawais, _ := pegawaiModel.FindAll()
 
-	data := map[string]interface{} {
-		"roles": roles,
-		"pegawais": pegawais,
+	data := map[string]interface{}{
+		"roles":         roles,
+		"pegawais":      pegawais,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -140,11 +142,11 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 
 	var pegawaiModel models.PegawaiModel
 	pegawais, _ := pegawaiModel.FindAll()
-	
-	data := map[string]interface{} {
-		"roles": roles,
-		"pegawais": pegawais,
-		"records": records,
+
+	data := map[string]interface{}{
+		"roles":         roles,
+		"pegawais":      pegawais,
+		"records":       records,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

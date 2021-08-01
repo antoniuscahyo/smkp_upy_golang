@@ -36,6 +36,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"id_unit":       session.GetString("id_unit"),
 		"id_pegawai":    session.GetString("id_pegawai"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(

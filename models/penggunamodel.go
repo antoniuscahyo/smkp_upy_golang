@@ -159,8 +159,8 @@ func (*PenggunaModel) UpdateProfile(pengguna entities.Pengguna) bool {
 			pengguna.Password = hashAndSalt(pengguna.Password)
 		}
 
-		if len(pengguna.Foto) < 2 {
-			pengguna.Foto = pengguna.Foto
+		if pengguna.FotoLama == "images/img.jpg" {
+			pengguna.Foto = ""
 		} else {
 			pengguna.Foto = pengguna.Foto
 		}
@@ -180,6 +180,7 @@ func (*PenggunaModel) UpdateProfile(pengguna entities.Pengguna) bool {
 			pengguna.IdPengguna)
 
 		if err2 != nil {
+			fmt.Println(err2)
 			return false
 		} else {
 			rowsAffected, _ := result.RowsAffected()

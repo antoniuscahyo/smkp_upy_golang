@@ -1,13 +1,14 @@
 package datapegawaicontroller
 
 import (
-	"html/template"
-	"SMKPUPY/models"
 	"SMKPUPY/entities"
-	"github.com/kataras/go-sessions"
+	"SMKPUPY/models"
+	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
-	"fmt"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -21,13 +22,14 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	pegawai, _ := pegawaiModel.FindAll()
 	// fmt.Println(pegawai)
 
-	data := map[string]interface{} {
-		"records": pegawai,
+	data := map[string]interface{}{
+		"records":       pegawai,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -62,10 +64,10 @@ func Add(response http.ResponseWriter, request *http.Request) {
 	var programstudiModel models.ProgramstudiModel
 	programstudi, _ := programstudiModel.FindAll()
 
-	data := map[string]interface{} {
-		"unitkerja": unitkerja,
-		"fakultas": fakultas,
-		"programstudi": programstudi,
+	data := map[string]interface{}{
+		"unitkerja":     unitkerja,
+		"fakultas":      fakultas,
+		"programstudi":  programstudi,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -123,7 +125,6 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	http.Redirect(response, request, "/data_pegawai", http.StatusSeeOther)
 }
 
-
 func Delete(response http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
@@ -151,12 +152,12 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 
 	var programstudiModel models.ProgramstudiModel
 	programstudi, _ := programstudiModel.FindAll()
-	
-	data := map[string]interface{} {
-		"records": pegawai,
-		"unitkerja": unitkerja,
-		"fakultas": fakultas,
-		"programstudi": programstudi,
+
+	data := map[string]interface{}{
+		"records":       pegawai,
+		"unitkerja":     unitkerja,
+		"fakultas":      fakultas,
+		"programstudi":  programstudi,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

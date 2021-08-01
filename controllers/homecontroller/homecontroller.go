@@ -23,6 +23,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"Idrole":        session.GetString("Idrole"),
 		"nama_role":     session.GetString("nama_role"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 	var t, err = template.ParseFiles(
 		"views/home/index.html",

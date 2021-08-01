@@ -1,13 +1,14 @@
 package referensijadwalkerjacontroller
 
 import (
-	"html/template"
-	"SMKPUPY/models"
 	"SMKPUPY/entities"
-	"github.com/kataras/go-sessions"
+	"SMKPUPY/models"
+	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
-	"fmt"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -19,13 +20,14 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	var jadwalkerjaModel models.JadwalKerjaModel
 	jadwalkerja, _ := jadwalkerjaModel.FindAll()
 
-	data := map[string]interface{} {
-		"records": jadwalkerja,
+	data := map[string]interface{}{
+		"records":       jadwalkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -42,7 +44,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	}
 
 	t.Execute(response, data)
-	return	
+	return
 }
 
 func Add(response http.ResponseWriter, request *http.Request) {
@@ -58,9 +60,9 @@ func Add(response http.ResponseWriter, request *http.Request) {
 	var unitkerjaModel models.UnitModel
 	unitkerja, _ := unitkerjaModel.FindAll()
 
-	data := map[string]interface{} {
-		"jamkerja": jamkerja,
-		"unitkerja": unitkerja,
+	data := map[string]interface{}{
+		"jamkerja":      jamkerja,
+		"unitkerja":     unitkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -108,7 +110,6 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	http.Redirect(response, request, "/referensi_jadwal_kerja", http.StatusSeeOther)
 }
 
-
 func Delete(response http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
@@ -134,11 +135,11 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 
 	var unitkerjaModel models.UnitModel
 	unitkerja, _ := unitkerjaModel.FindAll()
-	
-	data := map[string]interface{} {
-		"records": jadwalkerja,
-		"jamkerja": jamkerja,
-		"unitkerja": unitkerja,
+
+	data := map[string]interface{}{
+		"records":       jadwalkerja,
+		"jamkerja":      jamkerja,
+		"unitkerja":     unitkerja,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

@@ -1,13 +1,14 @@
 package settingmenucontroller
 
 import (
+	"SMKPUPY/entities"
+	"SMKPUPY/models"
+	"fmt"
 	"html/template"
 	"net/http"
-	"fmt"
-	"github.com/kataras/go-sessions"
-	"SMKPUPY/models"	
-	"SMKPUPY/entities"
 	"strconv"
+
+	"github.com/kataras/go-sessions"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -20,13 +21,14 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	var menuModel models.MenuModel
 	menus, _ := menuModel.FindAll()
 
-	data := map[string]interface{} {
-		"menus": menus,
+	data := map[string]interface{}{
+		"menus":         menus,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -52,7 +54,7 @@ func Add(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
-	data := map[string]interface{} {
+	data := map[string]interface{}{
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
@@ -102,7 +104,6 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	http.Redirect(response, request, "/setting_menu", http.StatusSeeOther)
 }
 
-
 func Delete(response http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
@@ -121,9 +122,9 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
 	var menuModel models.MenuModel
 	menu, _ := menuModel.Find(id)
-	
-	data := map[string]interface{} {
-		"menu": menu,
+
+	data := map[string]interface{}{
+		"menu":          menu,
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),

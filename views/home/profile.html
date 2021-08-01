@@ -23,7 +23,7 @@
                                 <div class="profile_img">
                                     <div id="crop-avatar">
                                         <!-- Current avatar -->
-                                        <img class="img-responsive avatar-view" src="{{ .foto }}" alt="Avatar" title="Change the avatar" style="width: 100%;">
+                                        <img class="img-responsive avatar-view" src="{{ .foto }}" alt="Foto Profile Pengguna" title="Ubah Foto Pengguna" style="width: 100%;">
                                     </div>
                                 </div>
                             </div>
@@ -71,13 +71,15 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="IdMenu" value="{{ .IdPengguna }}">
+                                <input type="hidden" name="IdPengguna" value="{{ .IdPengguna }}">
+                                <input type="hidden" name="PasswordLama" value="{{ .datauser.Password }}">
+                                <input type="hidden" name="FotoLama" value="{{ .foto }}">
 
                                 <div class="item form-group">
                                     <label class="col-form col-md-3 col-sm-3 label-align" for="last-name">Pilih Foto (png,jpg,jpeg) <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="file" accept="image/png, image/jpg, image/jpeg" required />
+                                        <input onchange="getFileName()" type="file" name="file" id="file" accept="image/png, image/jpg, image/jpeg" />
                                     </div>
                                 </div>
 
@@ -106,7 +108,18 @@
     document.addEventListener("DOMContentLoaded", function(event) { 
         var now = new Date();
         var filename = 'foto_'+now.format("dmYhms");
-        $("#alias").val(filename);
+        var fileupload = $('#file').val();
+        if (fileupload != '') {
+            $("#alias").val(filename);
+        }
     });
+
+    function getFileName() {
+        console.log('get file name jalan');
+        var now = new Date();
+        var filename = 'foto_'+now.format("dmYhms");
+        var fileupload = $('#file').val();
+        $("#alias").val(filename);
+    }
 </script>
 {{template "_footer"}}

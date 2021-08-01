@@ -28,6 +28,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"Idrole":        session.GetString("Idrole"),
 		"id_unit":       session.GetString("id_unit"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(

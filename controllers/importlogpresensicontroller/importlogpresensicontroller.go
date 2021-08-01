@@ -3,17 +3,17 @@ package importlogpresensicontroller
 import (
 	"github.com/kataras/go-sessions"
 	// "SMKPUPY/config"
-	"database/sql"
-	"path/filepath"
-	"html/template"
-	"net/http"
-	"strings"
 	"bufio"
-	"time"
+	"database/sql"
 	"fmt"
-	"log"
-	"os"
+	"html/template"
 	"io"
+	"log"
+	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
+	"time"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -23,12 +23,13 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
-	data := map[string]interface{} {
+	data := map[string]interface{}{
 		"username":      session.GetString("username"),
 		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"NamaAplikasi":  "SMKP UPY",
+		"foto":          session.GetString("foto"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -50,18 +51,18 @@ func Index(response http.ResponseWriter, request *http.Request) {
 
 func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 
-    if r.Method != "POST" {
-        http.Error(w, "", http.StatusBadRequest)
-        return
-    }
+	if r.Method != "POST" {
+		http.Error(w, "", http.StatusBadRequest)
+		return
+	}
 
-    if err := r.ParseMultipartForm(1024); err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
+	if err := r.ParseMultipartForm(1024); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	// STEP 1 CODE FROM https://dasarpemrogramangolang.novalagung.com/B-form-upload-file.html
-    alias := r.FormValue("alias")
+	alias := r.FormValue("alias")
 
 	uploadedFile, handler, err := r.FormFile("file")
 	if err != nil {
@@ -106,14 +107,13 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	reader := bufio.NewReader(file)
 	scanner := bufio.NewScanner(reader)
 
-	
 	db, err := sql.Open("mysql", "root:12345@tcp(127.0.0.1:3306)/db_monitoring_kehadiran_pegawai")
-    defer db.Close()
+	defer db.Close()
 
 	for scanner.Scan() {
 		someString := scanner.Text()
 		words := strings.Fields(someString)
-		_, err = db.Exec("insert ignore log_mesin_finger values (?, ?, ?)",words[0],words[1],words[2])
+		_, err = db.Exec("insert ignore log_mesin_finger values (?, ?, ?)", words[0], words[1], words[2])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -125,9 +125,9 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	// Code Blocks Delete File setelah 10 Detik upload sukses!!!
 	time.Sleep(time.Second * 10)
 	e := os.Remove(fileLocation)
-    if e != nil {
-        log.Fatal(e)
-    }
+	if e != nil {
+		log.Fatal(e)
+	}
 
 	// w.Write([]byte("done"))
 	http.Redirect(w, r, "/import_log_presensi", http.StatusSeeOther)
