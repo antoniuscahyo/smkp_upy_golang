@@ -1,7 +1,7 @@
 package importlogpresensicontroller
 
 import (
-	"github.com/kataras/go-sessions"
+	"github.com/kataras/go-sessions/v3"
 	// "SMKPUPY/config"
 	"bufio"
 	"database/sql"

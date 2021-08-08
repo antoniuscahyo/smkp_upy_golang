@@ -2,7 +2,7 @@ package authcontroller
 
 import (
 	"net/http"
-	"github.com/kataras/go-sessions"
+	"github.com/kataras/go-sessions/v3"
 )
 
 func Login(response http.ResponseWriter, request *http.Request) {

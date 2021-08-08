@@ -4,7 +4,7 @@ import (
 	"html/template"
 	"SMKPUPY/models"
 	"SMKPUPY/entities"
-	"github.com/kataras/go-sessions"
+	"github.com/kataras/go-sessions/v3"
 	"net/http"
 	"strconv"
 	"fmt"

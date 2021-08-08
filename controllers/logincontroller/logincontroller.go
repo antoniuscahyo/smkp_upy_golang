@@ -6,7 +6,7 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/kataras/go-sessions"
+	"github.com/kataras/go-sessions/v3"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -16,9 +16,10 @@ func Index(response http.ResponseWriter, request *http.Request) {
 }
 
 func Login(response http.ResponseWriter, request *http.Request) {
+	// sess := sessions.New(sessions.Config{Cookie: "myappsessionid"})
 	session := sessions.Start(response, request)
 	if len(session.GetString("username")) != 0 {
-		http.Redirect(response, request, "/home", 302)
+		http.Redirect(response, request, "/", 302)
 	}
 	if request.Method != "POST" {
 		http.ServeFile(response, request, "views/login/index.html")
