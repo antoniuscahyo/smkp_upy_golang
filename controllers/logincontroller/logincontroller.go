@@ -11,8 +11,20 @@ import (
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
+	db, err := config.GetDB()
+	err = db.Ping()
+
+	var error_message = "" 
+	if err != nil {
+		fmt.Println(err.Error())
+		error_message = err.Error()
+	}
+	var data = map[string]string{
+		"error": error_message,
+	}
+
 	tmp, _ := template.ParseFiles("views/login/index.html")
-	tmp.Execute(response, nil)
+	tmp.Execute(response, data)
 }
 
 func Login(response http.ResponseWriter, request *http.Request) {

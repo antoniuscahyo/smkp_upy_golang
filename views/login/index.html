@@ -22,6 +22,10 @@
     <link href="/static/build/css/custom.min.css" rel="stylesheet">
   </head>
 
+  <div id="alert-connection-db" class="div-alert" style="display: none;">
+    <p class="text-alert">{{ .error }}</p>
+  </div>
+
   <body class="login">
     <div>
       <a class="hiddenanchor" id="signup"></a>
@@ -68,3 +72,35 @@
     </div>
   </body>
 </html>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    var errmessage = '{{ .error }}';
+      if (errmessage!='') {
+        var element = document.getElementById('alert-connection-db');
+        element.style.display = null;
+      }
+  });
+</script>
+
+<style>
+  .div-alert {
+    height: 30px;
+    width: 100%;
+    background-color: red;
+  }
+
+  .text-alert {
+    color: #f2f2f2;
+    text-align: center;
+    display: block;
+    font-size: 17px;
+    animation: blinker 2s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
