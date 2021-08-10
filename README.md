@@ -31,6 +31,14 @@ Command line:
 
 Docker:
 
+    Menjalankan Build Image
+    $ docker build -t image-smkp-upy:1.0 .
+
+    Menjalankan Docker Compose Membuat Container
+    $ docker-compose up
+
+    Menjalankan Docker Compose Menghapus Container dengan Volumenya
+    $ docker-compose down --remove-orphans --volumes
 List Web Module Belum Selesai
 ---
 - Import Data ( Upload file .dat lalu dieksekusi kedalam query insert ke tabel `log_mesin_finger` )

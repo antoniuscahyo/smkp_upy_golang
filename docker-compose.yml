@@ -1,55 +1,54 @@
 version: '3'
 services:
   app:
+    image: image-smkp-upy:1.0
     container_name: smkp_upy_app
     build: .
     ports: 
-      - 8080:8080 
+      - 3000:3000 
     restart: on-failure
     volumes:
-      - api:/usr/src/app/
-    depends_on:
-      - fullstack-mysql          
+      - volsmkp:/usr/src/app/    
     networks:
       - fullstack
 
 
-  fullstack-mysql:
+  database:
     image: mysql:5.7
     container_name: smkp_upy_db
     ports: 
       - 3306:3306
     environment: 
-      - MYSQL_ROOT_HOST=${DC_DB_HOST} 
-      - MYSQL_USER=${DC_DB_USER}
-      - MYSQL_PASSWORD=${DC_DB_PASSWORD}
-      - MYSQL_DATABASE=${DC_DB_NAME}
-      - MYSQL_ROOT_PASSWORD=${DC_DB_PASSWORD}
+      - MYSQL_ROOT_HOST=database 
+      - MYSQL_USER=smkp_upy
+      - MYSQL_PASSWORD=12345
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=12345
     volumes:
       - database_mysql:/var/lib/mysql
     networks:
       - fullstack
-  
+
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: smkp_upy_phpmyadmin
     depends_on:
-      - fullstack-mysql
+      - database
     environment:
-      - PMA_HOST=fullstack-mysql # Note the "fullstack-mysql". Must be the name of the what you used as the mysql service.
-      - PMA_USER=${DC_DB_USER}
-      - PMA_PORT=${DC_DB_PORT}
-      - PMA_PASSWORD=${DC_DB_PASSWORD}
+      - PMA_HOST=database # Note the "mysql". Must be the name of the what you used as the mysql service.
+      - PMA_USER=smkp_upy
+      - PMA_PORT=3306
+      - PMA_PASSWORD=12345
     ports:
       - 9090:80
     restart: always
     networks:
       - fullstack
 
-
 volumes:
-  api:
-  database_mysql:                  
+  volsmkp:
+  database_mysql:
 
 # Networks to be created to facilitate communication between containers
 networks:

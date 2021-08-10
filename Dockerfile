@@ -1,5 +1,7 @@
 FROM golang:alpine
 
+LABEL maintainer="Antonius Cahyo <antoniuscahyo18@gmail.com>"
+
 WORKDIR /app
 
 COPY . .
