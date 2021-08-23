@@ -48,6 +48,12 @@ func Index(response http.ResponseWriter, request *http.Request) {
 }
 
 func LoadData(response http.ResponseWriter, request *http.Request) {
+	
+	session := sessions.Start(response, request)
+	if len(session.GetString("username")) == 0 {
+		http.Redirect(response, request, "/login", 301)
+	}
+
 	IdUnit, _ := strconv.ParseInt(request.PostFormValue("IdUnit"), 10, 64)
 	TanggalAwal := request.PostFormValue("TanggalAwal")
 	TanggalAkhir := request.PostFormValue("TanggalAkhir")

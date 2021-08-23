@@ -57,6 +57,7 @@ func Add(response http.ResponseWriter, request *http.Request) {
 		"username":      session.GetString("username"),
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"foto":          session.GetString("foto"),
 		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
@@ -122,6 +123,7 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 		"username":      session.GetString("username"),
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
+		"foto":          session.GetString("foto"),
 		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
