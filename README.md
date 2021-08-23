@@ -41,10 +41,7 @@ Docker:
     $ docker-compose down --remove-orphans --volumes
 List Web Module Belum Selesai
 ---
-- Import Data ( Upload file .dat lalu dieksekusi kedalam query insert ke tabel `log_mesin_finger` )
-- Data Unit ( Masih disusun hirarkinya )
-- Data Pegawai ( Masih dibuat codingnya )
-
+- 
 Entitas Login
 ---
 - Admin
