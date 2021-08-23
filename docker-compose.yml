@@ -10,7 +10,7 @@ services:
     volumes:
       - volsmkp:/usr/src/app/    
     networks:
-      - fullstack
+      - smkp_network
 
 
   database:
@@ -20,14 +20,15 @@ services:
       - 3306:3306
     environment: 
       - MYSQL_ROOT_HOST=database 
-      - MYSQL_USER=smkp_upy
-      - MYSQL_PASSWORD=12345
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_ROOT_PASSWORD=root
+    command: --sql_mode=""
     volumes:
       - database_mysql:/var/lib/mysql
     networks:
-      - fullstack
+      - smkp_network
 
 
   phpmyadmin:
@@ -37,14 +38,14 @@ services:
       - database
     environment:
       - PMA_HOST=database # Note the "mysql". Must be the name of the what you used as the mysql service.
-      - PMA_USER=smkp_upy
-      - PMA_PORT=3306
-      - PMA_PASSWORD=12345
+      - PMA_USER=${DB_USER}
+      - PMA_PORT=${DB_PORT}
+      - PMA_PASSWORD=${DB_PASS}
     ports:
       - 9090:80
     restart: always
     networks:
-      - fullstack
+      - smkp_network
 
 volumes:
   volsmkp:
@@ -52,5 +53,5 @@ volumes:
 
 # Networks to be created to facilitate communication between containers
 networks:
-  fullstack:
+  smkp_network:
     driver: bridge
