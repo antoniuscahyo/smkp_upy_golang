@@ -55,6 +55,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("id_unit", users.IdUnit)
 		session.Set("id_pegawai", users.IdPegawai)
 		session.Set("nama_role", users.NamaRole)
+		session.Set("nama_aplikasi", "SMKP UPY")
 		if users.Foto == "" {
 			session.Set("foto", "images/img.jpg")
 		} else {

@@ -55,10 +55,9 @@ func Add(response http.ResponseWriter, request *http.Request) {
 
 	data := map[string]interface{}{
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -119,10 +118,9 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 	data := map[string]interface{}{
 		"role":          role,
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
 	var t, err = template.ParseFiles(

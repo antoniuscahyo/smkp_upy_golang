@@ -30,12 +30,11 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		"unitkerja":     unitkerja,
 		"pegawai":       pegawai,
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"id_unit":       session.GetString("id_unit"),
 		"id_pegawai":    session.GetString("id_pegawai"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 		"foto":          session.GetString("foto"),
 	}
 
@@ -74,7 +73,7 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 
 	data := map[string]interface{}{
 		"data":         detailharian,
-		"NamaAplikasi": "SMKP UPY",
+		"NamaAplikasi": session.GetString("nama_aplikasi"),
 	}
 
 	var t, err = template.ParseFiles(

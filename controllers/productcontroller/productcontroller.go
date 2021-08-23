@@ -21,19 +21,11 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	data := map[string]interface{} {
 		"products": products,
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
-	/*var data = map[string]string{
-		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
-		"nama_pengguna": session.GetString("nama"),
-		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
-	}*/
 	var t, err = template.ParseFiles(
 		"views/product/index.html",
 		"views/template/_header.html",
@@ -60,10 +52,9 @@ func Add(response http.ResponseWriter, request *http.Request) {
 
 	data := map[string]interface{} {
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
 	var t, err = template.ParseFiles(
@@ -138,10 +129,9 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 	data := map[string]interface{} {
 		"product": product,
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 
 	// tmp, _ := template.ParseFiles("views/product/edit.html")

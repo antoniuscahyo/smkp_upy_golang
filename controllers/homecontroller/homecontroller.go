@@ -18,11 +18,10 @@ func Index(response http.ResponseWriter, request *http.Request) {
 
 	var data = map[string]string{
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"nama_role":     session.GetString("nama_role"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 		"foto":          session.GetString("foto"),
 	}
 	var t, err = template.ParseFiles(

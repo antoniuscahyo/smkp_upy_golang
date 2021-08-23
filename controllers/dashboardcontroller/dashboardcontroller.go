@@ -28,10 +28,9 @@ func Index(response http.ResponseWriter, request *http.Request) {
 
 	var data = map[string]string{
 		"username":                          session.GetString("username"),
-		"message":                           "Welcome to the Go !",
 		"nama_pengguna":                     session.GetString("nama"),
 		"Idrole":                            session.GetString("Idrole"),
-		"NamaAplikasi":                      "SMKP UPY",
+		"NamaAplikasi":                      session.GetString("nama_aplikasi"),
 		"jumlah_pegawai":                    strconv.Itoa(jumlahpegawai),
 		"jumlah_pegawai_masuk":              strconv.Itoa(jumlahpegawaimasuk),
 		"jumlah_pegawai_tidak_masuk":        strconv.Itoa(jumlahpegawaitidakmasuk),
@@ -69,13 +68,12 @@ func Profile(response http.ResponseWriter, request *http.Request) {
 	var data = map[string]interface{}{
 		"datauser":      datauser,
 		"username":      session.GetString("username"),
-		"message":       "Welcome to the Go !",
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
 		"IdPengguna":    session.GetString("IdPengguna"),
 		"nama_role":     session.GetString("nama_role"),
 		"foto":          session.GetString("foto"),
-		"NamaAplikasi":  "SMKP UPY",
+		"NamaAplikasi":  session.GetString("nama_aplikasi"),
 	}
 	var t, err = template.ParseFiles(
 		"views/home/profile.html",
