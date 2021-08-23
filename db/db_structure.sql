@@ -266,14 +266,14 @@ CREATE TABLE `unit_simpeg` (
 -- View structure for view_log_presensi
 -- ----------------------------
 DROP VIEW IF EXISTS `view_log_presensi`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `view_log_presensi` AS select `pegawai`.`id_pegawai` AS `id_pegawai`,`unit`.`unit_id` AS `unit_id`,`fakultas`.`id_fakultas` AS `id_fakultas`,`program_studi`.`id_program_studi` AS `id_program_studi`,`log_mesin_finger`.`tanggal` AS `tanggal`,`log_mesin_finger`.`jam` AS `jam`,`pegawai`.`nama_pegawai` AS `nama_pegawai`,`pegawai`.`nis_pegawai` AS `nis_pegawai`,`unit`.`unit_nama` AS `unit_nama`,`fakultas`.`nama_fakultas` AS `nama_fakultas`,`program_studi`.`nama_program_studi` AS `nama_program_studi` from ((((`log_mesin_finger` join `pegawai` on(`log_mesin_finger`.`pin_finger` = `pegawai`.`pin_finger`)) left join `unit` on(`pegawai`.`id_unit` = `unit`.`unit_id`)) left join `fakultas` on(`pegawai`.`id_fakultas` = `fakultas`.`id_fakultas`)) left join `program_studi` on(`pegawai`.`id_program_studi` = `program_studi`.`id_program_studi`)) order by `pegawai`.`nis_pegawai` desc,`log_mesin_finger`.`tanggal` ;
+CREATE VIEW `view_log_presensi` AS select `pegawai`.`id_pegawai` AS `id_pegawai`,`unit`.`unit_id` AS `unit_id`,`fakultas`.`id_fakultas` AS `id_fakultas`,`program_studi`.`id_program_studi` AS `id_program_studi`,`log_mesin_finger`.`tanggal` AS `tanggal`,`log_mesin_finger`.`jam` AS `jam`,`pegawai`.`nama_pegawai` AS `nama_pegawai`,`pegawai`.`nis_pegawai` AS `nis_pegawai`,`unit`.`unit_nama` AS `unit_nama`,`fakultas`.`nama_fakultas` AS `nama_fakultas`,`program_studi`.`nama_program_studi` AS `nama_program_studi` from ((((`log_mesin_finger` join `pegawai` on(`log_mesin_finger`.`pin_finger` = `pegawai`.`pin_finger`)) left join `unit` on(`pegawai`.`id_unit` = `unit`.`unit_id`)) left join `fakultas` on(`pegawai`.`id_fakultas` = `fakultas`.`id_fakultas`)) left join `program_studi` on(`pegawai`.`id_program_studi` = `program_studi`.`id_program_studi`)) order by `pegawai`.`nis_pegawai` desc,`log_mesin_finger`.`tanggal` ;
 
 -- ----------------------------
 -- Function structure for func_getjumlahkehadiran
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getjumlahkehadiran`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `func_getjumlahkehadiran`(x_tglawal DATE,x_tglakhir DATE,x_idpegawai INT(11)) RETURNS char(8) CHARSET latin1
+CREATE FUNCTION `func_getjumlahkehadiran`(x_tglawal DATE,x_tglakhir DATE,x_idpegawai INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_jumlah_kehadiran INTEGER DEFAULT 0;
 
@@ -305,7 +305,7 @@ DELIMITER ;
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanbolos`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanbolos`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(10) CHARSET latin1
+CREATE FUNCTION `func_getscanbolos`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(10) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -481,7 +481,7 @@ DELIMITER ;
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanjumlahkehadiran`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanjumlahkehadiran`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
+CREATE FUNCTION `func_getscanjumlahkehadiran`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -669,7 +669,7 @@ DELIMITER ;
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscankeluar`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscankeluar`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
+CREATE FUNCTION `func_getscankeluar`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -841,7 +841,7 @@ DELIMITER ;
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanmasuk`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanmasuk`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
+CREATE FUNCTION `func_getscanmasuk`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
@@ -1013,7 +1013,7 @@ DELIMITER ;
 -- ----------------------------
 DROP FUNCTION IF EXISTS `func_getscanterlambat`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `func_getscanterlambat`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
+CREATE FUNCTION `func_getscanterlambat`(x_tgl DATE,x_idunit INT(11),x_idfinger INT(11)) RETURNS char(8) CHARSET latin1
 BEGIN
 DECLARE x_idhari INTEGER DEFAULT 1;
 
