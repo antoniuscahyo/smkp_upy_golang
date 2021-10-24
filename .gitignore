@@ -2,3 +2,4 @@ config/config.go
 .env
 assets/uploads
 .gitignore
+.vscode
