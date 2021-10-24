@@ -24,6 +24,8 @@ import (
 	"SMKPUPY/controllers/settingrolecontroller"
 
 	"SMKPUPY/controllers/importlogpresensicontroller"
+	
+	"SMKPUPY/config"
 )
 
 func main() {
@@ -115,6 +117,9 @@ func main() {
 		http.StripPrefix("/uploads/",
 			http.FileServer(http.Dir("assets/uploads"))))
 
-	fmt.Println("App SMKP UPY Run ON Port :3000")
-	http.ListenAndServe(":3000", nil)
+	PORT := config.GetEnv("APP_PORT")
+	HOST := config.GetEnv("APP_HOST")
+	config.SendBotTele("Engine","Engine Start On "+HOST+":"+PORT+" !")
+	fmt.Println("App SMKP UPY Run ON Port :"+PORT)
+	http.ListenAndServe(":"+PORT, nil)
 }
