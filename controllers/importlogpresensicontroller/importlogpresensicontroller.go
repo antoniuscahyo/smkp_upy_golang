@@ -2,7 +2,7 @@ package importlogpresensicontroller
 
 import (
 	"github.com/kataras/go-sessions/v3"
-	// "SMKPUPY/config"
+	"SMKPUPY/config"
 	"bufio"
 	"database/sql"
 	"fmt"
@@ -106,7 +106,12 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	reader := bufio.NewReader(file)
 	scanner := bufio.NewScanner(reader)
 
-	db, err := sql.Open("mysql", "root:12345@tcp(127.0.0.1:3306)/db_monitoring_kehadiran_pegawai")
+	DBNAME := config.GetEnv("DB_NAME")
+	HOST := config.GetEnv("DB_HOST")
+	PORT := config.GetEnv("DB_PORT")
+	USER := config.GetEnv("DB_USER")
+	PASS := config.GetEnv("DB_PASS")
+	db, err := sql.Open("mysql", USER+":"+PASS+"@tcp("+HOST+":"+PORT+")/"+DBNAME)
 	defer db.Close()
 
 	for scanner.Scan() {

