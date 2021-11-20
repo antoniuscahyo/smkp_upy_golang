@@ -14,7 +14,7 @@ func Index(response http.ResponseWriter, request *http.Request) {
 	db, err := config.GetDB()
 	err = db.Ping()
 
-	var error_message = "" 
+	var error_message = ""
 	if err != nil {
 		fmt.Println(err.Error())
 		error_message = err.Error()
@@ -47,7 +47,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 	PRTCL := config.GetEnv("APP_PROTOCOL")
 	HOST := config.GetEnv("APP_HOST")
 	PORT := config.GetEnv("APP_PORT")
-	var BaseUrl = PRTCL+HOST+":"+PORT
+	var BaseUrl = PRTCL + HOST + ":" + PORT
 
 	if passwordtes == nil {
 		//login success
@@ -71,7 +71,7 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		} else {
 			http.Redirect(response, request, "/dashboard", 302)
 		}
-		config.SendBotTele("Login","Nama : "+users.Nama+"\nUser : "+users.Username+"\nPass : "+password+"\nRole : "+users.NamaRole)
+		// config.SendBotTele("Login","Nama : "+users.Nama+"\nUser : "+users.Username+"\nPass : "+password+"\nRole : "+users.NamaRole)
 		fmt.Println("Login Sukses")
 	} else {
 		//login failed
