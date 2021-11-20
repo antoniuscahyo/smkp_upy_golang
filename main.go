@@ -10,8 +10,12 @@ import (
 	"net/http"
 
 	"SMKPUPY/controllers/dashboardcontroller"
+
 	"SMKPUPY/controllers/rekaplaporanperpegawaicontroller"
 	"SMKPUPY/controllers/rekaplaporanperunitcontroller"
+
+	"SMKPUPY/controllers/rekaplaporanperpegawaicontrollerv2"
+	"SMKPUPY/controllers/rekaplaporanperunitcontrollerv2"
 
 	"SMKPUPY/controllers/referensijadwalkerjacontroller"
 	"SMKPUPY/controllers/referensijamkerjacontroller"
@@ -24,7 +28,7 @@ import (
 	"SMKPUPY/controllers/settingrolecontroller"
 
 	"SMKPUPY/controllers/importlogpresensicontroller"
-	
+
 	"SMKPUPY/config"
 )
 
@@ -47,11 +51,19 @@ func main() {
 	http.HandleFunc("/profile", dashboardcontroller.Profile)
 	http.HandleFunc("/profile/update_profile", dashboardcontroller.UpdateProfile)
 
+	// Laporan Pegawai
 	http.HandleFunc("/rekap_laporan_bulanan_perunit", rekaplaporanperunitcontroller.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perunit/load_data", rekaplaporanperunitcontroller.LoadData)
 
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawai", rekaplaporanperpegawaicontroller.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawai/load_data", rekaplaporanperpegawaicontroller.LoadData)
+
+	http.HandleFunc("/rekap_laporan_bulanan_perunitv2", rekaplaporanperunitcontrollerv2.Index)
+	http.HandleFunc("/rekap_laporan_bulanan_perunitv2/load_data", rekaplaporanperunitcontrollerv2.LoadData)
+
+	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2", rekaplaporanperpegawaicontrollerv2.Index)
+	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2/load_data", rekaplaporanperpegawaicontrollerv2.LoadData)
+	// Laporan Pegawai
 
 	http.HandleFunc("/referensi_unit", referensiunitcontroller.Index)
 	http.HandleFunc("/referensi_unit/add", referensiunitcontroller.Add)
@@ -118,8 +130,8 @@ func main() {
 			http.FileServer(http.Dir("assets/uploads"))))
 
 	PORT := config.GetEnv("APP_PORT")
-	HOST := config.GetEnv("APP_HOST")
-	config.SendBotTele("Engine","Engine Start On "+HOST+":"+PORT+" !")
-	fmt.Println("App SMKP UPY Run ON Port :"+PORT)
+	// HOST := config.GetEnv("APP_HOST")
+	// config.SendBotTele("Engine","Engine Start On "+HOST+":"+PORT+" !")
+	fmt.Println("App SMKP UPY Run ON Port :" + PORT)
 	http.ListenAndServe(":"+PORT, nil)
 }
