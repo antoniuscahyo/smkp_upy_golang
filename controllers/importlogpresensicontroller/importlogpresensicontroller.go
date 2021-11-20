@@ -1,19 +1,21 @@
 package importlogpresensicontroller
 
 import (
-	"github.com/kataras/go-sessions/v3"
 	"SMKPUPY/config"
+	"SMKPUPY/entities"
+	"SMKPUPY/models"
 	"bufio"
 	"database/sql"
 	"fmt"
 	"html/template"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/kataras/go-sessions/v3"
 )
 
 func Index(response http.ResponseWriter, request *http.Request) {
@@ -23,7 +25,11 @@ func Index(response http.ResponseWriter, request *http.Request) {
 		http.Redirect(response, request, "/login", 301)
 	}
 
+	var logModel models.LogImportPresensiModel
+	logdata, _ := logModel.FindAll()
+
 	data := map[string]interface{}{
+		"logdata":       logdata,
 		"username":      session.GetString("username"),
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
@@ -114,25 +120,63 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", USER+":"+PASS+"@tcp("+HOST+":"+PORT+")/"+DBNAME)
 	defer db.Close()
 
+	countData := 0
 	for scanner.Scan() {
 		someString := scanner.Text()
 		words := strings.Fields(someString)
-		_, err = db.Exec("insert ignore log_mesin_finger values (?, ?, ?)", words[0], words[1], words[2])
+		_, err = db.Exec("INSERT IGNORE log_mesin_finger VALUES (?, ?, ?)", words[0], words[1], words[2])
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
+		countData++
 		// fmt.Println("insert success!")
 	}
 	// INSERT TO SQL CODE
 
+	currentTime := time.Now()
+	timenow := currentTime.Format("2006-01-02 15:04:05")
+
+	var log entities.LogImportPresensi
+	log.TanggalImport = timenow
+	log.TanggalLogAwal = r.PostFormValue("TanggalAwal")
+	log.TanggalLogAkhir = r.PostFormValue("TanggalAkhir")
+	log.Tahun = r.PostFormValue("Tahun")
+	log.Bulan = r.PostFormValue("Bulan")
+	log.LokasiMesin = r.PostFormValue("LokasiMesin")
+	log.JumlahData = countData
+	log.NamaFile = filename
+	var importLogModel models.LogImportPresensiModel
+	importLogModel.Create(&log)
+
+	var dataDeleteRekap entities.LogImportPresensi
+	dataDeleteRekap.Tahun = r.PostFormValue("Tahun")
+	dataDeleteRekap.Bulan = r.PostFormValue("Bulan")
+	importLogModel.DeleteLaporanRekap(&dataDeleteRekap)
+
+	var dataCreateRekap entities.LogImportPresensi
+	dataCreateRekap.Tahun = r.PostFormValue("Tahun")
+	dataCreateRekap.Bulan = r.PostFormValue("Bulan")
+	dataCreateRekap.TanggalLogAwal = r.PostFormValue("TanggalAwal")
+	dataCreateRekap.TanggalLogAkhir = r.PostFormValue("TanggalAkhir")
+	importLogModel.CreateLaporanRekap(&dataCreateRekap)
+
 	// Code Blocks Delete File setelah 10 Detik upload sukses!!!
-	time.Sleep(time.Second * 10)
+	/*time.Sleep(time.Second * 10)
 	e := os.Remove(fileLocation)
 	if e != nil {
 		log.Fatal(e)
-	}
+	}*/
 
 	// w.Write([]byte("done"))
+
 	http.Redirect(w, r, "/import_log_presensi", http.StatusSeeOther)
+	/*js := `<script type="text/javascript"  charset="utf-8">
+	document.addEventListener("DOMContentLoaded", function(event) {
+		notify('Sukses!','Update data log presensi, Berhasil','success');
+		$('#modal-loader').modal('hide');
+	});
+	</script>`
+	w.Write([]byte(js))
+	return*/
 }
