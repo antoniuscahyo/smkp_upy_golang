@@ -1,0 +1,115 @@
+<div class="col-sm-12">
+    <div class="card-box table-responsive">
+        <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th rowspan="2">No</th>
+                    <th rowspan="2">Nama</th>
+                    <th colspan="2">Jumlah Kehadiran</th>
+                    <th colspan="2">Pot. Insentif Kehadiran</th>
+                    <th colspan="2">Uang Makan Kehadiran</th>
+                </tr>
+                <tr>
+                    <th>Jumlah</th>
+                    <th>Validasi</th>
+                    <th>Jumlah</th>
+                    <th>Validasi</th>
+                    <th>Jumlah</th>
+                    <th>Validasi</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{ range .data }}
+                <tr>
+                    <td>{{.No}}</td>
+                    <td>{{.NamaPegawai}}</td>
+                    <td>{{.JumlahKehadiran}}</td>
+                    <td id="ValVK-{{.IdPK}}"><span onclick='getParent("ValVK-{{.IdPK}}","{{.ValidasiKehadiran}}")'>{{.ValidasiKehadiran}}</span></td>
+                    <td id="ValPIK-{{.IdPK}}">{{.PotonganInsentifKehadiran}}</td>
+                    <td id="ValVIK-{{.IdPK}}">{{.ValidasiInsentifKehadiran}}</td>
+                    <td id="ValUMKK-{{.IdPK}}">{{.UMKKehadiran}}</td>
+                    <td id="ValVUMK-{{.IdPK}}">{{.ValidasiUMKKehadiran}}</td>
+                </tr>
+            {{ end }}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#datatable').DataTable();
+    });
+
+    function getParent(id,val) {
+        console.log('onclick input');
+        $('#'+id+'').html('');
+        $('#'+id+'').append('<input type="text" id="'+val+'" value="'+val+'"></input><button type="button" onclick="alert("Batal")">Batal</button><button type="button" onclick="alert("Simpan")">Simpan</button>');
+    }
+
+    function Batal(id) {
+        console.log('onclick input');
+    }
+
+    // var editor;
+    // $('#datatable').on( 'click', 'tbody td:not(:first-child)', function (e) {
+    //     editor.inline( this );
+    // } );
+    
+    // Datatable
+    // var EditRowData = [];
+    // var ColumnData;
+
+    // $(document).ready(function() {
+    //     $("#datatable tbody").on('click', 'tr td', function (e) {
+    //         RoweditMode($(this).parent());
+    //         // alert('run editable');
+    //     });
+    // });
+
+    // var editIndexTable = -1;
+    // function RoweditMode(rowid) {
+    //     alert('RoweditMode '+JSON.stringify(rowid));
+    //     var prevRow;
+    //     var rowIndexVlaue = parseInt(rowid.attr("indexv"));
+    //     if (editIndexTable == -1) {
+    //         saveRowIntoArray(rowid);
+    //         rowid.attr("editState", "editState");
+    //         editIndexTable = rowid.rowIndex;
+    //         setEditStateValue(rowid, rowIndexVlaue + 2);
+    //     }
+    //     else {
+    //         prevRow = $("[editState=editState]");
+    //         prevRow.attr("editState", "");
+    //         rowid.attr("editState", "editState");
+    //         editIndexTable = rowIndexVlaue;
+    //         saveArrayIntoRow(prevRow);
+    //         saveRowIntoArray(rowid);
+    //         setEditStateValue(rowid, rowIndexVlaue + 2);
+    //     }
+    // }
+    // function saveRowIntoArray(cureentCells) {
+    //     alert('saveRowIntoArray '+JSON.stringify(cureentCells));
+    //     $.each(ColumnData, function (index, element) {
+    //         if (element.Editable == true) {
+    //             var htmlVal = $($(cureentCells).children('.' + element.Name)[0]).html();
+    //             EditRowData[element.Name] = htmlVal;
+    //         }
+    //     });
+    // }
+    // function saveArrayIntoRow(cureentCells) {
+    //     alert('saveArrayIntoRow '+JSON.stringify(cureentCells));
+    //     for (var k in EditRowData) {
+    //         $($(cureentCells).children('.' + k)[0]).html(EditRowData[k]);
+    //     }
+    // }
+    // function setEditStateValue(td1, indexRow) {
+    //     alert('setEditStateValue '+JSON.stringify(indexRow));
+    //     for (var k in EditRowData) {
+    //         $($(td1).children('.' + k)[0]).html('<input value="' + EditRowData[k] + '" class="userinput"  style="width: 99% " />');
+    //     }
+    // }
+
+    // Datatable
+</script>
