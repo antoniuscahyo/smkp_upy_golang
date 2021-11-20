@@ -1,0 +1,213 @@
+{{template "_header" .}}
+<div class="right_col" role="main">
+    <div class="">
+        
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Laporan Bulanan Per <small>Pegawai</small></h3>
+            </div>
+        </div>
+        
+        <div class="clearfix"></div>
+        
+        <div class="row">
+            <!-- FORM PENCARIAN DATA -->
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Form Pencarian</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <!-- how to code operators like in next line -> https://pkg.go.dev/text/template#hdr-Functions -->
+                            {{if (ne .Idrole "5") }}
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Unit
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control select2" id="IdUnit" name="IdUnit">
+                                        <option value="">- Pilih Unit Kerja -</option>
+                                        {{ range .unitkerja }}
+                                        <option value="{{.IdUnit}}">{{.IdUnit}} | {{.UnitNama}}</option>
+                                        {{ end }}
+                                    </select>
+                                </div>
+                            </div>
+                            {{end}}
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pegawai
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control select2" id="IdPegawai" name="IdPegawai">
+                                        <option value="">- Pilih Pegawai -</option>
+                                        {{ range .pegawai }}
+                                        <option value="{{.IdPegawai}}">{{.IdPegawai}} | {{.NamaPegawai}}</option>
+                                        {{ end }}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tahun
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control select2" id="Tahun" name="Tahun">
+                                        <option>- Pilih Tahun -</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Bulan
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control select2" id="Bulan" name="Bulan">
+                                        <option>- Pilih Bulan -</option>
+                                        <option value="1">Januari</option>
+                                        <option value="2">Februari</option>
+                                        <option value="3">Maret</option>
+                                        <option value="4">April</option>
+                                        <option value="5">Mei</option>
+                                        <option value="6">Juni</option>
+                                        <option value="7">Juli</option>
+                                        <option value="8">Agustus</option>
+                                        <option value="9">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--<div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal
+                                </label>
+                                <div class="col-md-3 col-sm-3">
+                                    <input id="TanggalAwal" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
+                                </div>
+                                
+                                <div class="col-md-3 col-sm-3">
+                                    <input id="TanggalAkhir" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
+                                </div>
+                            </div> -->
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button type="button" onclick="loadMore()" class="btn btn-success">Cari Data</button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- FORM PENCARIAN DATA -->
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Tabel Laporan </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row" id="LoadTabel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/static/vendors/moment/min/moment.min.js"></script>
+<script src="/static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/static/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- bootstrap-datetimepicker -->    
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        /*$('#TanggalAwal').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+        $('#TanggalAkhir').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });*/
+        setTimeout(() => {
+            $('#TanggalAwal').val(GetDateBulanan('awal',Date.now()));
+            $('#TanggalAkhir').val(GetDateBulanan('akhir',Date.now()));
+        }, 100);
+
+        '{{if (eq .Idrole "5") }}'
+            $("#IdPegawai").val("{{.id_pegawai}}").trigger("change");
+            $('#IdPegawai').attr("disabled", true); 
+        '{{else if (eq .Idrole "4") }}'
+            $("#IdUnit").val("{{.id_unit}}").trigger("change");
+            $('#IdUnit').attr("disabled", true); 
+        '{{ else }}'
+
+        '{{ end }}'
+    });
+
+    $("#TanggalAkhir").change(function () {
+        var TanggalAwal = document.getElementById("TanggalAwal").value;
+        var TanggalAkhir = document.getElementById("TanggalAkhir").value;
+
+        if ((Date.parse(TanggalAwal) >= Date.parse(TanggalAkhir))) {
+            alert("Silahkan isi tanggal akhir lebih besar dari tanggal awal!");
+            document.getElementById("TanggalAkhir").value = GetDateBulanan('akhir',Date.now());
+        }
+    });
+
+    function GetDateBulanan(range,date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + '15',
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        if (range=='awal') {
+            return [year, month, day].join('-');
+        } else {
+            return [year, month, day].join('-');
+        }
+    }
+
+    function loadMore() {
+        var vIdUnit       = $('#IdUnit').val();
+        var vIdPegawai    = $('#IdPegawai').val();
+        var vTahun        = $('#Tahun').val();
+        var vBulan        = $('#Bulan').val();
+
+        if (vIdUnit=='') {
+            alert('Silahkan pilih unit!');
+        } else if (vIdPegawai=='') {
+            alert('Silahkan pilih pegawai!');
+        } else if (vTahun=='' && vBulan=='') {
+            alert('Silahkan isikan tanggal!');
+        } else {
+            $.ajax({
+                url: '/rekap_laporan_bulanan_perpegawai/load_data',
+                type: 'POST',
+                data: {
+                    IdUnit       : vIdUnit,
+                    IdPegawai    : vIdPegawai,
+                    TanggalAwal  : vTahun,
+                    TanggalAkhir : vBulan
+                },
+                success: function (respon) {
+                    $('#LoadTabel').html(respon);
+                }
+            });
+        }
+    }
+</script>
+{{template "_footer"}}
