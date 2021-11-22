@@ -23,6 +23,12 @@ type SRekapLaporanv2 struct {
 	Bulan                     string
 }
 
+type SUpdateDataInline struct {
+	Id      int64
+	ColName string
+	NewVal  string
+}
+
 type SDetailHarianv2 struct {
 	No              int
 	IdPegawai       int64
@@ -210,5 +216,22 @@ func (*LaporanModelv2) DetailHarianv2(TanggalAwal string, TanggalAkhir string, i
 				return data, nil
 			}
 		}
+	}
+}
+
+func (*LaporanModelv2) UpdateDataInline(data SUpdateDataInline) bool {
+	db, err := config.GetDB()
+	if err != nil {
+		return false
+	} else {
+		queryRaw := "UPDATE laporan_rekap SET " + data.ColName + " = ? WHERE id = ?"
+		result, err2 := db.Exec(queryRaw, data.NewVal, data.Id)
+		if err2 != nil {
+			return false
+		} else {
+			rowsAffected, _ := result.RowsAffected()
+			return rowsAffected > 0
+		}
+
 	}
 }

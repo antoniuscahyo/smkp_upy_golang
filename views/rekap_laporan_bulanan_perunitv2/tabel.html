@@ -25,10 +25,10 @@
                     <td>{{.NamaPegawai}}</td>
                     <td>{{.JumlahKehadiran}}</td>
                     <td id="ValVK-{{.IdPK}}"><span onclick='getParent("ValVK-{{.IdPK}}","{{.ValidasiKehadiran}}")'>{{.ValidasiKehadiran}}</span></td>
-                    <td id="ValPIK-{{.IdPK}}">{{.PotonganInsentifKehadiran}}</td>
-                    <td id="ValVIK-{{.IdPK}}">{{.ValidasiInsentifKehadiran}}</td>
-                    <td id="ValUMKK-{{.IdPK}}">{{.UMKKehadiran}}</td>
-                    <td id="ValVUMK-{{.IdPK}}">{{.ValidasiUMKKehadiran}}</td>
+                    <td id="ValPIK-{{.IdPK}}"><span onclick='getParent("ValPIK-{{.IdPK}}","{{.PotonganInsentifKehadiran}}")'>{{.PotonganInsentifKehadiran}}</span></td>
+                    <td id="ValVIK-{{.IdPK}}"><span onclick='getParent("ValVIK-{{.IdPK}}","{{.ValidasiInsentifKehadiran}}")'>{{.ValidasiInsentifKehadiran}}</span></td>
+                    <td id="ValUMKK-{{.IdPK}}"><span onclick='getParent("ValUMKK-{{.IdPK}}","{{.UMKKehadiran}}")'>{{.UMKKehadiran}}</span></td>
+                    <td id="ValVUMK-{{.IdPK}}"><span onclick='getParent("ValVUMK-{{.IdPK}}","{{.ValidasiUMKKehadiran}}")'>{{.ValidasiUMKKehadiran}}</span></td>
                 </tr>
             {{ end }}
             </tbody>
@@ -43,73 +43,41 @@
     });
 
     function getParent(id,val) {
-        console.log('onclick input');
         $('#'+id+'').html('');
-        $('#'+id+'').append('<input type="text" id="'+val+'" value="'+val+'"></input><button type="button" onclick="alert("Batal")">Batal</button><button type="button" onclick="alert("Simpan")">Simpan</button>');
+        $('#'+id+'').append('<input type="number" id="input-'+id+'" value="'+val+'"></input><button type="button" onclick=Batal("'+id+'","'+val+'")>Batal</button><button type="button" onclick=Simpan("'+id+'","'+val+'")>Simpan</button>');
     }
 
-    function Batal(id) {
-        console.log('onclick input');
+    function Batal(id,val) {
+        $('#'+id+'').html('<span onclick=getParent("'+id+'","'+val+'")>'+val+'</span>');
     }
 
-    // var editor;
-    // $('#datatable').on( 'click', 'tbody td:not(:first-child)', function (e) {
-    //     editor.inline( this );
-    // } );
-    
-    // Datatable
-    // var EditRowData = [];
-    // var ColumnData;
+    function Simpan(id,val) {
+        var newVal = $('#input-'+id).val();
+        var newValValidate = newVal=='' ? '-' : newVal;
+        $('#'+id+'').html('<span onclick=getParent("'+id+'","'+newValValidate+'")>'+newValValidate+'</span>');
+        
+        if (val==newValValidate) {
+            Batal(id,val);
+            return;
+        }
 
-    // $(document).ready(function() {
-    //     $("#datatable tbody").on('click', 'tr td', function (e) {
-    //         RoweditMode($(this).parent());
-    //         // alert('run editable');
-    //     });
-    // });
+        const dataId = id.split("-");
+        var sendData = {
+            Id: dataId[1],
+            ColName: dataId[0],
+            NewVal: newVal
+        };
 
-    // var editIndexTable = -1;
-    // function RoweditMode(rowid) {
-    //     alert('RoweditMode '+JSON.stringify(rowid));
-    //     var prevRow;
-    //     var rowIndexVlaue = parseInt(rowid.attr("indexv"));
-    //     if (editIndexTable == -1) {
-    //         saveRowIntoArray(rowid);
-    //         rowid.attr("editState", "editState");
-    //         editIndexTable = rowid.rowIndex;
-    //         setEditStateValue(rowid, rowIndexVlaue + 2);
-    //     }
-    //     else {
-    //         prevRow = $("[editState=editState]");
-    //         prevRow.attr("editState", "");
-    //         rowid.attr("editState", "editState");
-    //         editIndexTable = rowIndexVlaue;
-    //         saveArrayIntoRow(prevRow);
-    //         saveRowIntoArray(rowid);
-    //         setEditStateValue(rowid, rowIndexVlaue + 2);
-    //     }
-    // }
-    // function saveRowIntoArray(cureentCells) {
-    //     alert('saveRowIntoArray '+JSON.stringify(cureentCells));
-    //     $.each(ColumnData, function (index, element) {
-    //         if (element.Editable == true) {
-    //             var htmlVal = $($(cureentCells).children('.' + element.Name)[0]).html();
-    //             EditRowData[element.Name] = htmlVal;
-    //         }
-    //     });
-    // }
-    // function saveArrayIntoRow(cureentCells) {
-    //     alert('saveArrayIntoRow '+JSON.stringify(cureentCells));
-    //     for (var k in EditRowData) {
-    //         $($(cureentCells).children('.' + k)[0]).html(EditRowData[k]);
-    //     }
-    // }
-    // function setEditStateValue(td1, indexRow) {
-    //     alert('setEditStateValue '+JSON.stringify(indexRow));
-    //     for (var k in EditRowData) {
-    //         $($(td1).children('.' + k)[0]).html('<input value="' + EditRowData[k] + '" class="userinput"  style="width: 99% " />');
-    //     }
-    // }
-
-    // Datatable
+        $.ajax({
+            type: 'POST',
+            url: '/rekap_laporan_bulanan_perunitv2/updateinline',
+            dataType: 'JSON',
+            data: sendData,
+            success: function (data) {
+                if(data.Status=='success') {
+                    loadMore();
+                }
+            }
+        });
+    }
 </script>

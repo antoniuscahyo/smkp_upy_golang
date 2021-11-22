@@ -2,6 +2,7 @@ package rekaplaporanperunitcontrollerv2
 
 import (
 	"SMKPUPY/models"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -78,4 +79,32 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 
 	t.Execute(response, data)
 	return
+}
+
+type Data struct {
+	Status string
+}
+
+func UpdateInline(response http.ResponseWriter, request *http.Request) {
+	request.ParseForm()
+	var UpdateDataInline models.SUpdateDataInline
+	UpdateDataInline.Id, _ = strconv.ParseInt(request.PostFormValue("Id"), 10, 64)
+	if request.PostFormValue("ColName") == "ValVK" {
+		UpdateDataInline.ColName = "jumlah_validasi"
+	} else if request.PostFormValue("ColName") == "ValPIK" {
+		UpdateDataInline.ColName = "jumlah_pot_insentif_kehadiran"
+	} else if request.PostFormValue("ColName") == "ValVIK" {
+		UpdateDataInline.ColName = "validasi_pot_insentif_kehadiran"
+	} else if request.PostFormValue("ColName") == "ValUMKK" {
+		UpdateDataInline.ColName = "umk_kehadiran"
+	} else if request.PostFormValue("ColName") == "ValVUMK" {
+		UpdateDataInline.ColName = "umk_validasi"
+	}
+	UpdateDataInline.NewVal = request.PostFormValue("NewVal")
+
+	var laporanv2Model models.LaporanModelv2
+	laporanv2Model.UpdateDataInline(UpdateDataInline)
+	response.Header().Set("Content-Type", "application/json")
+	p := Data{"success"}
+	json.NewEncoder(response).Encode(p)
 }
