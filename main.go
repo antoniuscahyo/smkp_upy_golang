@@ -60,6 +60,7 @@ func main() {
 
 	http.HandleFunc("/rekap_laporan_bulanan_perunitv2", rekaplaporanperunitcontrollerv2.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perunitv2/load_data", rekaplaporanperunitcontrollerv2.LoadData)
+	http.HandleFunc("/rekap_laporan_bulanan_perunitv2/updateinline", rekaplaporanperunitcontrollerv2.UpdateInline)
 
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2", rekaplaporanperpegawaicontrollerv2.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2/load_data", rekaplaporanperpegawaicontrollerv2.LoadData)
