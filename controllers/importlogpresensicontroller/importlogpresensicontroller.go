@@ -153,6 +153,7 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	dataDeleteRekap.Tahun = r.PostFormValue("Tahun")
 	dataDeleteRekap.Bulan = r.PostFormValue("Bulan")
 	importLogModel.DeleteLaporanRekap(&dataDeleteRekap)
+	importLogModel.DeleteLaporanRekapDetail(&dataDeleteRekap)
 
 	var dataCreateRekap entities.LogImportPresensi
 	dataCreateRekap.Tahun = r.PostFormValue("Tahun")
@@ -160,6 +161,7 @@ func RouteSubmitPost(w http.ResponseWriter, r *http.Request) {
 	dataCreateRekap.TanggalLogAwal = r.PostFormValue("TanggalAwal")
 	dataCreateRekap.TanggalLogAkhir = r.PostFormValue("TanggalAkhir")
 	importLogModel.CreateLaporanRekap(&dataCreateRekap)
+	importLogModel.CreateLaporanRekapDetail(&dataCreateRekap)
 
 	// Code Blocks Delete File setelah 10 Detik upload sukses!!!
 	/*time.Sleep(time.Second * 10)
