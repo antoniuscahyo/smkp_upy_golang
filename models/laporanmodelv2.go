@@ -97,43 +97,33 @@ func (*LaporanModelv2) RekapLaporanv2(Tahun string, Bulan string, idUnit int64) 
 	}
 }
 
-func (*LaporanModelv2) DetailHarianv2(TanggalAwal string, TanggalAkhir string, idUnit int64, idPegawai int64, idRole int64) ([]SDetailHarianv2, error) {
+func (*LaporanModelv2) DetailHarianv2(Tahun string, Bulan string, idUnit int64, idPegawai int64, idRole int64) ([]SDetailHarianv2, error) {
 	db, err := config.GetDB()
-
-	// fmt.Println(TanggalAwal)
-	// fmt.Println(TanggalAkhir)
 
 	if err != nil {
 		return nil, err
 	} else {
 		if idRole == 5 {
 			rows, err2 := db.Query(`SELECT
-				IFNULL(pegawai.id_pegawai,0) AS id_pegawai,
-				IFNULL(pegawai.id_unit,0) AS id_unit,
+				IFNULL(laporan_rekap_detail.id_pegawai,0) AS id_pegawai,
+				IFNULL(laporan_rekap_detail.id_unit,0) AS id_unit,
 				IFNULL(pegawai.pin_finger,'') AS pin_finger,
 				IFNULL(pegawai.nama_pegawai,'') AS nama_pegawai,
-				IFNULL(log_mesin_finger.tanggal,'') AS tanggal,
-				IFNULL(TIME_FORMAT(func_getscanmasuk(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS scan_masuk,
-				IFNULL(TIME_FORMAT(func_getscankeluar(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS scan_keluar,
-				IFNULL(TIME_FORMAT(func_getscanterlambat(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS terlambat,
-				IFNULL(TIME_FORMAT(func_getscanbolos(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS bolos,
-				IFNULL(TIME_FORMAT(func_getscanjumlahkehadiran(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS jumlah_kehadiran,
-				IFNULL(NULL,'') AS tanda_tangan,
-				IFNULL(NULL,'') AS keterangan
+				IFNULL(laporan_rekap_detail.tanggal,'') AS tanggal,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.scan_masuk, "%H:%i"),'') AS scan_masuk,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.scan_keluar, "%H:%i"),'') AS scan_keluar,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.terlambat, "%H:%i"),'') AS terlambat,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.bolos, "%H:%i"),'') AS bolos,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.jumlah_jam_kehadiran, "%H:%i"),'') AS jumlah_kehadiran
 			FROM
-				log_mesin_finger
-				INNER JOIN pegawai ON log_mesin_finger.pin_finger = pegawai.pin_finger
-				LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
-				LEFT JOIN fakultas ON pegawai.id_fakultas = fakultas.id_fakultas
-				LEFT JOIN program_studi ON pegawai.id_program_studi = program_studi.id_program_studi
+				laporan_rekap_detail
+			INNER JOIN pegawai ON laporan_rekap_detail.id_pegawai = pegawai.id_pegawai
 			WHERE
-				log_mesin_finger.tanggal >= ? AND log_mesin_finger.tanggal <= ?
-				AND pegawai.id_pegawai = ?
-			GROUP BY
-				pegawai.id_pegawai,log_mesin_finger.tanggal
+				laporan_rekap_detail.tahun = ? AND laporan_rekap_detail.bulan = ?
+				AND laporan_rekap_detail.id_pegawai = ?
 			ORDER BY 
 			pegawai.nis_pegawai DESC,
-			log_mesin_finger.tanggal ASC`, TanggalAwal, TanggalAkhir, idPegawai)
+			laporan_rekap_detail.tanggal ASC`, Tahun, Bulan, idPegawai)
 			if err2 != nil {
 				fmt.Println(err2)
 				return nil, err2
@@ -153,42 +143,32 @@ func (*LaporanModelv2) DetailHarianv2(TanggalAwal string, TanggalAkhir string, i
 						&detail.ScanKeluar,
 						&detail.Terlambat,
 						&detail.Bolos,
-						&detail.JumlahKehadiran,
-						&detail.TandaTangan,
-						&detail.Keterangan)
+						&detail.JumlahKehadiran)
 					data = append(data, detail)
 				}
 				return data, nil
 			}
 		} else {
 			rows, err2 := db.Query(`SELECT
-				IFNULL(pegawai.id_pegawai,0) AS id_pegawai,
-				IFNULL(pegawai.id_unit,0) AS id_unit,
+				IFNULL(laporan_rekap_detail.id_pegawai,0) AS id_pegawai,
+				IFNULL(laporan_rekap_detail.id_unit,0) AS id_unit,
 				IFNULL(pegawai.pin_finger,'') AS pin_finger,
 				IFNULL(pegawai.nama_pegawai,'') AS nama_pegawai,
-				IFNULL(log_mesin_finger.tanggal,'') AS tanggal,
-				IFNULL(TIME_FORMAT(func_getscanmasuk(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS scan_masuk,
-				IFNULL(TIME_FORMAT(func_getscankeluar(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS scan_keluar,
-				IFNULL(TIME_FORMAT(func_getscanterlambat(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS terlambat,
-				IFNULL(TIME_FORMAT(func_getscanbolos(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS bolos,
-				IFNULL(TIME_FORMAT(func_getscanjumlahkehadiran(log_mesin_finger.tanggal,pegawai.id_unit,pegawai.pin_finger), "%H:%i"),'') AS jumlah_kehadiran,
-				IFNULL(NULL,'') AS tanda_tangan,
-				IFNULL(NULL,'') AS keterangan
+				IFNULL(laporan_rekap_detail.tanggal,'') AS tanggal,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.scan_masuk, "%H:%i"),'') AS scan_masuk,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.scan_keluar, "%H:%i"),'') AS scan_keluar,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.terlambat, "%H:%i"),'') AS terlambat,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.bolos, "%H:%i"),'') AS bolos,
+				IFNULL(TIME_FORMAT(laporan_rekap_detail.jumlah_jam_kehadiran, "%H:%i"),'') AS jumlah_kehadiran
 			FROM
-				log_mesin_finger
-				INNER JOIN pegawai ON log_mesin_finger.pin_finger = pegawai.pin_finger
-				LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
-				LEFT JOIN fakultas ON pegawai.id_fakultas = fakultas.id_fakultas
-				LEFT JOIN program_studi ON pegawai.id_program_studi = program_studi.id_program_studi
+				laporan_rekap_detail
+			INNER JOIN pegawai ON laporan_rekap_detail.id_pegawai = pegawai.id_pegawai
 			WHERE
-				log_mesin_finger.tanggal >= ? AND log_mesin_finger.tanggal <= ?
-				AND pegawai.id_unit = ?
-				AND pegawai.id_pegawai = ?
-			GROUP BY
-				pegawai.id_pegawai,log_mesin_finger.tanggal
+				laporan_rekap_detail.tahun = ? AND laporan_rekap_detail.bulan = ? AND laporan_rekap_detail.id_unit = ?
+				AND laporan_rekap_detail.id_pegawai = ?
 			ORDER BY 
 			pegawai.nis_pegawai DESC,
-			log_mesin_finger.tanggal ASC`, TanggalAwal, TanggalAkhir, idUnit, idPegawai)
+			laporan_rekap_detail.tanggal ASC`, Tahun, Bulan, idUnit, idPegawai)
 			if err2 != nil {
 				fmt.Println(err2)
 				return nil, err2
@@ -208,9 +188,7 @@ func (*LaporanModelv2) DetailHarianv2(TanggalAwal string, TanggalAkhir string, i
 						&detail.ScanKeluar,
 						&detail.Terlambat,
 						&detail.Bolos,
-						&detail.JumlahKehadiran,
-						&detail.TandaTangan,
-						&detail.Keterangan)
+						&detail.JumlahKehadiran)
 					data = append(data, detail)
 				}
 				return data, nil

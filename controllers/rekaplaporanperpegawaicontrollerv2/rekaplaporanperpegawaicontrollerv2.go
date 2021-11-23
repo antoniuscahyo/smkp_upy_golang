@@ -63,13 +63,13 @@ func LoadData(response http.ResponseWriter, request *http.Request) {
 
 	IdUnit, _ := strconv.ParseInt(request.PostFormValue("IdUnit"), 10, 64)
 	IdPegawai, _ := strconv.ParseInt(request.PostFormValue("IdPegawai"), 10, 64)
-	TanggalAwal := request.PostFormValue("TanggalAwal")
-	TanggalAkhir := request.PostFormValue("TanggalAkhir")
+	Tahun := request.PostFormValue("Tahun")
+	Bulan := request.PostFormValue("Bulan")
 
 	IdRole, _ := strconv.ParseInt(session.GetString("Idrole"), 10, 64)
 
-	var laporanModel models.LaporanModel
-	detailharian, _ := laporanModel.DetailHarian(TanggalAwal, TanggalAkhir, IdUnit, IdPegawai, IdRole)
+	var laporanModel models.LaporanModelv2
+	detailharian, _ := laporanModel.DetailHarianv2(Tahun, Bulan, IdUnit, IdPegawai, IdRole)
 
 	data := map[string]interface{}{
 		"data":         detailharian,

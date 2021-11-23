@@ -195,13 +195,13 @@
             alert('Silahkan isikan tanggal!');
         } else {
             $.ajax({
-                url: '/rekap_laporan_bulanan_perpegawai/load_data',
+                url: '/rekap_laporan_bulanan_perpegawaiv2/load_data',
                 type: 'POST',
                 data: {
                     IdUnit       : vIdUnit,
                     IdPegawai    : vIdPegawai,
-                    TanggalAwal  : vTahun,
-                    TanggalAkhir : vBulan
+                    Tahun  : vTahun,
+                    Bulan : vBulan
                 },
                 success: function (respon) {
                     $('#LoadTabel').html(respon);
