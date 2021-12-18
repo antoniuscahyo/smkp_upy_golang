@@ -61,9 +61,11 @@ func main() {
 	http.HandleFunc("/rekap_laporan_bulanan_perunitv2", rekaplaporanperunitcontrollerv2.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perunitv2/load_data", rekaplaporanperunitcontrollerv2.LoadData)
 	http.HandleFunc("/rekap_laporan_bulanan_perunitv2/updateinline", rekaplaporanperunitcontrollerv2.UpdateInline)
+	http.HandleFunc("/rekap_laporan_bulanan_perunitv2/print", rekaplaporanperunitcontrollerv2.Print)
 
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2", rekaplaporanperpegawaicontrollerv2.Index)
 	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2/load_data", rekaplaporanperpegawaicontrollerv2.LoadData)
+	http.HandleFunc("/rekap_laporan_bulanan_perpegawaiv2/print", rekaplaporanperpegawaicontrollerv2.Print)
 	// Laporan Pegawai
 
 	http.HandleFunc("/referensi_unit", referensiunitcontroller.Index)
