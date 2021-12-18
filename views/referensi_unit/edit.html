@@ -37,7 +37,19 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Unit Level <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="UnitLevel" name="UnitLevel" required="required" class="form-control" value="{{.records.UnitLevel}}">
+                                    <input type="text" id="UnitLevel" name="UnitLevel" class="form-control" value="{{.records.UnitLevel}}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kepala Unit
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control select2" id="IdPegawai" name="IdPegawai">
+                                        <option value="">- Pilih Pegawai -</option>
+                                        {{ range .pegawai }}
+                                        <option value="{{.IdPegawai}}">{{.IdPegawai}} | {{.NamaPegawai}}</option>
+                                        {{ end }}
+                                    </select>
                                 </div>
                             </div>
 
@@ -59,4 +71,10 @@
     </div>
 </div>
 <!-- page content -->
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#IdPegawai").val("{{.records.IdPegawai}}");
+    });
+</script>
 {{template "_footer"}}

@@ -94,6 +94,7 @@ func Update(response http.ResponseWriter, request *http.Request) {
 	unit.IdUnit, _ = strconv.ParseInt(request.Form.Get("IdUnit"), 10, 64)
 	unit.UnitNama = request.Form.Get("UnitNama")
 	unit.UnitLevel = request.Form.Get("UnitLevel")
+	unit.IdPegawai, _ = strconv.ParseInt(request.Form.Get("IdPegawai"), 10, 64)
 	var unitModel models.UnitModel
 	unitModel.Update(unit)
 	http.Redirect(response, request, "/referensi_unit", http.StatusSeeOther)
@@ -115,11 +116,16 @@ func Edit(response http.ResponseWriter, request *http.Request) {
 
 	query := request.URL.Query()
 	id, _ := strconv.ParseInt(query.Get("id"), 10, 64)
+
 	var unitModel models.UnitModel
 	unit, _ := unitModel.Find(id)
 
+	var pegawaiModel models.PegawaiModel
+	pegawai, _ := pegawaiModel.FindAll()
+
 	data := map[string]interface{}{
 		"records":       unit,
+		"pegawai":       pegawai,
 		"username":      session.GetString("username"),
 		"nama_pengguna": session.GetString("nama"),
 		"Idrole":        session.GetString("Idrole"),
