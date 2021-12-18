@@ -27,30 +27,19 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6">
                                             <select class="form-control select2" id="IdUnit" name="IdUnit">
-                                                <option value="0">- Pilih Unit Kerja -</option>
+                                                <option value="">- Pilih Unit Kerja -</option>
                                                 {{ range .unitkerja }}
                                                 <option value="{{.IdUnit}}">{{.IdUnit}} | {{.UnitNama}}</option>
                                                 {{ end }}
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal
-                                        </label>
-                                        <div class="col-md-3 col-sm-3">
-                                            <input id="TanggalAwal" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
-                                        </div>
-                                        
-                                        <div class="col-md-3 col-sm-3">
-                                            <input id="TanggalAkhir" class="date-picker form-control"  data-date-format="yyyy-mm-dd"  type="date" required="required">
-                                        </div>
-                                    </div> -->
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tahun
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <select class="form-control select2" id="Tahun" name="Tahun">
-                                                <option>- Pilih Tahun -</option>
+                                                <option value="">- Pilih Tahun -</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
                                             </select>
@@ -61,7 +50,7 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <select class="form-control select2" id="Bulan" name="Bulan">
-                                                <option>- Pilih Bulan -</option>
+                                                <option value="">- Pilih Bulan -</option>
                                                 <option value="1">Januari</option>
                                                 <option value="2">Februari</option>
                                                 <option value="3">Maret</option>
@@ -80,7 +69,8 @@
                                     <div class="ln_solid"></div>
                                     <div class="item form-group">
                                         <div class="col-md-6 col-sm-6 offset-md-3">
-                                            <button type="button" onclick="loadMore()" class="btn btn-success">Cari Data</button>
+                                            <button type="button" onclick="loadMore()" class="btn btn-success"><i class="fa fa-search"></i> Cari Data</button>
+                                            <button type="button" onclick="Print('html')" class="btn btn-primary"><i class="fa fa-print"></i> Cetak Data</button>
                                         </div>
                                     </div>
                                 </form>
@@ -184,6 +174,17 @@
                     $('#LoadTabel').html(respon);
                 }
             });
+        }
+    }
+
+    function Print(params) {
+        var vIdUnit = $('#IdUnit').val();
+        var vTahun  = $('#Tahun').val();
+        var vBulan  = $('#Bulan').val();
+        if (vIdUnit!='' && vTahun!='' && vBulan!='') {
+            window.open('/rekap_laporan_bulanan_perunitv2/print?IdUnit='+vIdUnit+'&Tahun='+vTahun+'&Bulan='+vBulan, '_blank');
+        } else {
+            alert('Silahkan lengkapi data!');
         }
     }
 </script>

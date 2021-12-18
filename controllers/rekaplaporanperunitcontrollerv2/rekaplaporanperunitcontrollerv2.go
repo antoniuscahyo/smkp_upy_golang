@@ -1,6 +1,7 @@
 package rekaplaporanperunitcontrollerv2
 
 import (
+	"SMKPUPY/config"
 	"SMKPUPY/models"
 	"encoding/json"
 	"fmt"
@@ -107,4 +108,46 @@ func UpdateInline(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("Content-Type", "application/json")
 	p := Data{"success"}
 	json.NewEncoder(response).Encode(p)
+}
+
+func Print(response http.ResponseWriter, request *http.Request) {
+
+	session := sessions.Start(response, request)
+	if len(session.GetString("username")) == 0 {
+		http.Redirect(response, request, "/login", 301)
+	}
+	IdUnit, _ := strconv.ParseInt(request.FormValue("IdUnit"), 10, 64)
+	Tahun := request.FormValue("Tahun")
+	Bulan := request.FormValue("Bulan")
+
+	var laporanModel models.LaporanModelv2
+	rekaplaporan, _ := laporanModel.RekapLaporanv2_print(Tahun, Bulan, IdUnit)
+
+	var unitModel models.UnitModel
+	unit, _ := unitModel.Find(IdUnit)
+
+	var pegawaiModel models.PegawaiModel
+	pegawai, _ := pegawaiModel.Find(unit.IdPegawai)
+
+	data := map[string]interface{}{
+		"data":         rekaplaporan,
+		"unit_nama":    unit.UnitNama,
+		"unit_kepala":  pegawai.NamaPegawai,
+		"bulan":        config.GetBulan(Bulan),
+		"tahun":        Tahun,
+		"NamaAplikasi": session.GetString("nama_aplikasi"),
+	}
+
+	var t, err = template.ParseFiles(
+		"views/rekap_laporan_bulanan_perunitv2/print.html",
+	)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		http.Error(response, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	t.Execute(response, data)
+	return
 }
