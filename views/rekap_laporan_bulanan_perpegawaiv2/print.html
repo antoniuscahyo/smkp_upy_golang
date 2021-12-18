@@ -1,0 +1,40 @@
+<style type="text/css">
+    td, th {
+        padding: 5px;
+    }
+</style>
+
+<h3 align="center" style="margin-bottom: 0px;"><b>Rekap Kehadiran Detail Pegawai <br>
+    Unit Kerja : {{ .nama_unit}} <br> Nama Pegawai : {{ .nama_pegawai}} <br> Per Bulan {{ .bulan}} {{ .tahun}} </b></h3>
+    
+    <br>
+    
+    <div style="overflow-x: auto;"> 
+        <table border="1" style="border:#666666 solid 0.5px; border-collapse:collapse;" cellspacing="0" cellpadding="0" width="100%">
+            <thead>
+                <tr style="background: #dedddc;">
+                    <th valign="middle"><div align="center">No</div></th>
+                    <th valign="middle"><div align="center">Tanggal</div></th>
+                    <th valign="middle"><div align="center">Scan Masuk </div></th>
+                    <th valign="middle"><div align="center">Scan Keluar </div></th>
+                    <th valign="middle"><div align="center">Terlambat</div></th>
+                    <th valign="middle"><div align="center">Bolos</div></th>
+                    <th valign="middle">Jumlah Kehadiran </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .data }}
+                <tr>
+                    <td><div align="center">{{.No}}</div></td>
+                    <td>{{.Tanggal}}</td>
+                    <td><div align="center">{{.ScanMasuk}}</div></td>
+                    <td><div align="center">{{.ScanKeluar}}</div></td>
+                    <td><div align="center">{{.Terlambat}}</div></td>
+                    <td><div align="center">{{.Bolos}}</div></td>
+                    <td><div align="center">{{.JumlahKehadiran}}</div></td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+    

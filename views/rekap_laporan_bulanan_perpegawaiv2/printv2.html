@@ -1,0 +1,78 @@
+<style type="text/css">
+    td, th {
+        padding: 5px;
+    }
+</style>
+
+<h2 align="center" style="margin-bottom: 0px;"><b>Laporan Detail Harian </b></h2>
+
+<br>
+<table width="100%" border="0">
+    <tr>
+        <td width="9%"><div align="left"><strong>No. ID </strong></div></td>
+        <td width="41%"> {{ .pin_finger}} </td>
+        <td width="50%"><div align="center">Periode Waktu </div></td>
+    </tr>
+    <tr>
+        <td><div align="left"><strong>Nama</strong></div></td>
+        <td> {{ .nama_pegawai}} </td>
+        <!-- <td><div align="center">16-05-2021 s/d 15-06-2021 </div></td> -->
+        <td><div align="center">{{ .bulan}} {{ .tahun}} </div></td>
+    </tr>
+</table>
+<br>
+
+<div style="overflow-x: auto;"> 
+    <table border="1" style="border:#666666 solid 0.5px; border-collapse:collapse;" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+            <tr style="background: #dedddc;">
+                <th valign="middle"><div align="center">Tanggal</div></th>
+                <th valign="middle"><div align="center">Scan Masuk </div></th>
+                <th valign="middle"><div align="center">Scan Pulang </div></th>
+                <th valign="middle"><div align="center">Terlambat</div></th>
+                <th valign="middle"><div align="center">Bolos</div></th>
+                <th valign="middle"><div align="center">Jumlah Jam Kehadiran </div></th>
+                <!-- <th valign="middle">Tanda Tangan </th> -->
+                <!-- <th valign="middle"><div align="center">Keterangan</div></th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {{ range .data }}
+            <tr>
+                <td><div align="center">{{.Tanggal}}</div></td>
+                <td><div align="center">{{.ScanMasuk}}</div></td>
+                <td><div align="center">{{.ScanKeluar}}</div></td>
+                <td><div align="center">{{.Terlambat}}</div></td>
+                <td><div align="center">{{.Bolos}}</div></td>
+                <td><div align="center">{{.JumlahKehadiran}}</div></td>
+                <!-- <td><div align="center"></div></td> -->
+                <!-- <td><div align="center"></div></td> -->
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <table width="100%" border="0">
+        <tr>
+            <td><div align="center">Wakil Rektor</div></td>
+            <td><div align="center">Yogyakarta, {{ .timenow }}</div></td>
+        </tr>
+        <tr>
+            <td width="50%"><div align="center">Bidang Administrasi Umum dan PSDM </div></td>
+            <td width="50%"><div align="center">Operator</div></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><div align="center">Saptaningsih Sumarmi, S.E., M.M.</div></td>
+            <td><div align="center">Rony Hanif Warayang, S.Hut</div></td>
+        </tr>
+    </table>
+</div>
