@@ -97,6 +97,58 @@ func (*LaporanModelv2) RekapLaporanv2(Tahun string, Bulan string, idUnit int64) 
 	}
 }
 
+func (*LaporanModelv2) RekapLaporanv2_print(Tahun string, Bulan string, idUnit int64) ([]SRekapLaporanv2, error) {
+	db, err := config.GetDB()
+
+	if err != nil {
+		return nil, err
+	} else {
+		rows, err2 := db.Query(`SELECT
+			laporan_rekap.id,
+			pegawai.nama_pegawai AS nama,
+			jumlah_kehadiran AS jumlah_kehadiran,
+			IFNULL(jumlah_validasi,'') AS jumlah_validasi,
+			IFNULL(jumlah_pot_insentif_kehadiran,'') AS jumlah_pot_insentif_kehadiran,
+			IFNULL(validasi_pot_insentif_kehadiran,'') AS validasi_pot_insentif_kehadiran,
+			IFNULL(umk_kehadiran,'') AS umk_kehadiran,
+			IFNULL(umk_validasi,'') AS umk_validasi
+		FROM
+		laporan_rekap
+			LEFT JOIN pegawai ON pegawai.id_pegawai=laporan_rekap.id_pegawai
+			LEFT JOIN unit ON pegawai.id_unit = unit.unit_id
+			LEFT JOIN fakultas ON pegawai.id_fakultas = fakultas.id_fakultas
+			LEFT JOIN program_studi ON pegawai.id_program_studi = program_studi.id_program_studi
+		WHERE
+			laporan_rekap.tahun = ? AND
+			laporan_rekap.bulan = ? AND
+			laporan_rekap.id_unit = ?
+		ORDER BY 
+		pegawai.nis_pegawai DESC`, Tahun, Bulan, idUnit)
+		if err2 != nil {
+			fmt.Println(err2)
+			return nil, err2
+		} else {
+			var data []SRekapLaporanv2
+			i := 1
+			for rows.Next() {
+				var detail SRekapLaporanv2
+				detail.No = i
+				i++
+				rows.Scan(&detail.IdPK,
+					&detail.NamaPegawai,
+					&detail.JumlahKehadiran,
+					&detail.ValidasiKehadiran,
+					&detail.PotonganInsentifKehadiran,
+					&detail.ValidasiInsentifKehadiran,
+					&detail.UMKKehadiran,
+					&detail.ValidasiUMKKehadiran)
+				data = append(data, detail)
+			}
+			return data, nil
+		}
+	}
+}
+
 func (*LaporanModelv2) DetailHarianv2(Tahun string, Bulan string, idUnit int64, idPegawai int64, idRole int64) ([]SDetailHarianv2, error) {
 	db, err := config.GetDB()
 
